@@ -32,7 +32,7 @@
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,system-ui,sans-serif;-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
 button{touch-action:manipulation}
 .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
 /* Móvil (base): cabecera compacta y barra de pestañas fija abajo, al alcance del pulgar. */
@@ -46,7 +46,7 @@ header.top .wrap{display:flex;align-items:center;justify-content:space-between;g
 #howto p{margin:0 32px 0 0}
 #howto .close{float:right;min-width:44px;min-height:44px;margin:-12px -12px 0 0;border:0;background:none;color:var(--muted);font-size:22px;cursor:pointer}
 .tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;display:flex;gap:4px;padding:6px 8px calc(6px + env(safe-area-inset-bottom));
-  background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+  background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -2px 12px rgba(14,26,43,.06)}
 .tab{flex:1 1 0;min-width:0;min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;border:0;border-radius:12px;background:transparent;color:var(--muted);cursor:pointer;text-align:center;font:inherit}
 .tab[aria-selected="true"]{background:var(--surface-2);color:var(--ink)}
 .tab b{font:700 15px/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.5px;display:block}
@@ -57,7 +57,7 @@ header.top .wrap{display:flex;align-items:center;justify-content:space-between;g
 @media(min-width:760px){
   header.top{padding:22px 0 60px}
   header.top h1{font-size:30px}
-  .tabs{position:static;margin-top:-44px;padding:0;gap:8px;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;border:0}
+  .tabs{position:static;margin-top:-44px;padding:0;gap:8px;background:none;border:0;box-shadow:none}
   .tab{flex-direction:row;justify-content:flex-start;gap:10px;padding:10px 12px;text-align:left;background:color-mix(in srgb,var(--brand) 88%,#fff);color:#fff}
   .tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
   .tab b{font-size:20px}
