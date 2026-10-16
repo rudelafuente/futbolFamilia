@@ -1,4 +1,4 @@
-# Max y Pau · Fútbol
+# Fútbol de la Familia
 
 Web estática, pensada primero para el móvil, para seguir a Max (Sp. Benimaclet C.F. 'B', Prebenjamín) y a Pau
 (Godella C.F. 'E', Infantil) sin entrar en la web de la FFCV. Se publica con GitHub Pages y se puede

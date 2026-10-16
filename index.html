@@ -7,11 +7,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Max y Pau">
+<meta name="apple-mobile-web-app-title" content="De la Familia">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-180.png">
-<title>Max y Pau · Fútbol</title>
+<title>Fútbol de la Familia</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -156,7 +156,7 @@ tr.mate td{background:var(--surface-2)}
 <body>
 <header class="top"><div class="wrap">
   <div style="min-width:0">
-    <h1>Max y Pau · Fútbol</h1>
+    <h1>Fútbol de la Familia</h1>
     <p id="upd">Cargando…</p>
   </div>
   <button id="install" hidden>Instalar app</button>
@@ -333,7 +333,7 @@ function renderCalendar(datos) {
 function downloadIcs(datos) {
   const pad = n => String(n).padStart(2, '0');
   const f = d => `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
-  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//max-pau-futbol//ES', 'X-WR-CALNAME:Max y Pau · Fútbol'];
+  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//max-pau-futbol//ES', 'X-WR-CALNAME:Fútbol de la Familia'];
   events(datos).filter(e => !e.jugado).forEach(e => {
     const end = new Date(e.date.getTime() + 90 * 60000);
     lines.push('BEGIN:VEVENT', `UID:${e.kid.slug}-${e.cod_jornada}-${f(e.date)}@max-pau`, `DTSTAMP:${f(new Date())}`,
@@ -343,7 +343,7 @@ function downloadIcs(datos) {
   lines.push('END:VCALENDAR');
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([lines.join('\r\n')], {type: 'text/calendar'}));
-  a.download = 'max-pau-futbol.ics'; a.click();
+  a.download = 'futbol-de-la-familia.ics'; a.click();
 }
 
 // ---------- instalar como app ----------
@@ -376,8 +376,8 @@ function downloadIcs(datos) {
   const slugs = estado?.jugadores || ['max', 'pau'];
   const datos = (await Promise.all(slugs.map(s => load(`data/${s}.json`)))).filter(Boolean);
   document.getElementById('upd').textContent = estado?.ultima_actualizacion
-    ? 'Última novedad de la federación: ' + fmtStamp(estado.ultima_actualizacion)
-    : 'Aún no hay datos descargados.';
+    ? 'Max y Pau · última novedad: ' + fmtStamp(estado.ultima_actualizacion)
+    : 'Max y Pau · aún no hay datos descargados.';
   if (!datos.length) { document.getElementById('main').innerHTML = '<p class="empty">Todavía no hay datos.</p>'; return; }
 
   const views = [{id: 'calendario', label: 'Calendario', sub: 'Los dos'}, ...datos.map(d => ({id: d.slug, label: d.apodo, sub: d.equipo?.nombre || '', d}))];
