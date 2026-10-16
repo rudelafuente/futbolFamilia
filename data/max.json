@@ -54,6 +54,7 @@
       "jugado": false,
       "resultado": "",
       "campo": "Poliesportiu Mpal. de Rafelbunyol F-8 Campo 1(HA)",
+      "codigo_campo": "6100",
       "estado": "",
       "codacta": "26569808"
     },
@@ -72,6 +73,7 @@
       "jugado": false,
       "resultado": "",
       "campo": "Polideportivo Mpal. de Benimaclet F-8(HA)",
+      "codigo_campo": "5014",
       "estado": "",
       "codacta": "26569813"
     },
@@ -90,6 +92,7 @@
       "jugado": false,
       "resultado": "",
       "campo": "Camp Manuel Aparisi F-8 Campo 1 Albalat dels Sorells(HA)",
+      "codigo_campo": "6245",
       "estado": "",
       "codacta": "26569817"
     },
@@ -108,6 +111,7 @@
       "jugado": false,
       "resultado": "",
       "campo": "Polideportivo Mpal. de Benimaclet F-8(HA)",
+      "codigo_campo": "5014",
       "estado": "",
       "codacta": "26569822"
     },
@@ -126,6 +130,7 @@
       "jugado": false,
       "resultado": "",
       "campo": "Polideportivo Mpal. Meliana F-8 Campo 1(HA)",
+      "codigo_campo": "6287",
       "estado": "",
       "codacta": "26569826"
     },
@@ -144,6 +149,7 @@
       "jugado": false,
       "resultado": "",
       "campo": "Polideportivo Mpal. de Benimaclet F-8(HA)",
+      "codigo_campo": "5014",
       "estado": "",
       "codacta": "26569831"
     },
@@ -162,6 +168,7 @@
       "jugado": false,
       "resultado": "",
       "campo": "Polideportivo Mpal. de Benimaclet F-8(HA)",
+      "codigo_campo": "5014",
       "estado": "",
       "codacta": "26569836"
     },
@@ -180,6 +187,7 @@
       "jugado": false,
       "resultado": "",
       "campo": "Estadio Mpal. Francisco Cardona F-8 Campo 1 Alboraya(HA)",
+      "codigo_campo": "6501",
       "estado": "",
       "codacta": "26569842"
     },
@@ -198,10 +206,58 @@
       "jugado": false,
       "resultado": "",
       "campo": "Polideportivo Mpal. de Benimaclet F-8(HA)",
+      "codigo_campo": "5014",
       "estado": "",
       "codacta": "26569847"
     }
   ],
+  "campos": {
+    "6100": {
+      "nombre": "Poliesportiu Mpal. de Rafelbunyol F-8 Campo 1",
+      "direccion": "Carrer Calvari, 96",
+      "localidad": "Rafelbuñol",
+      "cp": "46138",
+      "lat": "39.5933313",
+      "lon": "-0.3404411",
+      "superficie": "Hierba Artificial"
+    },
+    "5014": {
+      "nombre": "Polideportivo Mpal. de Benimaclet F-8",
+      "direccion": "C/ Daniel De Balaciart, s/n",
+      "localidad": "Valencia",
+      "cp": "46020",
+      "lat": "39.4806286",
+      "lon": "-0.3554874",
+      "superficie": "Hierba Artificial"
+    },
+    "6245": {
+      "nombre": "Camp Manuel Aparisi F-8 Campo 1 Albalat dels Sorells",
+      "direccion": "Camino Molino, 3",
+      "localidad": "Albalat Dels Sorells",
+      "cp": "46135",
+      "lat": "39.5447463",
+      "lon": "-0.3495819",
+      "superficie": "Hierba Artificial"
+    },
+    "6287": {
+      "nombre": "Polideportivo Mpal. Meliana F-8 Campo 1",
+      "direccion": "Carrer Calvari, 73",
+      "localidad": "Meliana",
+      "cp": "46133",
+      "lat": "39.5282324",
+      "lon": "-0.3425949",
+      "superficie": "Hierba Artificial"
+    },
+    "6501": {
+      "nombre": "Estadio Mpal. Francisco Cardona F-8 Campo 1 Alboraya",
+      "direccion": "Carrer Sant Isidre Llaurador, s/n",
+      "localidad": "Alboraya",
+      "cp": "46120",
+      "lat": "39.498601",
+      "lon": "-0.3534106",
+      "superficie": "Hierba Artificial"
+    }
+  },
   "clasificacion": [
     {
       "pos": "1",
@@ -335,6 +391,7 @@
     }
   ],
   "goleadores": [],
-  "huella": "70e3d8603a4e65d57c39747fc5109592",
-  "actualizado": "2026-10-16T18:11:25+02:00"
+  "goleadores_fuente": "grupo",
+  "huella": "c74336998fa24d3bc312a60fad16d3cd",
+  "actualizado": "2026-10-16T18:25:21+02:00"
 }

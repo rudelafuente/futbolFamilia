@@ -123,7 +123,7 @@ footer.wrap{color:var(--muted);font-size:12px;text-align:center;padding:8px 16px
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--kid)}
 .chip{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;color:#fff;background:var(--kid)}
 .month-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.month-head b{font:700 20px "Barlow Condensed";text-transform:capitalize}
+.month-head b{font:700 20px "Barlow Condensed"}
 .month-head button,.btn{min-height:44px;min-width:44px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:8px 12px;cursor:pointer;font:inherit;font-size:14px}
 .month-head button{font-size:20px;line-height:1}
 #ics{width:100%}
@@ -152,6 +152,32 @@ footer.wrap{color:var(--muted);font-size:12px;text-align:center;padding:8px 16px
 .callout b{font:800 26px/1 "Barlow Condensed";color:var(--accent)}
 tr.mate td{background:var(--surface-2)}
 .bar{height:6px;border-radius:3px;background:var(--accent);min-width:2px}
+/* Ficha de partido: hoja inferior en el móvil, ventana centrada en escritorio. */
+.tap{cursor:pointer}
+.tap:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tap .chev{color:var(--muted);font-size:18px;line-height:1}
+body:has(#ficha[open]){overflow:hidden}
+#ficha{inset:auto 0 0 0;margin:0;width:100%;max-width:none;max-height:85vh;padding:0;border:0;border-radius:20px 20px 0 0;background:var(--surface);color:var(--ink);box-shadow:0 -8px 32px rgba(0,0,0,.25)}
+#ficha::backdrop{background:rgba(5,10,20,.55)}
+#ficha .inner{max-height:85vh;overflow-y:auto;overscroll-behavior:contain;padding:8px 16px calc(20px + env(safe-area-inset-bottom))}
+#ficha .grip{width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 4px}
+#ficha .close{float:right;min-width:44px;min-height:44px;margin:-4px -8px 0 0;border:0;background:none;color:var(--muted);font-size:26px;cursor:pointer}
+#ficha h3{margin:4px 0 2px;font:700 15px "Barlow Condensed";letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+#ficha h4{margin:18px 0 6px;font:700 14px "Barlow Condensed";letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
+#ficha .match{margin-top:14px}
+@media(min-width:760px){#ficha{inset:0;margin:auto;max-width:520px;border-radius:16px}#ficha .grip{display:none}}
+.goals{list-style:none;margin:0;padding:0}
+.goals li{display:grid;grid-template-columns:44px 1fr auto;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.goals li:first-child{border-top:0}
+.goals .min{font:700 17px "Barlow Condensed";color:var(--muted)}
+.goals small{display:block;color:var(--muted);font-size:12px}
+.goals li.me{color:var(--accent);font-weight:700}
+.goals li.rival{color:var(--muted)}
+.field{background:var(--surface-2);border-radius:12px;padding:12px;font-size:13px}
+.field b{display:block;font-size:14px;margin-bottom:2px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.actions .btn{flex:1 1 160px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;text-align:center}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
 
 </style>
 </head>
@@ -169,6 +195,7 @@ tr.mate td{background:var(--surface-2)}
   <main id="main"></main>
 </div>
 <footer class="wrap">Datos de la Federació de Futbol de la Comunitat Valenciana. Se actualizan cuando cambian en la web de competiciones.</footer>
+<dialog id="ficha" aria-label="Ficha del partido"><div class="inner"><div class="grip"></div><button class="close" aria-label="Cerrar">×</button><div id="ficha-body" tabindex="-1" autofocus style="outline:none"></div></div></dialog>
 
 <script>
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -181,6 +208,7 @@ const parseDate = (f, h) => {
   const [hh, mm] = String(h||'').match(/^(\d{1,2}):(\d{2})/)?.slice(1) || [0, 0];
   return new Date(+y, +mo - 1, +d, +hh, +mm);
 };
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 const fmtDay = d => d ? d.toLocaleDateString('es-ES', {weekday:'short', day:'numeric', month:'short'}) : 'Fecha por confirmar';
 const fmtStamp = iso => new Date(iso).toLocaleString('es-ES', {weekday:'long', day:'numeric', month:'long', hour:'2-digit', minute:'2-digit'});
 
@@ -188,15 +216,22 @@ async function load(path) {
   try { const r = await fetch(path, {cache:'no-cache'}); return r.ok ? r.json() : null; } catch { return null; }
 }
 
-function matchCard(p, title, me) {
-  if (!p) return `<section class="card"><h3>${title}</h3><p class="empty">Sin partidos.</p></section>`;
-  const d = parseDate(p.fecha, p.hora);
+// Atributos para abrir la ficha de un partido al tocarlo.
+const tapAttrs = (slug, p) => `data-m="${esc(slug)}|${esc(p.cod_jornada)}" role="button" tabindex="0" aria-label="Ver ficha del partido"`;
+
+function matchBlock(p) {
   const side = (n, src, mine) => `<div class="team ${mine?'me':''}">${crest(src, n)}<span>${esc(n)}</span></div>`;
   const centre = p.jugado
     ? `<div><div class="score">${esc(p.goles_local)} – ${esc(p.goles_visitante)}</div><div style="margin-top:6px"><span class="res ${p.resultado}">${p.resultado}</span></div></div>`
     : `<div><div class="when">${esc(p.hora || '--:--')}</div><div class="pill" style="margin-top:6px">${p.en_casa ? 'En casa' : 'Fuera'}</div></div>`;
-  return `<section class="card"><h3>${title} · Jornada ${esc(p.jornada)}</h3>
-    <div class="match">${side(p.local, p.escudo_local, p.en_casa)}${centre}${side(p.visitante, p.escudo_visitante, !p.en_casa)}</div>
+  return `<div class="match">${side(p.local, p.escudo_local, p.en_casa)}${centre}${side(p.visitante, p.escudo_visitante, !p.en_casa)}</div>`;
+}
+
+function matchCard(p, title, slug) {
+  if (!p) return `<section class="card"><h3>${title}</h3><p class="empty">Sin partidos.</p></section>`;
+  const d = parseDate(p.fecha, p.hora);
+  return `<section class="card tap" ${tapAttrs(slug, p)}><h3>${title} · Jornada ${esc(p.jornada)} <span class="chev" style="float:right">›</span></h3>
+    ${matchBlock(p)}
     <div class="sub">${fmtDay(d)}${p.campo ? ' · ' + esc(p.campo) : ''}${p.estado ? ' · <b>' + esc(p.estado) + '</b>' : ''}</div></section>`;
 }
 
@@ -228,8 +263,8 @@ function render(d) {
     </div>
   </section>
   <div class="grid">
-    ${matchCard(next, 'Próximo partido', true)}
-    ${matchCard(last, 'Último resultado', true)}
+    ${matchCard(next, 'Próximo partido', d.slug)}
+    ${matchCard(last, 'Último resultado', d.slug)}
     <section class="card full"><h3>Estadísticas de ${esc(d.apodo)} esta temporada</h3>
       <div class="stats">${statCells.map(([l, v]) => `<div class="stat"><b>${esc(v ?? 0)}</b><span>${l}</span></div>`).join('')}</div>
     </section>
@@ -237,7 +272,7 @@ function render(d) {
       ${ps.length ? `<ul class="list">${ps.map(p => {
         const rival = p.en_casa ? p.visitante : p.local;
         const dt = parseDate(p.fecha, p.hora);
-        return `<li class="${p === next ? 'next' : ''}"><span class="j">J${esc(p.jornada)}</span>
+        return `<li class="tap ${p === next ? 'next' : ''}" ${tapAttrs(d.slug, p)}><span class="j">J${esc(p.jornada)}</span>
           <span class="vs">${p.en_casa ? 'vs' : '@'} ${esc(rival)}<small>${fmtDay(dt)}${p.hora && !p.jugado ? ' · ' + esc(p.hora) : ''}</small></span>
           <span class="r">${p.jugado ? `${esc(p.goles_local)}-${esc(p.goles_visitante)} <span class="res ${p.resultado}">${p.resultado}</span>` : (p.estado ? `<span class="pill">${esc(p.estado)}</span>` : '')}</span></li>`;
       }).join('')}</ul>` : '<p class="empty">La federación aún no ha publicado el calendario.</p>'}
@@ -256,7 +291,8 @@ function render(d) {
 
 function scorers(d) {
   const g = d.goleadores || [];
-  if (!g.length) return `<section class="card full"><h3>Goleadores del grupo</h3><p class="empty">La federación no publica goleadores para esta categoría todavía.</p></section>`;
+  const titulo = d.goleadores_fuente === 'actas' ? 'Goleadores del equipo (según las actas)' : 'Goleadores del grupo';
+  if (!g.length) return `<section class="card full"><h3>${titulo}</h3><p class="empty">La federación no publica goleadores para esta categoría todavía.</p></section>`;
   const me = g.find(r => r.propio);
   const max = g[0].goles || 1;
   const goles = me ? me.goles : (d.jugador?.stats?.goles || 0);
@@ -266,7 +302,7 @@ function scorers(d) {
   const mates = g.filter(r => r.companero || r.propio).length;
   // Top 10 + la fila propia si queda fuera.
   const rows = g.filter((r, i) => i < 10 || r.propio);
-  return `<section class="card full"><h3>Goleadores del grupo</h3>
+  return `<section class="card full"><h3>${titulo}</h3>
     <div class="callout">${summary}<div class="meta">${mates} jugador${mates === 1 ? '' : 'es'} de su equipo ${mates === 1 ? 'aparece' : 'aparecen'} en la tabla</div></div>
     <div class="scroll"><table><thead><tr><th>#</th><th style="text-align:left">Jugador</th><th style="width:30%"></th><th>Goles</th></tr></thead><tbody>
     ${rows.map(r => `<tr class="${r.propio ? 'me' : r.companero ? 'mate' : ''}"><td>${r.pos}</td>
@@ -285,7 +321,7 @@ function evRow(e) {
   const rival = e.en_casa ? e.visitante : e.local;
   const right = e.jugado ? `${esc(e.goles_local)}-${esc(e.goles_visitante)} <span class="res ${e.resultado}">${e.resultado}</span>`
     : (e.estado ? `<span class="pill">${esc(e.estado)}</span>` : `<span class="pill">${e.en_casa ? 'Casa' : 'Fuera'}</span>`);
-  return `<div class="ev k-${esc(e.kid.slug)}"><div class="t">${esc(e.hora || '--:--')}<small>J${esc(e.jornada)}</small></div>
+  return `<div class="ev tap k-${esc(e.kid.slug)}" ${tapAttrs(e.kid.slug, e)}><div class="t">${esc(e.hora || '--:--')}<small>J${esc(e.jornada)}</small></div>
     <div class="who"><div><span class="chip">${esc(e.kid.apodo)}</span> ${e.en_casa ? 'vs' : '@'} ${esc(rival)}</div>
     <small>${esc(e.campo || e.kid.equipo?.nombre || '')}</small></div><div class="r">${right}</div></div>`;
 }
@@ -325,28 +361,91 @@ function renderCalendar(datos) {
   const ics = `<button class="btn" id="ics">Añadir al calendario del móvil</button>`;
   return `<div class="grid">
     <section class="card"><div class="month-head"><button id="prev" aria-label="Mes anterior">‹</button>
-      <b>${calMonth.toLocaleDateString('es-ES', {month:'long', year:'numeric'})}</b><button id="nextm" aria-label="Mes siguiente">›</button></div>
+      <b>${cap(calMonth.toLocaleDateString('es-ES', {month:'long', year:'numeric'}))}</b><button id="nextm" aria-label="Mes siguiente">›</button></div>
       <div class="cal">${['L','M','X','J','V','S','D'].map(x => `<span class="dow">${x}</span>`).join('')}${cells}</div>
       <div class="legend">${datos.map(d => `<span class="k-${esc(d.slug)}"><span class="dot"></span> ${esc(d.apodo)} · ${esc(d.equipo?.nombre || '')}</span>`).join('')}</div>
       <div style="margin-top:12px">${ics}</div></section>
     <section class="card agenda">${agenda}</section></div>`;
 }
 
-function downloadIcs(datos) {
+// Descarga un .ics con los eventos indicados ({...partido, kid, date}).
+function icsDe(evs, nombre) {
   const pad = n => String(n).padStart(2, '0');
   const f = d => `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
+  const txt = s => String(s || '').replace(/[\\,;]/g, '\\$&');
   const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//max-pau-futbol//ES', 'X-WR-CALNAME:Fútbol de la Familia'];
-  events(datos).filter(e => !e.jugado).forEach(e => {
+  evs.forEach(e => {
     const end = new Date(e.date.getTime() + 90 * 60000);
+    const c = e.kid.campos?.[e.codigo_campo];
     lines.push('BEGIN:VEVENT', `UID:${e.kid.slug}-${e.cod_jornada}-${f(e.date)}@max-pau`, `DTSTAMP:${f(new Date())}`,
-      `DTSTART:${f(e.date)}`, `DTEND:${f(end)}`, `SUMMARY:${e.kid.apodo}: ${e.local} - ${e.visitante}`.replace(/[,;]/g, '\\$&'),
-      `LOCATION:${(e.campo || '').replace(/[,;]/g, '\\$&')}`, 'END:VEVENT');
+      `DTSTART:${f(e.date)}`, `DTEND:${f(end)}`, `SUMMARY:${txt(`${e.kid.apodo}: ${e.local} - ${e.visitante}`)}`,
+      `LOCATION:${txt([e.campo, c?.direccion, c?.localidad].filter(Boolean).join(', '))}`, 'END:VEVENT');
   });
   lines.push('END:VCALENDAR');
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([lines.join('\r\n')], {type: 'text/calendar'}));
-  a.download = 'futbol-de-la-familia.ics'; a.click();
+  a.download = nombre; a.click();
 }
+const downloadIcs = datos => icsDe(events(datos).filter(e => !e.jugado), 'futbol-de-la-familia.ics');
+
+// ---------- ficha de partido ----------
+const sinHA = s => String(s || '').replace(/\s*\(HA\)\s*$/i, '');
+
+function fichaHTML(d, p) {
+  const dt = parseDate(p.fecha, p.hora);
+  const c = d.campos?.[p.codigo_campo];
+  const cuando = dt ? dt.toLocaleDateString('es-ES', {weekday:'long', day:'numeric', month:'long'}) + (p.hora ? ` · ${esc(p.hora)}` : '') : 'Fecha por confirmar';
+
+  let goles = '';
+  if (p.jugado) {
+    const a = p.acta, lista = a?.goles || [];
+    const equipoDe = g => g.lado === 'local' ? p.local : p.visitante;
+    goles = `<h4>Goles</h4>` + (lista.length
+      ? `<ul class="goals">${lista.map(g => `<li class="${g.propio ? 'me' : g.companero ? '' : 'rival'}">
+          <span class="min">${g.minuto ? esc(g.minuto) + '’' : '⚽'}</span>
+          <span>${esc(g.jugador || equipoDe(g))}${g.propio ? ` · ${esc(d.apodo)}` : ''}<small>${esc(equipoDe(g))}</small></span>
+          <span>${g.tipo ? `<span class="pill">${esc(g.tipo)}</span>` : ''}</span></li>`).join('')}</ul>`
+      : `<p class="empty">${!a ? 'El acta todavía no está disponible.'
+          : !a.cerrada ? 'El acta aún no está cerrada: los goles aparecerán cuando la federación la cierre.'
+          : 'El acta no recoge goleadores (habitual en fútbol base).'}</p>`);
+  }
+
+  const destino = c?.lat && c?.lon
+    ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(c.lat + ',' + c.lon)}`
+    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([sinHA(p.campo), c?.localidad].filter(Boolean).join(' '))}`;
+  const campo = (p.campo || c) ? `<h4>Campo</h4><div class="field"><b>${esc(c?.nombre || sinHA(p.campo))}</b>
+      ${c?.direccion || c?.localidad ? `<div>${esc([c.direccion, [c.cp, c.localidad].filter(Boolean).join(' ')].filter(Boolean).join(' · '))}</div>` : ''}
+      ${c?.superficie ? `<div class="meta">${esc(c.superficie)}</div>` : ''}</div>` : '';
+  const acciones = `<div class="actions">
+      ${p.campo || c ? `<a class="btn primary" href="${esc(destino)}" target="_blank" rel="noopener">Cómo llegar</a>` : ''}
+      ${!p.jugado && dt ? `<button class="btn" id="ics-uno">Añadir al calendario</button>` : ''}</div>`;
+
+  return `<h3>${esc(d.apodo)} · Jornada ${esc(p.jornada)}</h3>
+    <div class="meta" style="margin:0">${esc([d.competicion?.nombre, d.competicion?.grupo].filter(Boolean).join(' · '))}</div>
+    ${matchBlock(p)}
+    <div class="sub">${cap(cuando)}${p.estado ? ` · <b>${esc(p.estado)}</b>` : ''}${p.acta?.suspendido ? ' · <b>Suspendido</b>' : ''}</div>
+    ${goles}${campo}${acciones}`;
+}
+
+let DATOS = [];
+const ficha = document.getElementById('ficha');
+function abrirFicha(key) {
+  const [slug, jornada] = key.split('|');
+  const d = DATOS.find(x => x.slug === slug);
+  const p = d?.partidos?.find(x => String(x.cod_jornada) === jornada);
+  if (!p) return;
+  document.getElementById('ficha-body').innerHTML = fichaHTML(d, p);
+  const uno = document.getElementById('ics-uno');
+  if (uno) uno.onclick = () => icsDe([{...p, kid: d, date: parseDate(p.fecha, p.hora)}], `${d.slug}-jornada-${p.jornada}.ics`);
+  ficha.querySelector('.inner').scrollTop = 0;
+  ficha.showModal();
+  // En Android, el botón «atrás» cierra la ficha en lugar de salir de la web.
+  history.pushState({ficha: true}, '');
+}
+ficha.querySelector('.close').onclick = () => ficha.close();
+ficha.addEventListener('click', e => { if (e.target === ficha) ficha.close(); });   // tocar fuera
+ficha.addEventListener('close', () => { if (history.state?.ficha) history.back(); });
+addEventListener('popstate', () => { if (ficha.open) ficha.close(); });
 
 // ---------- instalar como app ----------
 (() => {
@@ -381,6 +480,7 @@ function downloadIcs(datos) {
     ? 'Max y Pau · última novedad: ' + fmtStamp(estado.ultima_actualizacion)
     : 'Max y Pau · aún no hay datos descargados.';
   if (!datos.length) { document.getElementById('main').innerHTML = '<p class="empty">Todavía no hay datos.</p>'; return; }
+  DATOS = datos;
 
   const views = [{id: 'calendario', label: 'Calendario', sub: 'Los dos'}, ...datos.map(d => ({id: d.slug, label: d.apodo, sub: d.equipo?.nombre || '', d}))];
   const tabs = document.getElementById('tabs');
@@ -403,6 +503,11 @@ function downloadIcs(datos) {
     try { history.replaceState(null, '', '#' + v.id); localStorage.setItem('tab', v.id); } catch {}
   };
   tabs.addEventListener('click', e => { const t = e.target.closest('.tab'); if (t) show(+t.dataset.i); });
+  main.addEventListener('click', e => { const m = e.target.closest('[data-m]'); if (m) abrirFicha(m.dataset.m); });
+  main.addEventListener('keydown', e => {
+    const m = e.target.closest('[data-m]');
+    if (m && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); abrirFicha(m.dataset.m); }
+  });
   let start = 0;
   try { start = Math.max(0, views.findIndex(v => v.id === (location.hash.slice(1) || localStorage.getItem('tab')))); } catch {}
   show(start);
