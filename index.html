@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b2a5b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Max y Pau">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>Max y Pau · Fútbol</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f5f9; --surface:#fff; --surface-2:#eef1f6; --ink:#0e1a2b; --muted:#5d6b80; --line:#dde3ec;
+  --brand:#0b2a5b; --accent:#f07c1b; --win:#1f9d55; --draw:#8a94a6; --loss:#d64545;
+  --shadow:0 1px 2px rgba(14,26,43,.06),0 4px 16px rgba(14,26,43,.06);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0b111b; --surface:#131c2a; --surface-2:#1a2536; --ink:#e8edf5; --muted:#93a1b6; --line:#24324a;
+  --brand:#16386f; --accent:#ff9440; --shadow:none;
+}}
+:root[data-theme="dark"]{
+  --bg:#0b111b; --surface:#131c2a; --surface-2:#1a2536; --ink:#e8edf5; --muted:#93a1b6; --line:#24324a;
+  --brand:#16386f; --accent:#ff9440; --shadow:none;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,system-ui,sans-serif;-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none}
+button{touch-action:manipulation}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+/* Móvil (base): cabecera compacta y barra de pestañas fija abajo, al alcance del pulgar. */
+header.top{background:var(--brand);color:#fff;padding:calc(14px + env(safe-area-inset-top)) 0 14px}
+header.top h1{font:800 24px/1 "Barlow Condensed",sans-serif;letter-spacing:.5px;margin:0;text-transform:uppercase}
+header.top p{margin:4px 0 0;opacity:.75;font-size:12px}
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;display:flex;gap:4px;padding:6px 8px calc(6px + env(safe-area-inset-bottom));
+  background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+.tab{flex:1 1 0;min-width:0;min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;border:0;border-radius:12px;background:transparent;color:var(--muted);cursor:pointer;text-align:center;font:inherit}
+.tab[aria-selected="true"]{background:var(--surface-2);color:var(--ink)}
+.tab b{font:700 15px/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.5px;display:block}
+.tab small{display:none}
+.tab .avatar,.tab .ico{width:30px;height:30px;font-size:14px}
+.tab[aria-selected="false"] .avatar{opacity:.55}
+/* Escritorio: pestañas grandes bajo la cabecera. */
+@media(min-width:760px){
+  header.top{padding:22px 0 60px}
+  header.top h1{font-size:30px}
+  .tabs{position:static;margin-top:-44px;padding:0;gap:8px;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;border:0}
+  .tab{flex-direction:row;justify-content:flex-start;gap:10px;padding:10px 12px;text-align:left;background:color-mix(in srgb,var(--brand) 88%,#fff);color:#fff}
+  .tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+  .tab b{font-size:20px}
+  .tab small{display:block;opacity:.7;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .tab .avatar,.tab .ico{width:40px;height:40px;font-size:18px}
+  .tab[aria-selected="false"] .avatar{opacity:1}
+}
+.avatar{width:40px;height:40px;border-radius:50%;flex:none;background:var(--kid,var(--accent));color:#fff;display:grid;place-items:center;font:800 18px "Barlow Condensed";overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
+main{padding:12px 0 16px}
+.hero{display:flex;gap:14px;align-items:center;background:var(--surface);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+.hero .avatar{width:64px;height:64px;font-size:28px}
+@media(min-width:760px){.hero .avatar{width:72px;height:72px;font-size:30px}}
+.hero h2{margin:0;font:800 22px/1.05 "Barlow Condensed";text-transform:uppercase}
+.meta{color:var(--muted);font-size:13px;margin-top:4px;display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center}
+.meta img{width:18px;height:18px;vertical-align:-4px;margin-right:4px}
+.grid{display:grid;gap:12px;margin-top:12px;grid-template-columns:1fr}
+@media(min-width:760px){.grid{grid-template-columns:1fr 1fr}}
+.card{background:var(--surface);border-radius:16px;padding:16px;box-shadow:var(--shadow);min-width:0}
+.card h3{margin:0 0 12px;font:700 15px "Barlow Condensed";letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.match{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;text-align:center}
+.team{display:flex;flex-direction:column;align-items:center;gap:6px;font-weight:600;font-size:13px;min-width:0;overflow-wrap:anywhere}
+.team img,.crest{width:40px;height:40px;object-fit:contain}
+.crest{border-radius:50%;background:var(--surface-2);display:grid;place-items:center;font:700 14px "Barlow Condensed";color:var(--muted)}
+.team.me{color:var(--accent)}
+.score{font:800 34px/1 "Barlow Condensed";white-space:nowrap}
+.when{font:700 22px/1 "Barlow Condensed";white-space:nowrap}
+.sub{color:var(--muted);font-size:12px;margin-top:10px;text-align:center}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;background:var(--surface-2);color:var(--muted)}
+.res{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:6px;color:#fff;font:700 13px "Barlow Condensed"}
+.res.G{background:var(--win)}.res.E{background:var(--draw)}.res.P{background:var(--loss)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+@media(min-width:520px){.stats{grid-template-columns:repeat(5,1fr)}}
+.stat{background:var(--surface-2);border-radius:12px;padding:10px 6px;text-align:center}
+.stat b{display:block;font:800 26px/1 "Barlow Condensed"}
+.stat span{font-size:11px;color:var(--muted)}
+.list{list-style:none;margin:0;padding:0}
+.list li{display:grid;grid-template-columns:32px 1fr auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line);font-size:13px}
+.list li:first-child{border-top:0}
+.list .j{color:var(--muted);font:700 14px "Barlow Condensed"}
+.list .vs{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.list .vs small{display:block;color:var(--muted)}
+.list .r{font:700 17px "Barlow Condensed";display:flex;gap:6px;align-items:center}
+.list li.next{background:color-mix(in srgb,var(--accent) 10%,transparent);border-radius:8px;padding-left:6px;padding-right:6px}
+.form{display:flex;gap:4px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:8px 4px;text-align:center;border-top:1px solid var(--line)}
+@media(max-width:420px){.cl th:nth-child(n+8),.cl td:nth-child(n+8){display:none}}
+th{color:var(--muted);font-weight:600;font-size:11px;border-top:0}
+td.eq{text-align:left;max-width:0;width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+td.eq img{width:16px;height:16px;vertical-align:-3px;margin-right:6px}
+tr.me td{background:color-mix(in srgb,var(--accent) 14%,transparent);font-weight:700}
+.scroll{overflow-x:auto}
+.empty{color:var(--muted);font-size:13px;margin:0}
+footer{color:var(--muted);font-size:12px;text-align:center;padding:8px 16px calc(96px + env(safe-area-inset-bottom))}
+@media(min-width:760px){footer{padding-bottom:32px}}
+.full{grid-column:1/-1}
+.tab .ico{border-radius:50%;flex:none;display:grid;place-items:center;background:var(--surface-2)}
+@media(min-width:760px){.tab .ico{background:rgba(255,255,255,.18)}}
+.tab[aria-selected="true"] .ico{background:var(--surface-2)}
+.k-max{--kid:#f07c1b}.k-pau{--kid:#2f7de1}
+.chip,.dot{background:var(--kid)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--kid)}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;color:#fff;background:var(--kid)}
+.month-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.month-head b{font:700 20px "Barlow Condensed";text-transform:capitalize}
+.month-head button,.btn{min-height:44px;min-width:44px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:8px 12px;cursor:pointer;font:inherit;font-size:14px}
+.month-head button{font-size:20px;line-height:1}
+#ics{width:100%}
+@media(min-width:760px){#ics{width:auto}}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal .dow{font-size:11px;color:var(--muted);padding:4px 0}
+.cal .day{aspect-ratio:1/1;border-radius:10px;background:var(--surface-2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:13px;border:0;color:var(--ink);font-family:inherit;padding:0}
+.cal .day.out{opacity:.35}
+.cal .day.today{outline:2px solid var(--ink)}
+.cal .day.has{cursor:pointer;font-weight:700}
+.cal .day.sel{background:var(--brand);color:#fff}
+.cal .dots{display:flex;gap:3px;height:8px}
+.legend{display:flex;gap:12px;font-size:12px;color:var(--muted);margin-top:10px;flex-wrap:wrap}
+.agenda h4{margin:16px 0 6px;font:700 14px "Barlow Condensed";letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
+.agenda h4:first-child{margin-top:0}
+.ev{display:grid;grid-template-columns:52px 1fr auto;gap:10px;align-items:center;padding:10px;border-radius:12px;background:var(--surface-2);margin-bottom:6px;border-left:4px solid var(--kid)}
+.ev .t{font:700 18px/1 "Barlow Condensed"}
+.ev .t small{display:block;font:500 11px Inter;color:var(--muted);margin-top:3px}
+.ev .who{font-size:13px;min-width:0}
+.ev .who div{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev .who small{color:var(--muted)}
+.ev .r{font:700 18px "Barlow Condensed";display:flex;gap:6px;align-items:center}
+.callout{background:var(--surface-2);border-radius:12px;padding:12px;margin-bottom:12px;font-size:13px}
+.callout b{font:800 26px/1 "Barlow Condensed";color:var(--accent)}
+tr.mate td{background:var(--surface-2)}
+.bar{height:6px;border-radius:3px;background:var(--accent);min-width:2px}
+
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>Max y Pau · Fútbol</h1>
+  <p id="upd">Cargando…</p>
+</div></header>
+<div class="wrap">
+  <nav class="tabs" id="tabs" role="tablist"></nav>
+  <main id="main"></main>
+</div>
+<footer class="wrap">Datos de la Federació de Futbol de la Comunitat Valenciana. Se actualizan cuando cambian en la web de competiciones.</footer>
+
+<script>
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const initials = n => esc(String(n||'?').trim().charAt(0).toUpperCase());
+const crest = (src, name) => src ? `<img src="${esc(src)}" alt="" loading="lazy" onerror="this.outerHTML='<span class=crest>${initials(name)}</span>'">` : `<span class="crest">${initials(name)}</span>`;
+const parseDate = (f, h) => {
+  const m = String(f||'').match(/(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})/) || String(f||'').match(/(\d{4})-(\d{2})-(\d{2})/);
+  if (!m) return null;
+  const [d, mo, y] = m[1].length === 4 ? [m[3], m[2], m[1]] : [m[1], m[2], m[3]];
+  const [hh, mm] = String(h||'').match(/^(\d{1,2}):(\d{2})/)?.slice(1) || [0, 0];
+  return new Date(+y, +mo - 1, +d, +hh, +mm);
+};
+const fmtDay = d => d ? d.toLocaleDateString('es-ES', {weekday:'short', day:'numeric', month:'short'}) : 'Fecha por confirmar';
+const fmtStamp = iso => new Date(iso).toLocaleString('es-ES', {weekday:'long', day:'numeric', month:'long', hour:'2-digit', minute:'2-digit'});
+
+async function load(path) {
+  try { const r = await fetch(path, {cache:'no-cache'}); return r.ok ? r.json() : null; } catch { return null; }
+}
+
+function matchCard(p, title, me) {
+  if (!p) return `<section class="card"><h3>${title}</h3><p class="empty">Sin partidos.</p></section>`;
+  const d = parseDate(p.fecha, p.hora);
+  const side = (n, src, mine) => `<div class="team ${mine?'me':''}">${crest(src, n)}<span>${esc(n)}</span></div>`;
+  const centre = p.jugado
+    ? `<div><div class="score">${esc(p.goles_local)} – ${esc(p.goles_visitante)}</div><div style="margin-top:6px"><span class="res ${p.resultado}">${p.resultado}</span></div></div>`
+    : `<div><div class="when">${esc(p.hora || '--:--')}</div><div class="pill" style="margin-top:6px">${p.en_casa ? 'En casa' : 'Fuera'}</div></div>`;
+  return `<section class="card"><h3>${title} · Jornada ${esc(p.jornada)}</h3>
+    <div class="match">${side(p.local, p.escudo_local, p.en_casa)}${centre}${side(p.visitante, p.escudo_visitante, !p.en_casa)}</div>
+    <div class="sub">${fmtDay(d)}${p.campo ? ' · ' + esc(p.campo) : ''}${p.estado ? ' · <b>' + esc(p.estado) + '</b>' : ''}</div></section>`;
+}
+
+function render(d) {
+  const ps = d.partidos || [];
+  const played = ps.filter(p => p.jugado);
+  const last = played[played.length - 1];
+  const now = new Date(); now.setHours(0,0,0,0);
+  const next = ps.find(p => !p.jugado && (!parseDate(p.fecha) || parseDate(p.fecha) >= now)) || ps.find(p => !p.jugado);
+  const s = d.jugador?.stats || {};
+  const media = s.jugados ? (s.goles / s.jugados).toFixed(2) : '0.00';
+  const statCells = [['Convocado', s.convocados], ['Jugados', s.jugados], ['Titular', s.titular], ['Goles', s.goles], ['Goles/partido', media],
+    ['Suplente', s.suplente], ['Amarillas', s.amarillas], ['Doble amarilla', s.doble_amarilla], ['Rojas', s.rojas], ['Verdes', s.verdes]];
+  const form = played.slice(-5).map(p => `<span class="res ${p.resultado}" title="J${esc(p.jornada)}">${p.resultado}</span>`).join('');
+  const foto = d.jugador?.foto;
+
+  return `
+  <section class="hero k-${esc(d.slug)}">
+    <div class="avatar">${foto ? `<img src="${esc(foto)}" alt="">` : initials(d.apodo)}</div>
+    <div style="min-width:0">
+      <h2>${esc(d.jugador?.nombre || d.apodo)}</h2>
+      <div class="meta">
+        <span>${d.equipo?.escudo ? `<img src="${esc(d.equipo.escudo)}" alt="" onerror="this.remove()">` : ''}${esc(d.equipo?.nombre)}</span>
+        ${d.equipo?.categoria ? `<span>${esc(d.equipo.categoria)}</span>` : ''}
+        ${d.jugador?.dorsal ? `<span>Dorsal ${esc(d.jugador.dorsal)}</span>` : ''}
+        ${d.jugador?.edad ? `<span>${esc(d.jugador.edad)} años</span>` : ''}
+      </div>
+      <div class="meta">${esc([d.competicion?.nombre, d.competicion?.grupo].filter(Boolean).join(' · '))}</div>
+    </div>
+  </section>
+  <div class="grid">
+    ${matchCard(next, 'Próximo partido', true)}
+    ${matchCard(last, 'Último resultado', true)}
+    <section class="card full"><h3>Estadísticas de ${esc(d.apodo)} esta temporada</h3>
+      <div class="stats">${statCells.map(([l, v]) => `<div class="stat"><b>${esc(v ?? 0)}</b><span>${l}</span></div>`).join('')}</div>
+    </section>
+    <section class="card"><h3>Partidos ${form ? `<span class="form" style="float:right">${form}</span>` : ''}</h3>
+      ${ps.length ? `<ul class="list">${ps.map(p => {
+        const rival = p.en_casa ? p.visitante : p.local;
+        const dt = parseDate(p.fecha, p.hora);
+        return `<li class="${p === next ? 'next' : ''}"><span class="j">J${esc(p.jornada)}</span>
+          <span class="vs">${p.en_casa ? 'vs' : '@'} ${esc(rival)}<small>${fmtDay(dt)}${p.hora && !p.jugado ? ' · ' + esc(p.hora) : ''}</small></span>
+          <span class="r">${p.jugado ? `${esc(p.goles_local)}-${esc(p.goles_visitante)} <span class="res ${p.resultado}">${p.resultado}</span>` : (p.estado ? `<span class="pill">${esc(p.estado)}</span>` : '')}</span></li>`;
+      }).join('')}</ul>` : '<p class="empty">La federación aún no ha publicado el calendario.</p>'}
+    </section>
+    <section class="card"><h3>Clasificación</h3>
+      ${(d.clasificacion || []).length ? `<div class="scroll"><table class="cl">
+        <thead><tr><th>#</th><th style="text-align:left">Equipo</th><th>Pts</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th></tr></thead>
+        <tbody>${d.clasificacion.map(e => `<tr class="${e.propio ? 'me' : ''}"><td>${esc(e.pos)}</td>
+          <td class="eq">${e.escudo ? `<img src="${esc(e.escudo)}" alt="" loading="lazy">` : ''}${esc(e.equipo)}</td>
+          <td><b>${esc(e.pts)}</b></td><td>${esc(e.pj)}</td><td>${esc(e.pg)}</td><td>${esc(e.pe)}</td><td>${esc(e.pp)}</td><td>${esc(e.gf)}</td><td>${esc(e.gc)}</td></tr>`).join('')}
+        </tbody></table></div>` : '<p class="empty">Esta categoría no publica clasificación (habitual en fútbol base).</p>'}
+    </section>
+  </div>`;
+}
+
+
+function scorers(d) {
+  const g = d.goleadores || [];
+  if (!g.length) return `<section class="card full"><h3>Goleadores del grupo</h3><p class="empty">La federación no publica goleadores para esta categoría todavía.</p></section>`;
+  const me = g.find(r => r.propio);
+  const max = g[0].goles || 1;
+  const goles = me ? me.goles : (d.jugador?.stats?.goles || 0);
+  const summary = me
+    ? `<b>${me.pos}º</b> de ${g.length} goleadores · ${me.goles} ${me.goles === 1 ? 'gol' : 'goles'}${me.pos > 1 ? ` · a ${g[0].goles - me.goles} del máximo goleador` : ' · ¡máximo goleador del grupo!'}`
+    : `<b>${goles}</b> goles · aún no aparece en la tabla (el máximo goleador lleva ${g[0].goles})`;
+  const mates = g.filter(r => r.companero || r.propio).length;
+  // Top 10 + la fila propia si queda fuera.
+  const rows = g.filter((r, i) => i < 10 || r.propio);
+  return `<section class="card full"><h3>Goleadores del grupo</h3>
+    <div class="callout">${summary}<div class="meta">${mates} jugador${mates === 1 ? '' : 'es'} de su equipo ${mates === 1 ? 'aparece' : 'aparecen'} en la tabla</div></div>
+    <div class="scroll"><table><thead><tr><th>#</th><th style="text-align:left">Jugador</th><th style="width:30%"></th><th>Goles</th></tr></thead><tbody>
+    ${rows.map(r => `<tr class="${r.propio ? 'me' : r.companero ? 'mate' : ''}"><td>${r.pos}</td>
+      <td class="eq">${esc(r.nombre)}<div class="meta" style="margin:0">${esc(r.equipo)}</div></td>
+      <td><div class="bar" style="width:${Math.round(r.goles / max * 100)}%"></div></td><td><b>${r.goles}</b></td></tr>`).join('')}
+    </tbody></table></div></section>`;
+}
+
+// ---------- calendario conjunto ----------
+const events = datos => datos.flatMap(d => (d.partidos || []).map(p => ({...p, kid: d, date: parseDate(p.fecha, p.hora)})))
+  .filter(e => e.date).sort((a, b) => a.date - b.date);
+const dayKey = d => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+let calMonth = null, calSel = null;
+
+function evRow(e) {
+  const rival = e.en_casa ? e.visitante : e.local;
+  const right = e.jugado ? `${esc(e.goles_local)}-${esc(e.goles_visitante)} <span class="res ${e.resultado}">${e.resultado}</span>`
+    : (e.estado ? `<span class="pill">${esc(e.estado)}</span>` : `<span class="pill">${e.en_casa ? 'Casa' : 'Fuera'}</span>`);
+  return `<div class="ev k-${esc(e.kid.slug)}"><div class="t">${esc(e.hora || '--:--')}<small>J${esc(e.jornada)}</small></div>
+    <div class="who"><div><span class="chip">${esc(e.kid.apodo)}</span> ${e.en_casa ? 'vs' : '@'} ${esc(rival)}</div>
+    <small>${esc(e.campo || e.kid.equipo?.nombre || '')}</small></div><div class="r">${right}</div></div>`;
+}
+
+function renderCalendar(datos) {
+  const evs = events(datos);
+  const today = new Date(); today.setHours(0,0,0,0);
+  if (!calMonth) {
+    const up = evs.find(e => e.date >= today) || evs[evs.length - 1];
+    const base = up ? up.date : today;
+    calMonth = new Date(base.getFullYear(), base.getMonth(), 1);
+  }
+  const byDay = {};
+  evs.forEach(e => (byDay[dayKey(e.date)] ||= []).push(e));
+  const first = new Date(calMonth); const start = new Date(first); start.setDate(1 - ((first.getDay() + 6) % 7));
+  let cells = '';
+  for (let i = 0; i < 42; i++) {
+    const d = new Date(start); d.setDate(start.getDate() + i);
+    if (i >= 35 && d.getMonth() !== calMonth.getMonth()) break;
+    const list = byDay[dayKey(d)] || [];
+    const cls = ['day', d.getMonth() !== calMonth.getMonth() && 'out', +d === +today && 'today', list.length && 'has', calSel === dayKey(d) && 'sel'].filter(Boolean).join(' ');
+    cells += `<button class="${cls}" data-day="${dayKey(d)}" ${list.length ? '' : 'disabled'}>${d.getDate()}
+      <span class="dots">${list.map(e => `<span class="dot k-${esc(e.kid.slug)}"></span>`).join('')}</span></button>`;
+  }
+  // Agenda: día seleccionado, o próximos partidos + últimos resultados.
+  let agenda;
+  if (calSel && byDay[calSel]) {
+    agenda = `<h4>${fmtDay(byDay[calSel][0].date)}</h4>${byDay[calSel].map(evRow).join('')}`;
+  } else {
+    const next = evs.filter(e => !e.jugado && e.date >= today);
+    const past = evs.filter(e => e.jugado).slice(-6).reverse();
+    const groups = {};
+    next.slice(0, 10).forEach(e => (groups[fmtDay(e.date)] ||= []).push(e));
+    agenda = (Object.entries(groups).map(([k, v]) => `<h4>${k}</h4>${v.map(evRow).join('')}`).join('') || '<p class="empty">No hay partidos próximos publicados.</p>')
+      + (past.length ? `<h4>Últimos resultados</h4>${past.map(evRow).join('')}` : '');
+  }
+  const ics = `<button class="btn" id="ics">Añadir al calendario del móvil</button>`;
+  return `<div class="grid">
+    <section class="card"><div class="month-head"><button id="prev" aria-label="Mes anterior">‹</button>
+      <b>${calMonth.toLocaleDateString('es-ES', {month:'long', year:'numeric'})}</b><button id="nextm" aria-label="Mes siguiente">›</button></div>
+      <div class="cal">${['L','M','X','J','V','S','D'].map(x => `<span class="dow">${x}</span>`).join('')}${cells}</div>
+      <div class="legend">${datos.map(d => `<span class="k-${esc(d.slug)}"><span class="dot"></span> ${esc(d.apodo)} · ${esc(d.equipo?.nombre || '')}</span>`).join('')}</div>
+      <div style="margin-top:12px">${ics}</div></section>
+    <section class="card agenda">${calSel ? '<button class="btn" id="clear" style="float:right">Ver todos</button>' : ''}${agenda}</section></div>`;
+}
+
+function downloadIcs(datos) {
+  const pad = n => String(n).padStart(2, '0');
+  const f = d => `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
+  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//max-pau-futbol//ES', 'X-WR-CALNAME:Max y Pau · Fútbol'];
+  events(datos).filter(e => !e.jugado).forEach(e => {
+    const end = new Date(e.date.getTime() + 90 * 60000);
+    lines.push('BEGIN:VEVENT', `UID:${e.kid.slug}-${e.cod_jornada}-${f(e.date)}@max-pau`, `DTSTAMP:${f(new Date())}`,
+      `DTSTART:${f(e.date)}`, `DTEND:${f(end)}`, `SUMMARY:${e.kid.apodo}: ${e.local} - ${e.visitante}`.replace(/[,;]/g, '\\$&'),
+      `LOCATION:${(e.campo || '').replace(/[,;]/g, '\\$&')}`, 'END:VEVENT');
+  });
+  lines.push('END:VCALENDAR');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([lines.join('\r\n')], {type: 'text/calendar'}));
+  a.download = 'max-pau-futbol.ics'; a.click();
+}
+
+(async () => {
+  const estado = await load('data/estado.json');
+  const slugs = estado?.jugadores || ['max', 'pau'];
+  const datos = (await Promise.all(slugs.map(s => load(`data/${s}.json`)))).filter(Boolean);
+  document.getElementById('upd').textContent = estado?.ultima_actualizacion
+    ? 'Última novedad de la federación: ' + fmtStamp(estado.ultima_actualizacion)
+    : 'Aún no hay datos descargados.';
+  if (!datos.length) { document.getElementById('main').innerHTML = '<p class="empty">Todavía no hay datos.</p>'; return; }
+
+  const views = [{id: 'calendario', label: 'Calendario', sub: 'Los dos'}, ...datos.map(d => ({id: d.slug, label: d.apodo, sub: d.equipo?.nombre || '', d}))];
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = views.map((v, i) => `<button class="tab" role="tab" data-i="${i}">
+    ${v.d ? `<span class="avatar k-${esc(v.d.slug)}">${v.d.jugador?.foto ? `<img src="${esc(v.d.jugador.foto)}" alt="">` : initials(v.label)}</span>`
+          : `<span class="ico" aria-hidden="true">📅</span>`}
+    <span style="min-width:0"><b>${esc(v.label)}</b><small>${esc(v.sub)}</small></span></button>`).join('');
+  const main = document.getElementById('main');
+  const show = i => {
+    const v = views[i];
+    tabs.querySelectorAll('.tab').forEach((t, j) => t.setAttribute('aria-selected', String(i === j)));
+    main.innerHTML = v.d ? render(v.d) + `<div class="grid">${scorers(v.d)}</div>` : renderCalendar(datos);
+    if (!v.d) {
+      main.querySelector('#prev').onclick = () => { calMonth.setMonth(calMonth.getMonth() - 1); calSel = null; show(i); };
+      main.querySelector('#nextm').onclick = () => { calMonth.setMonth(calMonth.getMonth() + 1); calSel = null; show(i); };
+      main.querySelector('#ics').onclick = () => downloadIcs(datos);
+      main.querySelectorAll('.day.has').forEach(b => b.onclick = () => { calSel = calSel === b.dataset.day ? null : b.dataset.day; show(i); });
+      const c = main.querySelector('#clear'); if (c) c.onclick = () => { calSel = null; show(i); };
+    }
+    try { history.replaceState(null, '', '#' + v.id); localStorage.setItem('tab', v.id); } catch {}
+  };
+  tabs.addEventListener('click', e => { const t = e.target.closest('.tab'); if (t) show(+t.dataset.i); });
+  let start = 0;
+  try { start = Math.max(0, views.findIndex(v => v.id === (location.hash.slice(1) || localStorage.getItem('tab')))); } catch {}
+  show(start);
+})();
+</script>
+</body>
+</html>
