@@ -1,6 +1,8 @@
 {
   "name": "Max y Pau · Fútbol",
   "short_name": "Max y Pau",
+  "id": "./",
+  "description": "Partidos, resultados y clasificaciones de Max y Pau (FFCV).",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

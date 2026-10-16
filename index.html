@@ -39,6 +39,12 @@ button{touch-action:manipulation}
 header.top{background:var(--brand);color:#fff;padding:calc(14px + env(safe-area-inset-top)) 0 14px}
 header.top h1{font:800 24px/1 "Barlow Condensed",sans-serif;letter-spacing:.5px;margin:0;text-transform:uppercase}
 header.top p{margin:4px 0 0;opacity:.75;font-size:12px}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#install{flex:none;min-height:44px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;border-radius:10px;padding:8px 12px;font:600 14px Inter,system-ui,sans-serif;cursor:pointer;white-space:nowrap}
+#install[hidden],#howto[hidden]{display:none}
+#howto{margin-top:12px;font-size:14px}
+#howto p{margin:0 32px 0 0}
+#howto .close{float:right;min-width:44px;min-height:44px;margin:-12px -12px 0 0;border:0;background:none;color:var(--muted);font-size:22px;cursor:pointer}
 .tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;display:flex;gap:4px;padding:6px 8px calc(6px + env(safe-area-inset-bottom));
   background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line)}
 .tab{flex:1 1 0;min-width:0;min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;border:0;border-radius:12px;background:transparent;color:var(--muted);cursor:pointer;text-align:center;font:inherit}
@@ -149,11 +155,15 @@ tr.mate td{background:var(--surface-2)}
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <h1>Max y Pau · Fútbol</h1>
-  <p id="upd">Cargando…</p>
+  <div style="min-width:0">
+    <h1>Max y Pau · Fútbol</h1>
+    <p id="upd">Cargando…</p>
+  </div>
+  <button id="install" hidden>Instalar app</button>
 </div></header>
 <div class="wrap">
   <nav class="tabs" id="tabs" role="tablist"></nav>
+  <section class="card" id="howto" hidden><button class="close" aria-label="Cerrar">×</button><p></p></section>
   <main id="main"></main>
 </div>
 <footer class="wrap">Datos de la Federació de Futbol de la Comunitat Valenciana. Se actualizan cuando cambian en la web de competiciones.</footer>
@@ -335,6 +345,31 @@ function downloadIcs(datos) {
   a.href = URL.createObjectURL(new Blob([lines.join('\r\n')], {type: 'text/calendar'}));
   a.download = 'max-pau-futbol.ics'; a.click();
 }
+
+// ---------- instalar como app ----------
+(() => {
+  const btn = document.getElementById('install'), howto = document.getElementById('howto');
+  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  let prompt = null;
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+  if (standalone) return;
+  // Safari no permite instalar desde un botón: en iPhone y en móviles sin diálogo propio se explican los pasos.
+  howto.querySelector('p').innerHTML = ios
+    ? 'En Safari, pulsa <b>Compartir</b> (el cuadrado con la flecha ↑) y después <b>Añadir a pantalla de inicio</b>.'
+    : 'Abre el menú <b>⋮</b> del navegador y elige <b>Instalar app</b> o <b>Añadir a pantalla de inicio</b>.';
+  if (ios || matchMedia('(pointer: coarse)').matches) btn.hidden = false;
+  addEventListener('beforeinstallprompt', e => { e.preventDefault(); prompt = e; btn.hidden = false; });
+  addEventListener('appinstalled', () => { prompt = null; btn.hidden = true; howto.hidden = true; });
+  btn.onclick = async () => {
+    if (!prompt) { howto.hidden = !howto.hidden; return; }
+    prompt.prompt();
+    const { outcome } = await prompt.userChoice;
+    prompt = null;
+    if (outcome === 'accepted') btn.hidden = true;
+  };
+  howto.querySelector('.close').onclick = () => { howto.hidden = true; };
+})();
 
 (async () => {
   const estado = await load('data/estado.json');

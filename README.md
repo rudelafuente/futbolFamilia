@@ -8,7 +8,8 @@ añadir a la pantalla de inicio del móvil como si fuera una app.
   - **Calendario**: partidos de los dos en el mismo mes y en una agenda; se pueden añadir al calendario del móvil (.ics).
   - **Max / Pau**: próximo partido, último resultado, estadísticas, partidos, clasificación y goleadores del grupo.
 - `data/`: los JSON que lee la web (`max.json`, `pau.json`, `estado.json`).
-- `manifest.webmanifest`, `icon.svg`, `icon-180.png`, `icon-512.png`: instalación en el móvil.
+- `manifest.webmanifest`, `sw.js`, `icon.svg`, `icon-180.png`, `icon-512.png`: instalación en el móvil
+  (botón «Instalar app» en la cabecera; en iPhone explica los pasos de Safari).
 - `actualizador/` (**no se sube al repo**, está en `.gitignore`): aplicación de consola .NET 8 con las credenciales.
 
 ## Refrescar los datos
