@@ -30,15 +30,17 @@
   },
   "equipo": {
     "nombre": "Godella C.F. 'E'",
-    "club": "",
+    "club": "Godella C.F.",
     "categoria": "2ª Regional Infantil",
     "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074491478_logo.jpg",
-    "tecnicos": [],
+    "tecnicos": [
+      "CHILLARON GARCIA, LUCAS"
+    ],
     "delegados": [],
     "equipaciones": [],
-    "dia_habitual": "",
-    "hora_habitual": "",
-    "campo_habitual": ""
+    "dia_habitual": "sábado",
+    "hora_habitual": "16:30",
+    "campo_habitual": "5323"
   },
   "competicion": {
     "nombre": "Segona Infantil València",
@@ -1201,9 +1203,210 @@
     }
   ],
   "evolucion": [],
-  "plantilla": [],
+  "plantilla": [
+    {
+      "dorsal": "",
+      "nombre": "Enrique A.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Alejandro A.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Andres A.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Martin A.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Mateo A.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Izan A.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Mario C.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Pau D.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": true
+    },
+    {
+      "dorsal": "",
+      "nombre": "Javi E.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Diego F.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Mauro F.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Jaume G.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Hamza K.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Alvaro L.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Diego R.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Joaquin R.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Lucas S.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Hugo T.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Marc V.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    },
+    {
+      "dorsal": "",
+      "nombre": "Hugo V.",
+      "jugados": 0,
+      "titular": 0,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0,
+      "propio": false
+    }
+  ],
   "goleadores": [],
   "goleadores_fuente": "grupo",
-  "huella": "6437b9d58db4e50f63206a55d326c873",
-  "actualizado": "2026-10-16T19:15:47+02:00"
+  "huella": "d507812f7ab886434d9f55f1453e3819",
+  "actualizado": "2026-10-16T22:11:11+02:00"
 }
