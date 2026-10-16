@@ -32,7 +32,13 @@
     "nombre": "Sp. Benimaclet C.F. 'B'",
     "club": "",
     "categoria": "Prebenjamín 1er. Año",
-    "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074576439_Sporting_Benimaclet_CF.png"
+    "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074576439_Sporting_Benimaclet_CF.png",
+    "tecnicos": [],
+    "delegados": [],
+    "equipaciones": [],
+    "dia_habitual": "",
+    "hora_habitual": "",
+    "campo_habitual": ""
   },
   "competicion": {
     "nombre": "Segona FFCV Prebenjamí 1r. any València",
@@ -390,8 +396,272 @@
       "propio": false
     }
   ],
+  "grupo": [
+    {
+      "codequipo": "900488139",
+      "nombre": "Albalat C.F. 'A'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074530759_Escudo_Albalat_C.F..png?nova=1",
+      "pos": 1,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "905981742",
+      "nombre": "Alboraya U.D. 'D'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501630_Alboraya_UD.png?nova=1",
+      "pos": 2,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "905836257",
+      "nombre": "C.D. Massamagrell 'A'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074735431_B75EB4E5_2351_454A_B37D_92D553EA5B0A.png?nova=1",
+      "pos": 3,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "903543750",
+      "nombre": "C.D.J. Collvert 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074547032_escudo_collvert.jpeg?nova=1",
+      "pos": 4,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "906662438",
+      "nombre": "Meliana C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074531457_Escudo_MCF.jpg?nova=1",
+      "pos": 5,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "15209",
+      "nombre": "Rafelbunyol C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501373_Rafelbunyol_CF.png?nova=1",
+      "pos": 6,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "22272119",
+      "nombre": "Rayo Benimaclet C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074542664_8BB5112B_D592_40DD_8E01_09040F64EDB9.jpg?nova=1",
+      "pos": 7,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "23168",
+      "nombre": "Sp. Benimaclet C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074576439_Sporting_Benimaclet_CF.png?nova=1",
+      "pos": 8,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "21710914",
+      "nombre": "Tavernes Blanques C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074575019_Tavernes_Blanques_CF.png?nova=1",
+      "pos": 9,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "29630200",
+      "nombre": "U.D. Rocafort C.F. 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074496834_escudo_club.jpg?nova=1",
+      "pos": 10,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    }
+  ],
+  "evolucion": [],
+  "plantilla": [],
   "goleadores": [],
   "goleadores_fuente": "grupo",
-  "huella": "c74336998fa24d3bc312a60fad16d3cd",
-  "actualizado": "2026-10-16T18:25:21+02:00"
+  "huella": "7c550dd7e490f1ab3f1169edad6bd4b0",
+  "actualizado": "2026-10-16T19:15:17+02:00"
 }

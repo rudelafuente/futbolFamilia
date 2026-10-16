@@ -32,7 +32,13 @@
     "nombre": "Godella C.F. 'E'",
     "club": "",
     "categoria": "2ª Regional Infantil",
-    "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074491478_logo.jpg"
+    "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074491478_logo.jpg",
+    "tecnicos": [],
+    "delegados": [],
+    "equipaciones": [],
+    "dia_habitual": "",
+    "hora_habitual": "",
+    "campo_habitual": ""
   },
   "competicion": {
     "nombre": "Segona Infantil València",
@@ -828,8 +834,376 @@
       "propio": false
     }
   ],
+  "grupo": [
+    {
+      "codequipo": "21868",
+      "nombre": "At. Villar C.F. 'A'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074488557_escudo_atletico_villar.JPG?nova=1",
+      "pos": 1,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "22234",
+      "nombre": "Atlètic Vallbonense 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/usr/local/projects/weblogic/repository/AS400/02/DOCS/201211/27/12046239.jpg?nova=1",
+      "pos": 2,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "29692444",
+      "nombre": "Benisanó C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074605473_escudo_1_color_negro.png?nova=1",
+      "pos": 3,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "900852000",
+      "nombre": "Bétera C.F. 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/usr/local/projects/weblogic/repository/AS400/02/DOCS/201211/15/12043747.jpg?nova=1",
+      "pos": 4,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "14100",
+      "nombre": "C.D.F.B. L'Eliana 'A'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074530133_ESCUDO_CLUB_SIN_FONDO_copia.png?nova=1",
+      "pos": 5,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "14391",
+      "nombre": "C.F. Cracks 'E'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074600377_version_principal_color_fondo_transparente_cf_cracks.png?nova=1",
+      "pos": 6,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "901393975",
+      "nombre": "F.C. Benaguasil 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074656783_ESCUDO_CLUB_1.png?nova=1",
+      "pos": 7,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "903549513",
+      "nombre": "Godella C.F. 'E'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074491478_logo.jpg?nova=1",
+      "pos": 8,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "28266",
+      "nombre": "Llíria U.D. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/var/docs/2122/DOCS/20219/20/4f5452e476a76d3a9135165d54e19eb6.jpg?nova=1",
+      "pos": 9,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "14048",
+      "nombre": "Los Silos C.F. - Promises Valencia 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074812949_03_Escudo_Promises_Silos_Burjassot_fondo_blanco_y_negro_originales___copia_page_0001___copia.jpg?nova=1",
+      "pos": 10,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "21901",
+      "nombre": "Ribarroja C.F. 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074812130_Imagen_1.png?nova=1",
+      "pos": 11,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "24947",
+      "nombre": "S.F.A.C. San Antonio Benagéber 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/var/docs/2122/DOCS/202110/13/f38cf1765f40e485a4674a60d7f6574c.jpg?nova=1",
+      "pos": 12,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "903554481",
+      "nombre": "San Antonio de Benagéber C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074480259_FB_IMG_1628921801560.jpg?nova=1",
+      "pos": 13,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    },
+    {
+      "codequipo": "15337",
+      "nombre": "Vilamarxant C.F. 'A'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501382_Vilamarxant_CF.png?nova=1",
+      "pos": 14,
+      "pts": 0,
+      "pj": 0,
+      "g": 0,
+      "e": 0,
+      "p": 0,
+      "gf": 0,
+      "gc": 0,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": []
+    }
+  ],
+  "evolucion": [],
+  "plantilla": [],
   "goleadores": [],
   "goleadores_fuente": "grupo",
-  "huella": "cc39be4aa19d0e1145827f3f1479b892",
-  "actualizado": "2026-10-16T18:26:41+02:00"
+  "huella": "6437b9d58db4e50f63206a55d326c873",
+  "actualizado": "2026-10-16T19:15:47+02:00"
 }
