@@ -31,8 +31,8 @@
   "equipo": {
     "nombre": "Godella C.F. 'E'",
     "club": "",
-    "categoria": "",
-    "escudo": ""
+    "categoria": "2ª Regional Infantil",
+    "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074491478_logo.jpg"
   },
   "competicion": {
     "nombre": "Segona Infantil València",
@@ -694,5 +694,5 @@
   ],
   "goleadores": [],
   "huella": "af8ee2d82ff02b2c2ca39080f4dcaa6b",
-  "actualizado": "2026-10-16T17:19:30+02:00"
+  "actualizado": "2026-10-16T18:14:17+02:00"
 }

@@ -31,8 +31,8 @@
   "equipo": {
     "nombre": "Sp. Benimaclet C.F. 'B'",
     "club": "",
-    "categoria": "",
-    "escudo": ""
+    "categoria": "Prebenjamín 1er. Año",
+    "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074576439_Sporting_Benimaclet_CF.png"
   },
   "competicion": {
     "nombre": "Segona FFCV Prebenjamí 1r. any València",
@@ -336,5 +336,5 @@
   ],
   "goleadores": [],
   "huella": "70e3d8603a4e65d57c39747fc5109592",
-  "actualizado": "2026-10-16T17:19:29+02:00"
+  "actualizado": "2026-10-16T18:11:25+02:00"
 }
