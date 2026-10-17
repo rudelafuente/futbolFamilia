@@ -218,6 +218,37 @@ details.tabla summary{cursor:pointer;color:var(--muted);min-height:44px;display:
 .rival .top{display:flex;align-items:center;gap:10px}
 .rival .top img,.rival .top .crest{width:32px;height:32px}
 .rival > div:not(.top) b{display:inline;margin:0;font-size:inherit}
+/* Resumen de la jornada (arriba del calendario) */
+.jornada{margin-bottom:12px}
+.jornada .head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.jornada .head h3{margin:0}
+.jornada .head small{display:block;font:500 12px Inter,system-ui,sans-serif;letter-spacing:0;text-transform:none;margin-top:2px}
+.spots{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:760px){.spots{grid-template-columns:1fr 1fr}}
+.spot{background:var(--surface-2);border-radius:14px;padding:12px;border-top:4px solid var(--kid);min-width:0}
+.spot .tit{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.spot .big{font:800 24px/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.5px}
+.spot .big.G{color:var(--win)}.spot .big.P{color:var(--loss)}.spot .big.E{color:var(--muted)}
+.spot .big.pend{color:var(--ink)}
+.spot .pos{margin-top:10px;font-size:13px;color:var(--muted);text-align:center}
+.spot .pos b{color:var(--ink)}
+.spot .up{color:var(--win);font-weight:700}.spot .down{color:var(--loss);font-weight:700}
+.spot .gol{margin-top:6px;text-align:center;font-weight:700;font-size:14px}
+.spot details{margin-top:10px;border-top:1px solid var(--line)}
+.spot summary{cursor:pointer;color:var(--muted);font-size:13px;min-height:44px;display:flex;align-items:center}
+.otros{list-style:none;margin:0;padding:0;font-size:13px}
+.otros li{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;padding:6px 0;border-top:1px solid var(--line)}
+.otros li:first-child{border-top:0}
+.otros li.me{font-weight:700}
+.otros .l{text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.otros .v{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.otros .m{font:700 16px "Barlow Condensed";white-space:nowrap;min-width:44px;text-align:center}
+.otros .m small{font:500 12px Inter,system-ui,sans-serif;color:var(--muted)}
+.otros img{width:16px;height:16px;vertical-align:-3px;object-fit:contain}
+.otros .l img{margin-left:6px}.otros .v img{margin-right:6px}
+#compartir{flex:none}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:20;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px}
+@media(min-width:760px){.toast{bottom:24px}}
 
 </style>
 </head>
@@ -524,6 +555,91 @@ function evRow(e) {
     <small>${esc(e.campo || e.kid.equipo?.nombre || '')}</small></div><div class="r">${right}</div></div>`;
 }
 
+// ---------- resumen de la jornada ----------
+// Partido «de esta jornada» de cada niño: el último jugado en los últimos 6 días o, si no, el que toca hoy o mañana.
+function partidoDeLaJornada(d) {
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  const desde = new Date(hoy); desde.setDate(hoy.getDate() - 6);
+  const hasta = new Date(hoy); hasta.setDate(hoy.getDate() + 2);
+  const enVentana = (d.partidos || []).filter(p => { const f = parseDate(p.fecha); return f && f >= desde && f < hasta; });
+  return enVentana.filter(p => p.jugado).pop() || enVentana.find(p => !p.jugado) || null;
+}
+const PALABRA = {G: '¡Victoria!', E: 'Empate', P: 'Derrota'};
+function cuandoCorto(p) {
+  const f = parseDate(p.fecha, p.hora); if (!f) return '';
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  const dias = Math.round((new Date(f).setHours(0,0,0,0) - hoy) / 864e5);
+  const dia = dias === 0 ? 'Hoy' : dias === 1 ? 'Mañana' : dias === -1 ? 'Ayer' : cap(f.toLocaleDateString('es-ES', {weekday:'long', day:'numeric'}));
+  return dia + (p.hora && !p.jugado ? ` a las ${p.hora}` : '');
+}
+function posicionTxt(d) {
+  const fila = filaPropia(d);
+  if (!fila || !fila.pj) return '';
+  const ev = d.evolucion || [];
+  const antes = ev.length > 1 ? ev[ev.length - 2].pos : null;
+  const cambio = antes == null || antes === fila.pos ? ''
+    : antes > fila.pos ? ` <span class="up" aria-label="sube ${antes - fila.pos}">▲${antes - fila.pos}</span>`
+    : ` <span class="down" aria-label="baja ${fila.pos - antes}">▼${fila.pos - antes}</span>`;
+  return `<b>${esc(fila.pos)}º</b> de ${esc((d.grupo || []).length)} con <b>${esc(fila.pts)}</b> ${fila.pts === 1 ? 'punto' : 'puntos'}${cambio}`;
+}
+function golesPropios(p) { return (p.acta?.goles || []).filter(g => g.propio).length; }
+function otrosPartidos(d, p) {
+  const j = d.jornada_grupo;
+  if (!j || String(j.cod_jornada) !== String(p.cod_jornada) || !(j.partidos || []).length) return '';
+  const esc0 = cod => (d.grupo || []).find(e => e.codequipo === cod)?.escudo;
+  const img = cod => esc0(cod) ? `<img src="${esc(esc0(cod))}" alt="" loading="lazy" onerror="this.remove()">` : '';
+  const jugados = j.partidos.filter(x => x.jugado).length;
+  return `<details><summary>Resto de la jornada · ${jugados} de ${j.partidos.length} jugados</summary><ul class="otros">${j.partidos.map(x => `<li class="${x.propio ? 'me' : ''}">
+    <span class="l">${esc(sinHA(x.local))}${img(x.cod_local)}</span>
+    <span class="m">${x.jugado ? `${esc(x.goles_local)}-${esc(x.goles_visitante)}` : `<small>${x.fecha !== p.fecha && parseDate(x.fecha) ? esc(parseDate(x.fecha).toLocaleDateString('es-ES', {weekday:'short'})) + ' ' : ''}${esc(x.hora || '--:--')}</small>`}</span>
+    <span class="v">${img(x.cod_visitante)}${esc(sinHA(x.visitante))}</span></li>`).join('')}</ul></details>`;
+}
+function renderJornada(datos) {
+  const items = datos.map(d => ({d, p: partidoDeLaJornada(d)})).filter(x => x.p);
+  if (!items.length) return '';
+  const spots = items.map(({d, p}) => {
+    const goles = golesPropios(p);
+    const titulo = p.jugado ? `<span class="big ${esc(p.resultado)}">${PALABRA[p.resultado] || ''}</span>`
+      : `<span class="big pend">${esc(p.estado || cuandoCorto(p))}</span>`;
+    const pos = p.jugado ? posicionTxt(d) : '';
+    return `<div class="spot k-${esc(d.slug)}">
+      <div class="tit"><span class="chip">${esc(d.apodo)}</span>${titulo}</div>
+      <div class="tap" ${tapAttrs(d.slug, p)}>${matchBlock(p)}</div>
+      ${goles ? `<div class="gol">⚽ ${esc(d.apodo)} marcó ${goles === 1 ? 'un gol' : goles + ' goles'}</div>` : ''}
+      ${pos ? `<div class="pos">${pos}</div>` : ''}
+      ${!p.jugado && p.campo ? `<div class="pos">${esc(sinHA(p.campo))}</div>` : ''}
+      ${otrosPartidos(d, p)}</div>`;
+  }).join('');
+  const js = [...new Set(items.map(x => x.p.jornada))];
+  const fechas = items.map(x => parseDate(x.p.fecha)).filter(Boolean).sort((a, b) => a - b);
+  const rango = fechas.length ? fmtDay(fechas[0]) + (+fechas[fechas.length - 1] !== +fechas[0] ? ' – ' + fmtDay(fechas[fechas.length - 1]) : '') : '';
+  return `<section class="card jornada"><div class="head"><h3>${js.length === 1 ? `Jornada ${esc(js[0])}` : 'La jornada'}<small>${esc(rango)}</small></h3>
+    <button class="btn" id="compartir">Compartir</button></div><div class="spots">${spots}</div></section>`;
+}
+function textoJornada(datos) {
+  const lineas = datos.map(d => ({d, p: partidoDeLaJornada(d)})).filter(x => x.p).map(({d, p}) => {
+    const rival = p.en_casa ? p.visitante : p.local;
+    if (!p.jugado) return `${d.apodo}: ${cuandoCorto(p).toLowerCase()} ${p.en_casa ? 'en casa contra' : 'en el campo del'} ${sinHA(rival)}`;
+    const verbo = {G: 'ganó', E: 'empató', P: 'perdió'}[p.resultado] || 'jugó';
+    const mios = p.en_casa ? p.goles_local : p.goles_visitante, suyos = p.en_casa ? p.goles_visitante : p.goles_local;
+    const fila = filaPropia(d);
+    const goles = golesPropios(p);
+    return `${d.apodo}: ${verbo} ${mios}-${suyos} ${p.en_casa ? 'en casa contra' : 'en el campo del'} ${sinHA(rival)}`
+      + (goles ? ` y marcó ${goles === 1 ? 'un gol' : goles + ' goles'}` : '')
+      + (fila?.pj ? ` · va ${fila.pos}º con ${fila.pts} ${fila.pts === 1 ? 'punto' : 'puntos'}` : '');
+  });
+  return '⚽ Fútbol de la Familia\n' + lineas.join('\n');
+}
+async function compartirJornada(datos) {
+  const text = textoJornada(datos), url = location.href.split('#')[0];
+  try {
+    if (navigator.share) { await navigator.share({title: 'Fútbol de la Familia', text, url}); return; }
+    await navigator.clipboard.writeText(text + '\n' + url);
+    const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = 'Resumen copiado';
+    document.body.append(t); setTimeout(() => t.remove(), 2200);
+  } catch {}
+}
+
 function renderCalendar(datos) {
   const evs = events(datos);
   const today = new Date(); today.setHours(0,0,0,0);
@@ -557,7 +673,7 @@ function renderCalendar(datos) {
       + (past.length ? `<h4>Últimos resultados</h4>${past.map(evRow).join('')}` : '');
   }
   const ics = `<button class="btn" id="ics">Añadir al calendario del móvil</button>`;
-  return `<div class="grid">
+  return `${renderJornada(datos)}<div class="grid" style="margin-top:0">
     <section class="card"><div class="month-head"><button id="prev" aria-label="Mes anterior">‹</button>
       <b>${cap(calMonth.toLocaleDateString('es-ES', {month:'long', year:'numeric'}))}</b><button id="nextm" aria-label="Mes siguiente">›</button></div>
       <div class="cal">${['L','M','X','J','V','S','D'].map(x => `<span class="dow">${x}</span>`).join('')}${cells}</div>
@@ -730,6 +846,7 @@ addEventListener('popstate', () => { if (ficha.open) ficha.close(); });
       main.querySelector('#prev').onclick = () => { calMonth.setMonth(calMonth.getMonth() - 1); calSel = null; show(i); };
       main.querySelector('#nextm').onclick = () => { calMonth.setMonth(calMonth.getMonth() + 1); calSel = null; show(i); };
       main.querySelector('#ics').onclick = () => downloadIcs(datos);
+      const cj = main.querySelector('#compartir'); if (cj) cj.onclick = () => compartirJornada(datos);
       main.querySelectorAll('.day.has').forEach(b => b.onclick = () => { calSel = calSel === b.dataset.day ? null : b.dataset.day; show(i); });
       const c = main.querySelector('#clear'); if (c) c.onclick = () => { calSel = null; show(i); };
     }

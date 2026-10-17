@@ -12,15 +12,15 @@
   },
   "jugador": {
     "nombre": "Max D.",
-    "dorsal": "",
-    "posicion": "",
+    "dorsal": "2",
+    "posicion": "Medio",
     "edad": "5",
     "foto": "",
     "stats": {
-      "convocados": 0,
+      "convocados": 1,
       "titular": 0,
-      "suplente": 0,
-      "jugados": 0,
+      "suplente": 1,
+      "jugados": 1,
       "goles": 0,
       "amarillas": 0,
       "doble_amarilla": 0,
@@ -36,8 +36,21 @@
     "tecnicos": [
       "VALLEJO RÍO, LUIS"
     ],
-    "delegados": [],
-    "equipaciones": [],
+    "delegados": [
+      "PASTOR PEREZ, MARCOS"
+    ],
+    "equipaciones": [
+      {
+        "camiseta": "Verde",
+        "pantalon": "Negro",
+        "medias": "Negras"
+      },
+      {
+        "camiseta": "Blanca",
+        "pantalon": "Amarillo",
+        "medias": "Blancas"
+      }
+    ],
     "dia_habitual": "sábado",
     "hora_habitual": "11:00",
     "campo_habitual": "5014"
@@ -51,20 +64,92 @@
       "cod_jornada": "1",
       "jornada": "1",
       "fecha": "17-10-2026",
-      "hora": "12:00",
+      "hora": "12:45",
       "local": "Rafelbunyol C.F. 'B'",
       "visitante": "Sp. Benimaclet C.F. 'B'",
       "escudo_local": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501373_Rafelbunyol_CF.png",
       "escudo_visitante": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074576439_Sporting_Benimaclet_CF.png",
       "en_casa": false,
-      "goles_local": "",
-      "goles_visitante": "",
-      "jugado": false,
-      "resultado": "",
+      "goles_local": "1",
+      "goles_visitante": "5",
+      "jugado": true,
+      "resultado": "G",
       "campo": "Poliesportiu Mpal. de Rafelbunyol F-8 Campo 1(HA)",
       "codigo_campo": "6100",
       "estado": "",
-      "codacta": "26569808"
+      "codacta": "26569808",
+      "acta": {
+        "cerrada": true,
+        "suspendido": false,
+        "goles": [],
+        "jugadores": [
+          {
+            "cod_jugador": "904215561",
+            "nombre": "Joaquín J.",
+            "dorsal": "1"
+          },
+          {
+            "cod_jugador": "907130372",
+            "nombre": "Max D.",
+            "dorsal": "2"
+          },
+          {
+            "cod_jugador": "907129928",
+            "nombre": "Joel H.",
+            "dorsal": "3"
+          },
+          {
+            "cod_jugador": "906335849",
+            "nombre": "Marcos K.",
+            "dorsal": "4"
+          },
+          {
+            "cod_jugador": "905273212",
+            "nombre": "Dominic James M.",
+            "dorsal": "5"
+          },
+          {
+            "cod_jugador": "906336375",
+            "nombre": "Martí",
+            "dorsal": "6"
+          },
+          {
+            "cod_jugador": "904296949",
+            "nombre": "Liam T.",
+            "dorsal": "7"
+          },
+          {
+            "cod_jugador": "906390498",
+            "nombre": "Konstantin S.",
+            "dorsal": "8"
+          },
+          {
+            "cod_jugador": "907130236",
+            "nombre": "Joel N.",
+            "dorsal": "9"
+          },
+          {
+            "cod_jugador": "904216661",
+            "nombre": "Miguel",
+            "dorsal": "12"
+          },
+          {
+            "cod_jugador": "904532715",
+            "nombre": "Jorge P.",
+            "dorsal": "21"
+          },
+          {
+            "cod_jugador": "904173928",
+            "nombre": "Sara Margarida N.",
+            "dorsal": "25"
+          },
+          {
+            "cod_jugador": "904093848",
+            "nombre": "Hugo A.",
+            "dorsal": "99"
+          }
+        ]
+      }
     },
     {
       "cod_jornada": "2",
@@ -269,6 +354,97 @@
   "clasificacion": [
     {
       "pos": "1",
+      "equipo": "Sp. Benimaclet C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074576439_Sporting_Benimaclet_CF.png?nova=1",
+      "pts": "3",
+      "pj": "1",
+      "pg": "1",
+      "pe": "0",
+      "pp": "0",
+      "gf": "5",
+      "gc": "1",
+      "propio": true
+    },
+    {
+      "pos": "2",
+      "equipo": "Tavernes Blanques C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074575019_Tavernes_Blanques_CF.png?nova=1",
+      "pts": "3",
+      "pj": "1",
+      "pg": "1",
+      "pe": "0",
+      "pp": "0",
+      "gf": "6",
+      "gc": "1",
+      "propio": false
+    },
+    {
+      "pos": "3",
+      "equipo": "Rayo Benimaclet C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074542664_8BB5112B_D592_40DD_8E01_09040F64EDB9.jpg?nova=1",
+      "pts": "3",
+      "pj": "1",
+      "pg": "1",
+      "pe": "0",
+      "pp": "0",
+      "gf": "6",
+      "gc": "5",
+      "propio": false
+    },
+    {
+      "pos": "4",
+      "equipo": "Rafelbunyol C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501373_Rafelbunyol_CF.png?nova=1",
+      "pts": "1",
+      "pj": "1",
+      "pg": "0",
+      "pe": "0",
+      "pp": "1",
+      "gf": "1",
+      "gc": "5",
+      "propio": false
+    },
+    {
+      "pos": "5",
+      "equipo": "C.D.J. Collvert 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074547032_escudo_collvert.jpeg?nova=1",
+      "pts": "1",
+      "pj": "1",
+      "pg": "0",
+      "pe": "0",
+      "pp": "1",
+      "gf": "1",
+      "gc": "6",
+      "propio": false
+    },
+    {
+      "pos": "6",
+      "equipo": "Meliana C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074531457_Escudo_MCF.jpg?nova=1",
+      "pts": "1",
+      "pj": "1",
+      "pg": "0",
+      "pe": "0",
+      "pp": "1",
+      "gf": "5",
+      "gc": "6",
+      "propio": false
+    },
+    {
+      "pos": "7",
+      "equipo": "U.D. Rocafort C.F. 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074496834_escudo_club.jpg?nova=1",
+      "pts": "0",
+      "pj": "0",
+      "pg": "0",
+      "pe": "0",
+      "pp": "0",
+      "gf": "0",
+      "gc": "0",
+      "propio": false
+    },
+    {
+      "pos": "8",
       "equipo": "Albalat C.F. 'A'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074530759_Escudo_Albalat_C.F..png?nova=1",
       "pts": "0",
@@ -281,20 +457,7 @@
       "propio": false
     },
     {
-      "pos": "2",
-      "equipo": "Alboraya U.D. 'D'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501630_Alboraya_UD.png?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
-      "propio": false
-    },
-    {
-      "pos": "3",
+      "pos": "9",
       "equipo": "C.D. Massamagrell 'A'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074735431_B75EB4E5_2351_454A_B37D_92D553EA5B0A.png?nova=1",
       "pts": "0",
@@ -307,87 +470,9 @@
       "propio": false
     },
     {
-      "pos": "4",
-      "equipo": "C.D.J. Collvert 'C'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074547032_escudo_collvert.jpeg?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
-      "propio": false
-    },
-    {
-      "pos": "5",
-      "equipo": "Meliana C.F. 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074531457_Escudo_MCF.jpg?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
-      "propio": false
-    },
-    {
-      "pos": "6",
-      "equipo": "Rafelbunyol C.F. 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501373_Rafelbunyol_CF.png?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
-      "propio": false
-    },
-    {
-      "pos": "7",
-      "equipo": "Rayo Benimaclet C.F. 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074542664_8BB5112B_D592_40DD_8E01_09040F64EDB9.jpg?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
-      "propio": false
-    },
-    {
-      "pos": "8",
-      "equipo": "Sp. Benimaclet C.F. 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074576439_Sporting_Benimaclet_CF.png?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
-      "propio": true
-    },
-    {
-      "pos": "9",
-      "equipo": "Tavernes Blanques C.F. 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074575019_Tavernes_Blanques_CF.png?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
-      "propio": false
-    },
-    {
       "pos": "10",
-      "equipo": "U.D. Rocafort C.F. 'C'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074496834_escudo_club.jpg?nova=1",
+      "equipo": "Alboraya U.D. 'D'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501630_Alboraya_UD.png?nova=1",
       "pts": "0",
       "pj": "0",
       "pg": "0",
@@ -400,10 +485,178 @@
   ],
   "grupo": [
     {
-      "codequipo": "900488139",
-      "nombre": "Albalat C.F. 'A'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074530759_Escudo_Albalat_C.F..png?nova=1",
+      "codequipo": "23168",
+      "nombre": "Sp. Benimaclet C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074576439_Sporting_Benimaclet_CF.png?nova=1",
       "pos": 1,
+      "pts": 3,
+      "pj": 1,
+      "g": 1,
+      "e": 0,
+      "p": 0,
+      "gf": 5,
+      "gc": 1,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": [
+        "G"
+      ]
+    },
+    {
+      "codequipo": "21710914",
+      "nombre": "Tavernes Blanques C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074575019_Tavernes_Blanques_CF.png?nova=1",
+      "pos": 2,
+      "pts": 3,
+      "pj": 1,
+      "g": 1,
+      "e": 0,
+      "p": 0,
+      "gf": 6,
+      "gc": 1,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": [
+        "G"
+      ]
+    },
+    {
+      "codequipo": "22272119",
+      "nombre": "Rayo Benimaclet C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074542664_8BB5112B_D592_40DD_8E01_09040F64EDB9.jpg?nova=1",
+      "pos": 3,
+      "pts": 3,
+      "pj": 1,
+      "g": 1,
+      "e": 0,
+      "p": 0,
+      "gf": 6,
+      "gc": 5,
+      "casa": {
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": [
+        "G"
+      ]
+    },
+    {
+      "codequipo": "15209",
+      "nombre": "Rafelbunyol C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501373_Rafelbunyol_CF.png?nova=1",
+      "pos": 4,
+      "pts": 1,
+      "pj": 1,
+      "g": 0,
+      "e": 0,
+      "p": 1,
+      "gf": 1,
+      "gc": 5,
+      "casa": {
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": [
+        "P"
+      ]
+    },
+    {
+      "codequipo": "903543750",
+      "nombre": "C.D.J. Collvert 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074547032_escudo_collvert.jpeg?nova=1",
+      "pos": 5,
+      "pts": 1,
+      "pj": 1,
+      "g": 0,
+      "e": 0,
+      "p": 1,
+      "gf": 1,
+      "gc": 6,
+      "casa": {
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": [
+        "P"
+      ]
+    },
+    {
+      "codequipo": "906662438",
+      "nombre": "Meliana C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074531457_Escudo_MCF.jpg?nova=1",
+      "pos": 6,
+      "pts": 1,
+      "pj": 1,
+      "g": 0,
+      "e": 0,
+      "p": 1,
+      "gf": 5,
+      "gc": 6,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1
+      },
+      "ultimos": [
+        "P"
+      ]
+    },
+    {
+      "codequipo": "29630200",
+      "nombre": "U.D. Rocafort C.F. 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074496834_escudo_club.jpg?nova=1",
+      "pos": 7,
       "pts": 0,
       "pj": 0,
       "g": 0,
@@ -426,10 +679,10 @@
       "ultimos": []
     },
     {
-      "codequipo": "905981742",
-      "nombre": "Alboraya U.D. 'D'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501630_Alboraya_UD.png?nova=1",
-      "pos": 2,
+      "codequipo": "900488139",
+      "nombre": "Albalat C.F. 'A'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074530759_Escudo_Albalat_C.F..png?nova=1",
+      "pos": 8,
       "pts": 0,
       "pj": 0,
       "g": 0,
@@ -455,162 +708,6 @@
       "codequipo": "905836257",
       "nombre": "C.D. Massamagrell 'A'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074735431_B75EB4E5_2351_454A_B37D_92D553EA5B0A.png?nova=1",
-      "pos": 3,
-      "pts": 0,
-      "pj": 0,
-      "g": 0,
-      "e": 0,
-      "p": 0,
-      "gf": 0,
-      "gc": 0,
-      "casa": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "fuera": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "ultimos": []
-    },
-    {
-      "codequipo": "903543750",
-      "nombre": "C.D.J. Collvert 'C'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074547032_escudo_collvert.jpeg?nova=1",
-      "pos": 4,
-      "pts": 0,
-      "pj": 0,
-      "g": 0,
-      "e": 0,
-      "p": 0,
-      "gf": 0,
-      "gc": 0,
-      "casa": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "fuera": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "ultimos": []
-    },
-    {
-      "codequipo": "906662438",
-      "nombre": "Meliana C.F. 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074531457_Escudo_MCF.jpg?nova=1",
-      "pos": 5,
-      "pts": 0,
-      "pj": 0,
-      "g": 0,
-      "e": 0,
-      "p": 0,
-      "gf": 0,
-      "gc": 0,
-      "casa": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "fuera": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "ultimos": []
-    },
-    {
-      "codequipo": "15209",
-      "nombre": "Rafelbunyol C.F. 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501373_Rafelbunyol_CF.png?nova=1",
-      "pos": 6,
-      "pts": 0,
-      "pj": 0,
-      "g": 0,
-      "e": 0,
-      "p": 0,
-      "gf": 0,
-      "gc": 0,
-      "casa": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "fuera": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "ultimos": []
-    },
-    {
-      "codequipo": "22272119",
-      "nombre": "Rayo Benimaclet C.F. 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074542664_8BB5112B_D592_40DD_8E01_09040F64EDB9.jpg?nova=1",
-      "pos": 7,
-      "pts": 0,
-      "pj": 0,
-      "g": 0,
-      "e": 0,
-      "p": 0,
-      "gf": 0,
-      "gc": 0,
-      "casa": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "fuera": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "ultimos": []
-    },
-    {
-      "codequipo": "23168",
-      "nombre": "Sp. Benimaclet C.F. 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074576439_Sporting_Benimaclet_CF.png?nova=1",
-      "pos": 8,
-      "pts": 0,
-      "pj": 0,
-      "g": 0,
-      "e": 0,
-      "p": 0,
-      "gf": 0,
-      "gc": 0,
-      "casa": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "fuera": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "ultimos": []
-    },
-    {
-      "codequipo": "21710914",
-      "nombre": "Tavernes Blanques C.F. 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074575019_Tavernes_Blanques_CF.png?nova=1",
       "pos": 9,
       "pts": 0,
       "pj": 0,
@@ -634,9 +731,9 @@
       "ultimos": []
     },
     {
-      "codequipo": "29630200",
-      "nombre": "U.D. Rocafort C.F. 'C'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074496834_escudo_club.jpg?nova=1",
+      "codequipo": "905981742",
+      "nombre": "Alboraya U.D. 'D'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501630_Alboraya_UD.png?nova=1",
       "pos": 10,
       "pts": 0,
       "pj": 0,
@@ -660,141 +757,293 @@
       "ultimos": []
     }
   ],
-  "evolucion": [],
+  "evolucion": [
+    {
+      "cod_jornada": "1",
+      "jornada": "1",
+      "pos": 1,
+      "pts": 3,
+      "equipos": 10
+    }
+  ],
   "plantilla": [
     {
-      "dorsal": "",
-      "nombre": "Hugo A.",
-      "jugados": 0,
-      "titular": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0,
-      "propio": false
-    },
-    {
-      "dorsal": "",
-      "nombre": "Max D.",
-      "jugados": 0,
-      "titular": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0,
-      "propio": true
-    },
-    {
-      "dorsal": "",
-      "nombre": "Joel H.",
-      "jugados": 0,
-      "titular": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0,
-      "propio": false
-    },
-    {
-      "dorsal": "",
+      "cod_jugador": "904215561",
       "nombre": "Joaquín J.",
-      "jugados": 0,
-      "titular": 0,
+      "dorsal": "1",
+      "posicion": "Portero/a",
+      "portero": true,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
       "goles": 0,
       "amarillas": 0,
-      "rojas": 0,
-      "propio": false
+      "rojas": 0
     },
     {
-      "dorsal": "",
+      "cod_jugador": "907130372",
+      "nombre": "Max D.",
+      "dorsal": "2",
+      "posicion": "Medio",
+      "portero": false,
+      "propio": true,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 0,
+      "suplente": 1,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "907129928",
+      "nombre": "Joel H.",
+      "dorsal": "3",
+      "posicion": "Defensa",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 0,
+      "suplente": 1,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "906335849",
       "nombre": "Marcos K.",
-      "jugados": 0,
-      "titular": 0,
+      "dorsal": "4",
+      "posicion": "Defensa",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
       "goles": 0,
       "amarillas": 0,
-      "rojas": 0,
-      "propio": false
+      "rojas": 0
     },
     {
-      "dorsal": "",
+      "cod_jugador": "905273212",
       "nombre": "Dominic M.",
-      "jugados": 0,
+      "dorsal": "5",
+      "posicion": "Defensa",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
       "titular": 0,
+      "suplente": 1,
+      "jugados": 1,
       "goles": 0,
       "amarillas": 0,
-      "rojas": 0,
-      "propio": false
+      "rojas": 0
     },
     {
-      "dorsal": "",
+      "cod_jugador": "906336375",
       "nombre": "Martí",
-      "jugados": 0,
+      "dorsal": "6",
+      "posicion": "Medio",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
       "titular": 0,
+      "suplente": 1,
+      "jugados": 1,
       "goles": 0,
       "amarillas": 0,
-      "rojas": 0,
-      "propio": false
+      "rojas": 0
     },
     {
-      "dorsal": "",
-      "nombre": "Joel N.",
-      "jugados": 0,
-      "titular": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0,
-      "propio": false
-    },
-    {
-      "dorsal": "",
-      "nombre": "Sara N.",
-      "jugados": 0,
-      "titular": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0,
-      "propio": false
-    },
-    {
-      "dorsal": "",
-      "nombre": "Jorge P.",
-      "jugados": 0,
-      "titular": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0,
-      "propio": false
-    },
-    {
-      "dorsal": "",
-      "nombre": "Konstantin S.",
-      "jugados": 0,
-      "titular": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0,
-      "propio": false
-    },
-    {
-      "dorsal": "",
+      "cod_jugador": "904296949",
       "nombre": "Liam T.",
-      "jugados": 0,
-      "titular": 0,
+      "dorsal": "7",
+      "posicion": "Medio",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
       "goles": 0,
       "amarillas": 0,
-      "rojas": 0,
-      "propio": false
+      "rojas": 0
     },
     {
-      "dorsal": "",
-      "nombre": "Miguel",
-      "jugados": 0,
+      "cod_jugador": "906390498",
+      "nombre": "Konstantin S.",
+      "dorsal": "8",
+      "posicion": "Medio",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
       "titular": 0,
+      "suplente": 1,
+      "jugados": 1,
       "goles": 0,
       "amarillas": 0,
-      "rojas": 0,
-      "propio": false
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "907130236",
+      "nombre": "Joel N.",
+      "dorsal": "9",
+      "posicion": "",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "904216661",
+      "nombre": "Miguel",
+      "dorsal": "12",
+      "posicion": "Defensa",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "904532715",
+      "nombre": "Jorge P.",
+      "dorsal": "21",
+      "posicion": "Defensa",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "904173928",
+      "nombre": "Sara N.",
+      "dorsal": "25",
+      "posicion": "Medio",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "904093848",
+      "nombre": "Hugo A.",
+      "dorsal": "99",
+      "posicion": "Ataque",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
     }
   ],
   "goleadores": [],
   "goleadores_fuente": "grupo",
-  "huella": "d272d1b5c2524ba7e58bd5477e9886b5",
-  "actualizado": "2026-10-16T22:14:59+02:00"
+  "jornada_grupo": {
+    "cod_jornada": "1",
+    "jornada": "1",
+    "partidos": [
+      {
+        "local": "Rayo Benimaclet C.F. 'B'",
+        "visitante": "Meliana C.F. 'B'",
+        "cod_local": "22272119",
+        "cod_visitante": "906662438",
+        "goles_local": "6",
+        "goles_visitante": "5",
+        "jugado": true,
+        "fecha": "17-10-2026",
+        "hora": "09:00",
+        "propio": false
+      },
+      {
+        "local": "C.D.J. Collvert 'C'",
+        "visitante": "Tavernes Blanques C.F. 'B'",
+        "cod_local": "903543750",
+        "cod_visitante": "21710914",
+        "goles_local": "1",
+        "goles_visitante": "6",
+        "jugado": true,
+        "fecha": "17-10-2026",
+        "hora": "10:15",
+        "propio": false
+      },
+      {
+        "local": "Rafelbunyol C.F. 'B'",
+        "visitante": "Sp. Benimaclet C.F. 'B'",
+        "cod_local": "15209",
+        "cod_visitante": "23168",
+        "goles_local": "1",
+        "goles_visitante": "5",
+        "jugado": true,
+        "fecha": "17-10-2026",
+        "hora": "12:45",
+        "propio": true
+      },
+      {
+        "local": "U.D. Rocafort C.F. 'C'",
+        "visitante": "Alboraya U.D. 'D'",
+        "cod_local": "29630200",
+        "cod_visitante": "905981742",
+        "goles_local": "",
+        "goles_visitante": "",
+        "jugado": false,
+        "fecha": "18-10-2026",
+        "hora": "09:00",
+        "propio": false
+      },
+      {
+        "local": "Albalat C.F. 'A'",
+        "visitante": "C.D. Massamagrell 'A'",
+        "cod_local": "900488139",
+        "cod_visitante": "905836257",
+        "goles_local": "",
+        "goles_visitante": "",
+        "jugado": false,
+        "fecha": "18-10-2026",
+        "hora": "11:00",
+        "propio": false
+      }
+    ]
+  },
+  "huella": "4b06619b9ba4f288bd8923421bf5a2da",
+  "actualizado": "2026-10-17T15:46:28+02:00"
 }
