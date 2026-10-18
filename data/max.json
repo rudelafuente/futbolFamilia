@@ -82,71 +82,153 @@
         "cerrada": true,
         "suspendido": false,
         "goles": [],
+        "tarjetas": [],
+        "cambios": [],
+        "esquema_local": "1-3-3-1",
+        "esquema_visitante": "1-3-3-1",
         "jugadores": [
           {
             "cod_jugador": "904215561",
             "nombre": "Joaquín J.",
-            "dorsal": "1"
+            "dorsal": "1",
+            "titular": true,
+            "capitan": false,
+            "portero": true,
+            "posicion": "Portero/a",
+            "pos": "P",
+            "propio": false
           },
           {
             "cod_jugador": "907130372",
             "nombre": "Max D.",
-            "dorsal": "2"
+            "dorsal": "2",
+            "titular": false,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Medio",
+            "pos": "M",
+            "propio": true
           },
           {
             "cod_jugador": "907129928",
             "nombre": "Joel H.",
-            "dorsal": "3"
+            "dorsal": "3",
+            "titular": false,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Defensa",
+            "pos": "D",
+            "propio": false
           },
           {
             "cod_jugador": "906335849",
             "nombre": "Marcos K.",
-            "dorsal": "4"
+            "dorsal": "4",
+            "titular": true,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Defensa",
+            "pos": "D",
+            "propio": false
           },
           {
             "cod_jugador": "905273212",
-            "nombre": "Dominic James M.",
-            "dorsal": "5"
+            "nombre": "Dominic M.",
+            "dorsal": "5",
+            "titular": false,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Defensa",
+            "pos": "D",
+            "propio": false
           },
           {
             "cod_jugador": "906336375",
             "nombre": "Martí",
-            "dorsal": "6"
+            "dorsal": "6",
+            "titular": false,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Medio",
+            "pos": "M",
+            "propio": false
           },
           {
             "cod_jugador": "904296949",
             "nombre": "Liam T.",
-            "dorsal": "7"
+            "dorsal": "7",
+            "titular": true,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Medio",
+            "pos": "M",
+            "propio": false
           },
           {
             "cod_jugador": "906390498",
             "nombre": "Konstantin S.",
-            "dorsal": "8"
+            "dorsal": "8",
+            "titular": false,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Medio",
+            "pos": "M",
+            "propio": false
           },
           {
             "cod_jugador": "907130236",
             "nombre": "Joel N.",
-            "dorsal": "9"
+            "dorsal": "9",
+            "titular": true,
+            "capitan": false,
+            "portero": false,
+            "posicion": "",
+            "pos": "",
+            "propio": false
           },
           {
             "cod_jugador": "904216661",
             "nombre": "Miguel",
-            "dorsal": "12"
+            "dorsal": "12",
+            "titular": true,
+            "capitan": true,
+            "portero": false,
+            "posicion": "Defensa",
+            "pos": "D",
+            "propio": false
           },
           {
             "cod_jugador": "904532715",
             "nombre": "Jorge P.",
-            "dorsal": "21"
+            "dorsal": "21",
+            "titular": true,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Defensa",
+            "pos": "D",
+            "propio": false
           },
           {
             "cod_jugador": "904173928",
-            "nombre": "Sara Margarida N.",
-            "dorsal": "25"
+            "nombre": "Sara N.",
+            "dorsal": "25",
+            "titular": true,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Medio",
+            "pos": "M",
+            "propio": false
           },
           {
             "cod_jugador": "904093848",
             "nombre": "Hugo A.",
-            "dorsal": "99"
+            "dorsal": "99",
+            "titular": true,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Ataque",
+            "pos": "A",
+            "propio": false
           }
         ]
       }
@@ -1044,6 +1126,6 @@
       }
     ]
   },
-  "huella": "4b06619b9ba4f288bd8923421bf5a2da",
-  "actualizado": "2026-10-17T15:46:28+02:00"
+  "huella": "f3e10d4fd26b9ac85957ed8de982a4cd",
+  "actualizado": "2026-10-18T09:13:00+02:00"
 }

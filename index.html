@@ -218,6 +218,35 @@ details.tabla summary{cursor:pointer;color:var(--muted);min-height:44px;display:
 .rival .top{display:flex;align-items:center;gap:10px}
 .rival .top img,.rival .top .crest{width:32px;height:32px}
 .rival > div:not(.top) b{display:inline;margin:0;font-size:inherit}
+/* Cronología del partido */
+.crono-head{display:grid;grid-template-columns:1fr 1fr;gap:56px;font-size:12px;color:var(--muted);margin-bottom:4px}
+.crono-head span:first-child{text-align:right}
+.crono{list-style:none;margin:0;padding:0;position:relative}
+.crono::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--line)}
+.crono li{position:relative;display:grid;grid-template-columns:1fr 56px 1fr;align-items:center;min-height:40px;font-size:13px}
+.crono .lc{text-align:right;min-width:0}.crono .vc{min-width:0}
+.crono .ev-t{display:inline-flex;align-items:center;gap:6px;max-width:100%}
+.crono .lc .ev-t{flex-direction:row-reverse}
+.crono .ev-t > span:last-child{min-width:0;overflow-wrap:anywhere}
+.crono small{display:block;color:var(--muted);font-size:11px}
+.crono .mn{justify-self:center;z-index:1;background:var(--surface);border:2px solid var(--line);border-radius:999px;min-width:44px;padding:2px 6px;text-align:center;font:700 13px/1.1 "Barlow Condensed",sans-serif;color:var(--muted)}
+.crono .mn b{display:block;color:var(--ink);font-size:15px}
+.crono li.gol .mn{border-color:var(--ink)}
+.crono li.gol{font-weight:600}
+.crono li.me{color:var(--accent);font-weight:700}
+.crono li.sep{display:flex;justify-content:center;min-height:36px}
+.crono li.sep span{z-index:1;background:var(--surface-2);border-radius:999px;padding:4px 12px;font:700 13px "Barlow Condensed",sans-serif;letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
+.ic{font-size:14px;line-height:1}
+.card-ic{display:inline-block;width:10px;height:14px;border-radius:2px;background:var(--draw);flex:none}
+.card-ic.am{background:#f2c200}.card-ic.ro{background:var(--loss)}
+.xi{display:grid;grid-template-columns:1fr;gap:12px;font-size:13px}
+@media(min-width:420px){.xi{grid-template-columns:1fr 1fr}}
+.xi b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:4px}
+.xi ul{list-style:none;margin:0;padding:0}
+.xi li{display:grid;grid-template-columns:28px 1fr auto;gap:6px;align-items:center;padding:5px 0;border-top:1px solid var(--line)}
+.xi li:first-child{border-top:0}
+.xi li.me{color:var(--accent);font-weight:700}
+.xi .dor{font:700 15px "Barlow Condensed";color:var(--muted);text-align:center}
 /* Resumen de la jornada (arriba del calendario) */
 .jornada{margin-bottom:12px}
 .jornada .head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
@@ -233,6 +262,7 @@ details.tabla summary{cursor:pointer;color:var(--muted);min-height:44px;display:
 .spot .pos{margin-top:10px;font-size:13px;color:var(--muted);text-align:center}
 .spot .pos b{color:var(--ink)}
 .spot .up{color:var(--win);font-weight:700}.spot .down{color:var(--loss);font-weight:700}
+.spot .ver{width:100%;margin-top:10px}
 .spot .gol{margin-top:6px;text-align:center;font-weight:700;font-size:14px}
 .spot details{margin-top:10px;border-top:1px solid var(--line)}
 .spot summary{cursor:pointer;color:var(--muted);font-size:13px;min-height:44px;display:flex;align-items:center}
@@ -583,6 +613,18 @@ function posicionTxt(d) {
   return `<b>${esc(fila.pos)}º</b> de ${esc((d.grupo || []).length)} con <b>${esc(fila.pts)}</b> ${fila.pts === 1 ? 'punto' : 'puntos'}${cambio}`;
 }
 function golesPropios(p) { return (p.acta?.goles || []).filter(g => g.propio).length; }
+// «Lucas S. (3), Pau D.»: goleadores del equipo del niño en ese partido, según el acta.
+function goleadoresEquipo(p) {
+  const n = {};
+  (p.acta?.goles || []).filter(g => (g.propio || g.companero) && g.jugador && !/propia/i.test(g.tipo || '')).forEach(g => n[g.jugador] = (n[g.jugador] || 0) + 1);
+  return Object.entries(n).sort((a, b) => b[1] - a[1]).map(([k, v]) => v > 1 ? `${k} (${v})` : k).join(', ');
+}
+// «Titular · Central» / «Suplente» según la alineación del acta.
+function papel(p) {
+  const j = (p.acta?.jugadores || []).find(x => x.propio);
+  if (!j) return '';
+  return [j.titular ? 'Titular' : 'Suplente', j.posicion, j.capitan ? 'capitán' : ''].filter(Boolean).join(' · ');
+}
 function otrosPartidos(d, p) {
   const j = d.jornada_grupo;
   if (!j || String(j.cod_jornada) !== String(p.cod_jornada) || !(j.partidos || []).length) return '';
@@ -606,6 +648,9 @@ function renderJornada(datos) {
       <div class="tit"><span class="chip">${esc(d.apodo)}</span>${titulo}</div>
       <div class="tap" ${tapAttrs(d.slug, p)}>${matchBlock(p)}</div>
       ${goles ? `<div class="gol">⚽ ${esc(d.apodo)} marcó ${goles === 1 ? 'un gol' : goles + ' goles'}</div>` : ''}
+      ${p.jugado && papel(p) ? `<div class="pos">${esc(d.apodo)}: <b>${esc(papel(p))}</b></div>` : ''}
+      ${p.jugado && goleadoresEquipo(p) ? `<div class="pos">⚽ ${esc(goleadoresEquipo(p))}</div>` : ''}
+      ${p.jugado && p.acta?.cerrada ? `<button class="btn ver" ${tapAttrs(d.slug, p)}>Ver cómo fue el partido ›</button>` : ''}
       ${pos ? `<div class="pos">${pos}</div>` : ''}
       ${!p.jugado && p.campo ? `<div class="pos">${esc(sinHA(p.campo))}</div>` : ''}
       ${otrosPartidos(d, p)}</div>`;
@@ -705,24 +750,66 @@ const downloadIcs = datos => icsDe(events(datos).filter(e => !e.jugado), 'futbol
 // ---------- ficha de partido ----------
 const sinHA = s => String(s || '').replace(/\s*\(HA\)\s*$/i, '');
 
+// Minutos por parte según la categoría (fútbol base de la FFCV).
+function minutosParte(cat) {
+  const c = norm(cat);
+  return c.includes('juvenil') ? 45 : c.includes('cadete') ? 40 : c.includes('infantil') ? 35 : c.includes('alevin') ? 30
+    : c.includes('benjamin') ? 25 : c.includes('prebenjamin') ? 25 : c.includes('querubin') ? 20 : null;
+}
+// Cronología del acta: goles (con el marcador de ese momento), tarjetas y cambios, local a la izquierda y visitante
+// a la derecha; con el descanso marcado si se sabe cuánto dura cada parte.
+function cronologia(d, p) {
+  const a = p.acta;
+  if (!a) return `<h4>Cronología</h4><p class="empty">El acta todavía no está disponible.</p>`;
+  if (!a.cerrada) return `<h4>Cronología</h4><p class="empty">El acta aún no está cerrada: lo que pasó en el partido aparecerá cuando la federación la cierre.</p>`;
+  let gl = 0, gv = 0;
+  const evs = [
+    ...(a.goles || []).map(g => ({...g, k: 'gol'})),
+    ...(a.tarjetas || []).map(t => ({...t, k: 'tarjeta'})),
+    ...(a.cambios || []).map(c => ({...c, k: 'cambio'})),
+  ].map((e, i) => ({...e, i, m: parseInt(e.minuto, 10)})).sort((x, y) => (isNaN(x.m) ? 999 : x.m) - (isNaN(y.m) ? 999 : y.m) || x.i - y.i);
+  if (!evs.length) return `<h4>Cronología</h4><p class="empty">${p.jugado && +p.goles_local + +p.goles_visitante > 0
+    ? 'El acta no recoge goleadores ni incidencias (habitual en las categorías más pequeñas).' : 'El acta no recoge incidencias.'}</p>`;
+  const parte = minutosParte(d.equipo?.categoria);
+  const icono = e => e.k === 'gol' ? '<span class="ic" aria-label="Gol">⚽</span>'
+    : e.k === 'cambio' ? '<span class="ic" aria-label="Cambio">⇄</span>'
+    : `<span class="card-ic ${e.tipo === 'amarilla' ? 'am' : e.tipo ? 'ro' : ''}" aria-label="Tarjeta ${esc(e.tipo || '')}"></span>`;
+  const texto = e => e.k === 'cambio' ? `${esc(e.entra || '¿?')}<small>por ${esc(e.sale || '¿?')}</small>`
+    : `${esc(e.jugador || (e.lado === 'local' ? p.local : p.visitante))}${e.propio ? ` · ${esc(d.apodo)}` : ''}${e.banquillo ? '<small>Banquillo</small>' : ''}`;
+  let html = '', descanso = false, alDescanso = '';
+  for (const e of evs) {
+    if (parte && !descanso && !isNaN(e.m) && e.m > parte) { html += `<li class="sep"><span>Descanso · ${gl}-${gv}</span></li>`; descanso = true; alDescanso = `${gl}-${gv}`; }
+    if (e.k === 'gol') e.lado === 'local' ? gl++ : gv++;
+    const mio = e.propio ? 'me' : '';
+    const cuerpo = `<span class="ev-t">${icono(e)}<span>${texto(e)}</span></span>`;
+    html += `<li class="${e.k} ${mio}"><span class="lc">${e.lado === 'local' ? cuerpo : ''}</span>
+      <span class="mn">${isNaN(e.m) ? '' : e.m + '’'}${e.k === 'gol' ? `<b>${gl}-${gv}</b>` : ''}</span>
+      <span class="vc">${e.lado === 'visitante' ? cuerpo : ''}</span></li>`;
+  }
+  if (parte && !descanso) html += `<li class="sep"><span>Descanso · ${gl}-${gv}</span></li>`;
+  html += `<li class="sep"><span>Final · ${esc(p.goles_local)}-${esc(p.goles_visitante)}</span></li>`;
+  return `<h4>Cronología</h4><div class="crono-head"><span>${esc(sinHA(p.local))}</span><span>${esc(sinHA(p.visitante))}</span></div><ul class="crono">${html}</ul>`;
+}
+// Alineación del equipo del niño según el acta (titulares y suplentes).
+function alineacion(d, p) {
+  const js = p.acta?.jugadores || [];
+  if (!js.length || !p.acta?.cerrada) return '';
+  const esquema = p.en_casa ? p.acta.esquema_local : p.acta.esquema_visitante;
+  const fila = j => `<li class="${j.propio ? 'me' : ''}"><span class="dor">${esc(j.dorsal || '–')}</span><span>${esc(j.nombre)}${j.capitan ? ' <span class="pill">C</span>' : ''}</span>
+    <span class="meta" style="margin:0" title="${esc(j.posicion || '')}">${esc(j.pos || '')}</span></li>`;
+  const tit = js.filter(j => j.titular), sup = js.filter(j => !j.titular);
+  const hayTitulares = tit.length > 0 && sup.length < js.length;
+  return `<h4>Alineación de ${esc(sinHA(d.equipo?.nombre || ''))}${esquema ? ` · ${esc(esquema)}` : ''}</h4>
+    ${hayTitulares ? `<div class="xi"><div><b>Titulares</b><ul>${tit.map(fila).join('')}</ul></div>${sup.length ? `<div><b>Suplentes</b><ul>${sup.map(fila).join('')}</ul></div>` : ''}</div>`
+      : `<div class="xi"><div><b>Convocados</b><ul>${js.map(fila).join('')}</ul></div></div>`}`;
+}
+
 function fichaHTML(d, p) {
   const dt = parseDate(p.fecha, p.hora);
   const c = d.campos?.[p.codigo_campo];
   const cuando = dt ? dt.toLocaleDateString('es-ES', {weekday:'long', day:'numeric', month:'long'}) + (p.hora ? ` · ${esc(p.hora)}` : '') : 'Fecha por confirmar';
 
-  let goles = '';
-  if (p.jugado) {
-    const a = p.acta, lista = a?.goles || [];
-    const equipoDe = g => g.lado === 'local' ? p.local : p.visitante;
-    goles = `<h4>Goles</h4>` + (lista.length
-      ? `<ul class="goals">${lista.map(g => `<li class="${g.propio ? 'me' : g.companero ? '' : 'rival'}">
-          <span class="min">${g.minuto ? esc(g.minuto) + '’' : '⚽'}</span>
-          <span>${esc(g.jugador || equipoDe(g))}${g.propio ? ` · ${esc(d.apodo)}` : ''}<small>${esc(equipoDe(g))}</small></span>
-          <span>${g.tipo ? `<span class="pill">${esc(g.tipo)}</span>` : ''}</span></li>`).join('')}</ul>`
-      : `<p class="empty">${!a ? 'El acta todavía no está disponible.'
-          : !a.cerrada ? 'El acta aún no está cerrada: los goles aparecerán cuando la federación la cierre.'
-          : 'El acta no recoge goleadores (habitual en fútbol base).'}</p>`);
-  }
+  const goles = p.jugado ? cronologia(d, p) + alineacion(d, p) : '';
 
   const destino = c?.lat && c?.lon
     ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(c.lat + ',' + c.lon)}`

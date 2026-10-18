@@ -70,14 +70,282 @@
       "escudo_local": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074491478_logo.jpg",
       "escudo_visitante": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074812130_Imagen_1.png",
       "en_casa": true,
-      "goles_local": "",
-      "goles_visitante": "",
-      "jugado": false,
-      "resultado": "",
+      "goles_local": "3",
+      "goles_visitante": "5",
+      "jugado": true,
+      "resultado": "P",
       "campo": "Campo Mpal. de Godella F-11(HA)",
       "codigo_campo": "5323",
       "estado": "",
-      "codacta": "26537901"
+      "codacta": "26537901",
+      "acta": {
+        "cerrada": true,
+        "suspendido": false,
+        "goles": [
+          {
+            "minuto": "4",
+            "jugador": "Cesar F.",
+            "lado": "visitante",
+            "tipo": "100",
+            "propio": false,
+            "companero": false,
+            "cod": ""
+          },
+          {
+            "minuto": "12",
+            "jugador": "Lionel R.",
+            "lado": "visitante",
+            "tipo": "100",
+            "propio": false,
+            "companero": false,
+            "cod": ""
+          },
+          {
+            "minuto": "45",
+            "jugador": "Lucas S.",
+            "lado": "local",
+            "tipo": "100",
+            "propio": false,
+            "companero": true,
+            "cod": "904349086"
+          },
+          {
+            "minuto": "48",
+            "jugador": "Lucas S.",
+            "lado": "local",
+            "tipo": "100",
+            "propio": false,
+            "companero": true,
+            "cod": "904349086"
+          },
+          {
+            "minuto": "54",
+            "jugador": "Arturo G.",
+            "lado": "visitante",
+            "tipo": "100",
+            "propio": false,
+            "companero": false,
+            "cod": ""
+          },
+          {
+            "minuto": "55",
+            "jugador": "Matias Nicolas M.",
+            "lado": "visitante",
+            "tipo": "100",
+            "propio": false,
+            "companero": false,
+            "cod": ""
+          },
+          {
+            "minuto": "65",
+            "jugador": "Lucas S.",
+            "lado": "local",
+            "tipo": "100",
+            "propio": false,
+            "companero": true,
+            "cod": "904349086"
+          },
+          {
+            "minuto": "70",
+            "jugador": "Lionel R.",
+            "lado": "visitante",
+            "tipo": "100",
+            "propio": false,
+            "companero": false,
+            "cod": ""
+          }
+        ],
+        "tarjetas": [
+          {
+            "minuto": "67",
+            "jugador": "Alejandro A.",
+            "lado": "local",
+            "tipo": "amarilla",
+            "banquillo": false,
+            "propio": false,
+            "cod": "904348868"
+          },
+          {
+            "minuto": "67",
+            "jugador": "Isidro A.",
+            "lado": "local",
+            "tipo": "amarilla",
+            "banquillo": true,
+            "propio": false,
+            "cod": "907666866"
+          }
+        ],
+        "cambios": [],
+        "esquema_local": "1-4-3-3",
+        "esquema_visitante": "1-4-3-3",
+        "jugadores": [
+          {
+            "cod_jugador": "904348659",
+            "nombre": "Izan A.",
+            "dorsal": "12",
+            "titular": true,
+            "capitan": false,
+            "portero": true,
+            "posicion": "Portero/a",
+            "pos": "P",
+            "propio": false
+          },
+          {
+            "cod_jugador": "28609866",
+            "nombre": "Marc V.",
+            "dorsal": "2",
+            "titular": true,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Lateral derecho",
+            "pos": "LD",
+            "propio": false
+          },
+          {
+            "cod_jugador": "28659297",
+            "nombre": "Alvaro L.",
+            "dorsal": "3",
+            "titular": true,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Lateral izquierdo",
+            "pos": "LI",
+            "propio": false
+          },
+          {
+            "cod_jugador": "904468267",
+            "nombre": "Javi E.",
+            "dorsal": "4",
+            "titular": false,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Medio centro",
+            "pos": "MC",
+            "propio": false
+          },
+          {
+            "cod_jugador": "904327589",
+            "nombre": "Diego R.",
+            "dorsal": "5",
+            "titular": false,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Medio centro",
+            "pos": "MC",
+            "propio": false
+          },
+          {
+            "cod_jugador": "904401404",
+            "nombre": "Mateo A.",
+            "dorsal": "6",
+            "titular": true,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Medio centro",
+            "pos": "MC",
+            "propio": false
+          },
+          {
+            "cod_jugador": "904349086",
+            "nombre": "Lucas S.",
+            "dorsal": "7",
+            "titular": true,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Delantero/a",
+            "pos": "DC",
+            "propio": false
+          },
+          {
+            "cod_jugador": "904327778",
+            "nombre": "Hugo V.",
+            "dorsal": "8",
+            "titular": true,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Medio derecho",
+            "pos": "MD",
+            "propio": false
+          },
+          {
+            "cod_jugador": "904466533",
+            "nombre": "Enrique A.",
+            "dorsal": "11",
+            "titular": false,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Medio centro",
+            "pos": "MC",
+            "propio": false
+          },
+          {
+            "cod_jugador": "904348868",
+            "nombre": "Alejandro A.",
+            "dorsal": "14",
+            "titular": true,
+            "capitan": true,
+            "portero": false,
+            "posicion": "Central",
+            "pos": "DFC",
+            "propio": false
+          },
+          {
+            "cod_jugador": "904328100",
+            "nombre": "Mario C.",
+            "dorsal": "16",
+            "titular": true,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Extremo derecho",
+            "pos": "ED",
+            "propio": false
+          },
+          {
+            "cod_jugador": "28723289",
+            "nombre": "Andres A.",
+            "dorsal": "18",
+            "titular": false,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Medio Izquierdo",
+            "pos": "MI",
+            "propio": false
+          },
+          {
+            "cod_jugador": "25695837",
+            "nombre": "Joaquin Benicio R.",
+            "dorsal": "19",
+            "titular": true,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Extremo izquierdo",
+            "pos": "EI",
+            "propio": false
+          },
+          {
+            "cod_jugador": "906982095",
+            "nombre": "Pau D.",
+            "dorsal": "20",
+            "titular": true,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Central",
+            "pos": "DFC",
+            "propio": true
+          },
+          {
+            "cod_jugador": "17067387",
+            "nombre": "Hugo T.",
+            "dorsal": "21",
+            "titular": true,
+            "capitan": false,
+            "portero": false,
+            "posicion": "Medio Izquierdo",
+            "pos": "MI",
+            "propio": false
+          }
+        ]
+      }
     },
     {
       "cod_jornada": "2",
@@ -677,6 +945,19 @@
   "clasificacion": [
     {
       "pos": "1",
+      "equipo": "S.F.A.C. San Antonio Benagéber 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/var/docs/2122/DOCS/202110/13/f38cf1765f40e485a4674a60d7f6574c.jpg?nova=1",
+      "pts": "3",
+      "pj": "1",
+      "pg": "1",
+      "pe": "0",
+      "pp": "0",
+      "gf": "5",
+      "gc": "0",
+      "propio": false
+    },
+    {
+      "pos": "2",
       "equipo": "Benisanó C.F. 'B'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074605473_escudo_1_color_negro.png?nova=1",
       "pts": "3",
@@ -689,7 +970,33 @@
       "propio": false
     },
     {
-      "pos": "2",
+      "pos": "3",
+      "equipo": "Bétera C.F. 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/usr/local/projects/weblogic/repository/AS400/02/DOCS/201211/15/12043747.jpg?nova=1",
+      "pts": "3",
+      "pj": "1",
+      "pg": "1",
+      "pe": "0",
+      "pp": "0",
+      "gf": "3",
+      "gc": "1",
+      "propio": false
+    },
+    {
+      "pos": "4",
+      "equipo": "Ribarroja C.F. 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074812130_Imagen_1.png?nova=1",
+      "pts": "3",
+      "pj": "1",
+      "pg": "1",
+      "pe": "0",
+      "pp": "0",
+      "gf": "5",
+      "gc": "3",
+      "propio": false
+    },
+    {
+      "pos": "5",
       "equipo": "Vilamarxant C.F. 'A'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501382_Vilamarxant_CF.png?nova=1",
       "pts": "3",
@@ -699,45 +1006,6 @@
       "pp": "0",
       "gf": "2",
       "gc": "1",
-      "propio": false
-    },
-    {
-      "pos": "3",
-      "equipo": "Los Silos C.F. - Promises Valencia 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074812949_03_Escudo_Promises_Silos_Burjassot_fondo_blanco_y_negro_originales___copia_page_0001___copia.jpg?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
-      "propio": false
-    },
-    {
-      "pos": "4",
-      "equipo": "C.D.F.B. L'Eliana 'A'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074530133_ESCUDO_CLUB_SIN_FONDO_copia.png?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
-      "propio": false
-    },
-    {
-      "pos": "5",
-      "equipo": "C.F. Cracks 'E'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074600377_version_principal_color_fondo_transparente_cf_cracks.png?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
       "propio": false
     },
     {
@@ -755,45 +1023,6 @@
     },
     {
       "pos": "7",
-      "equipo": "Ribarroja C.F. 'C'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074812130_Imagen_1.png?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
-      "propio": false
-    },
-    {
-      "pos": "8",
-      "equipo": "S.F.A.C. San Antonio Benagéber 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/var/docs/2122/DOCS/202110/13/f38cf1765f40e485a4674a60d7f6574c.jpg?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
-      "propio": false
-    },
-    {
-      "pos": "9",
-      "equipo": "Bétera C.F. 'C'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/usr/local/projects/weblogic/repository/AS400/02/DOCS/201211/15/12043747.jpg?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
-      "propio": false
-    },
-    {
-      "pos": "10",
       "equipo": "F.C. Benaguasil 'C'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074656783_ESCUDO_CLUB_1.png?nova=1",
       "pts": "0",
@@ -806,22 +1035,9 @@
       "propio": false
     },
     {
-      "pos": "11",
-      "equipo": "Godella C.F. 'E'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074491478_logo.jpg?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
-      "propio": true
-    },
-    {
-      "pos": "12",
-      "equipo": "San Antonio de Benagéber C.F. 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074480259_FB_IMG_1628921801560.jpg?nova=1",
+      "pos": "8",
+      "equipo": "Los Silos C.F. - Promises Valencia 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074812949_03_Escudo_Promises_Silos_Burjassot_fondo_blanco_y_negro_originales___copia_page_0001___copia.jpg?nova=1",
       "pts": "0",
       "pj": "0",
       "pg": "0",
@@ -832,7 +1048,20 @@
       "propio": false
     },
     {
-      "pos": "13",
+      "pos": "9",
+      "equipo": "C.D.F.B. L'Eliana 'A'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074530133_ESCUDO_CLUB_SIN_FONDO_copia.png?nova=1",
+      "pts": "0",
+      "pj": "0",
+      "pg": "0",
+      "pe": "0",
+      "pp": "0",
+      "gf": "0",
+      "gc": "0",
+      "propio": false
+    },
+    {
+      "pos": "10",
       "equipo": "Llíria U.D. 'B'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/var/docs/2122/DOCS/20219/20/4f5452e476a76d3a9135165d54e19eb6.jpg?nova=1",
       "pts": "0",
@@ -845,7 +1074,20 @@
       "propio": false
     },
     {
-      "pos": "14",
+      "pos": "11",
+      "equipo": "C.F. Cracks 'E'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074600377_version_principal_color_fondo_transparente_cf_cracks.png?nova=1",
+      "pts": "0",
+      "pj": "1",
+      "pg": "0",
+      "pe": "0",
+      "pp": "1",
+      "gf": "1",
+      "gc": "3",
+      "propio": false
+    },
+    {
+      "pos": "12",
       "equipo": "Atlètic Vallbonense 'C'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/usr/local/projects/weblogic/repository/AS400/02/DOCS/201211/27/12046239.jpg?nova=1",
       "pts": "0",
@@ -856,14 +1098,68 @@
       "gf": "1",
       "gc": "3",
       "propio": false
+    },
+    {
+      "pos": "13",
+      "equipo": "Godella C.F. 'E'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074491478_logo.jpg?nova=1",
+      "pts": "0",
+      "pj": "1",
+      "pg": "0",
+      "pe": "0",
+      "pp": "1",
+      "gf": "3",
+      "gc": "5",
+      "propio": true
+    },
+    {
+      "pos": "14",
+      "equipo": "San Antonio de Benagéber C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074480259_FB_IMG_1628921801560.jpg?nova=1",
+      "pts": "0",
+      "pj": "1",
+      "pg": "0",
+      "pe": "0",
+      "pp": "1",
+      "gf": "0",
+      "gc": "5",
+      "propio": false
     }
   ],
   "grupo": [
     {
+      "codequipo": "24947",
+      "nombre": "S.F.A.C. San Antonio Benagéber 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/var/docs/2122/DOCS/202110/13/f38cf1765f40e485a4674a60d7f6574c.jpg?nova=1",
+      "pos": 1,
+      "pts": 3,
+      "pj": 1,
+      "g": 1,
+      "e": 0,
+      "p": 0,
+      "gf": 5,
+      "gc": 0,
+      "casa": {
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": [
+        "G"
+      ]
+    },
+    {
       "codequipo": "29692444",
       "nombre": "Benisanó C.F. 'B'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074605473_escudo_1_color_negro.png?nova=1",
-      "pos": 1,
+      "pos": 2,
       "pts": 3,
       "pj": 1,
       "g": 1,
@@ -888,10 +1184,66 @@
       ]
     },
     {
+      "codequipo": "900852000",
+      "nombre": "Bétera C.F. 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/usr/local/projects/weblogic/repository/AS400/02/DOCS/201211/15/12043747.jpg?nova=1",
+      "pos": 3,
+      "pts": 3,
+      "pj": 1,
+      "g": 1,
+      "e": 0,
+      "p": 0,
+      "gf": 3,
+      "gc": 1,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": [
+        "G"
+      ]
+    },
+    {
+      "codequipo": "21901",
+      "nombre": "Ribarroja C.F. 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074812130_Imagen_1.png?nova=1",
+      "pos": 4,
+      "pts": 3,
+      "pj": 1,
+      "g": 1,
+      "e": 0,
+      "p": 0,
+      "gf": 5,
+      "gc": 3,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": [
+        "G"
+      ]
+    },
+    {
       "codequipo": "15337",
       "nombre": "Vilamarxant C.F. 'A'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501382_Vilamarxant_CF.png?nova=1",
-      "pos": 2,
+      "pos": 5,
       "pts": 3,
       "pj": 1,
       "g": 1,
@@ -914,84 +1266,6 @@
       "ultimos": [
         "G"
       ]
-    },
-    {
-      "codequipo": "14048",
-      "nombre": "Los Silos C.F. - Promises Valencia 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074812949_03_Escudo_Promises_Silos_Burjassot_fondo_blanco_y_negro_originales___copia_page_0001___copia.jpg?nova=1",
-      "pos": 3,
-      "pts": 0,
-      "pj": 0,
-      "g": 0,
-      "e": 0,
-      "p": 0,
-      "gf": 0,
-      "gc": 0,
-      "casa": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "fuera": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "ultimos": []
-    },
-    {
-      "codequipo": "14100",
-      "nombre": "C.D.F.B. L'Eliana 'A'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074530133_ESCUDO_CLUB_SIN_FONDO_copia.png?nova=1",
-      "pos": 4,
-      "pts": 0,
-      "pj": 0,
-      "g": 0,
-      "e": 0,
-      "p": 0,
-      "gf": 0,
-      "gc": 0,
-      "casa": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "fuera": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "ultimos": []
-    },
-    {
-      "codequipo": "14391",
-      "nombre": "C.F. Cracks 'E'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074600377_version_principal_color_fondo_transparente_cf_cracks.png?nova=1",
-      "pos": 5,
-      "pts": 0,
-      "pj": 0,
-      "g": 0,
-      "e": 0,
-      "p": 0,
-      "gf": 0,
-      "gc": 0,
-      "casa": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "fuera": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "ultimos": []
     },
     {
       "codequipo": "21868",
@@ -1020,9 +1294,9 @@
       "ultimos": []
     },
     {
-      "codequipo": "21901",
-      "nombre": "Ribarroja C.F. 'C'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074812130_Imagen_1.png?nova=1",
+      "codequipo": "901393975",
+      "nombre": "F.C. Benaguasil 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074656783_ESCUDO_CLUB_1.png?nova=1",
       "pos": 7,
       "pts": 0,
       "pj": 0,
@@ -1046,9 +1320,9 @@
       "ultimos": []
     },
     {
-      "codequipo": "24947",
-      "nombre": "S.F.A.C. San Antonio Benagéber 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/var/docs/2122/DOCS/202110/13/f38cf1765f40e485a4674a60d7f6574c.jpg?nova=1",
+      "codequipo": "14048",
+      "nombre": "Los Silos C.F. - Promises Valencia 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074812949_03_Escudo_Promises_Silos_Burjassot_fondo_blanco_y_negro_originales___copia_page_0001___copia.jpg?nova=1",
       "pos": 8,
       "pts": 0,
       "pj": 0,
@@ -1072,88 +1346,10 @@
       "ultimos": []
     },
     {
-      "codequipo": "900852000",
-      "nombre": "Bétera C.F. 'C'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/usr/local/projects/weblogic/repository/AS400/02/DOCS/201211/15/12043747.jpg?nova=1",
+      "codequipo": "14100",
+      "nombre": "C.D.F.B. L'Eliana 'A'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074530133_ESCUDO_CLUB_SIN_FONDO_copia.png?nova=1",
       "pos": 9,
-      "pts": 0,
-      "pj": 0,
-      "g": 0,
-      "e": 0,
-      "p": 0,
-      "gf": 0,
-      "gc": 0,
-      "casa": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "fuera": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "ultimos": []
-    },
-    {
-      "codequipo": "901393975",
-      "nombre": "F.C. Benaguasil 'C'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074656783_ESCUDO_CLUB_1.png?nova=1",
-      "pos": 10,
-      "pts": 0,
-      "pj": 0,
-      "g": 0,
-      "e": 0,
-      "p": 0,
-      "gf": 0,
-      "gc": 0,
-      "casa": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "fuera": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "ultimos": []
-    },
-    {
-      "codequipo": "903549513",
-      "nombre": "Godella C.F. 'E'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074491478_logo.jpg?nova=1",
-      "pos": 11,
-      "pts": 0,
-      "pj": 0,
-      "g": 0,
-      "e": 0,
-      "p": 0,
-      "gf": 0,
-      "gc": 0,
-      "casa": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "fuera": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "ultimos": []
-    },
-    {
-      "codequipo": "903554481",
-      "nombre": "San Antonio de Benagéber C.F. 'B'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074480259_FB_IMG_1628921801560.jpg?nova=1",
-      "pos": 12,
       "pts": 0,
       "pj": 0,
       "g": 0,
@@ -1179,7 +1375,7 @@
       "codequipo": "28266",
       "nombre": "Llíria U.D. 'B'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/var/docs/2122/DOCS/20219/20/4f5452e476a76d3a9135165d54e19eb6.jpg?nova=1",
-      "pos": 13,
+      "pos": 10,
       "pts": 0,
       "pj": 1,
       "g": 0,
@@ -1204,10 +1400,10 @@
       ]
     },
     {
-      "codequipo": "22234",
-      "nombre": "Atlètic Vallbonense 'C'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/usr/local/projects/weblogic/repository/AS400/02/DOCS/201211/27/12046239.jpg?nova=1",
-      "pos": 14,
+      "codequipo": "14391",
+      "nombre": "C.F. Cracks 'E'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074600377_version_principal_color_fondo_transparente_cf_cracks.png?nova=1",
+      "pos": 11,
       "pts": 0,
       "pj": 1,
       "g": 0,
@@ -1230,9 +1426,101 @@
       "ultimos": [
         "P"
       ]
+    },
+    {
+      "codequipo": "22234",
+      "nombre": "Atlètic Vallbonense 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/usr/local/projects/weblogic/repository/AS400/02/DOCS/201211/27/12046239.jpg?nova=1",
+      "pos": 12,
+      "pts": 0,
+      "pj": 1,
+      "g": 0,
+      "e": 0,
+      "p": 1,
+      "gf": 1,
+      "gc": 3,
+      "casa": {
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": [
+        "P"
+      ]
+    },
+    {
+      "codequipo": "903549513",
+      "nombre": "Godella C.F. 'E'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074491478_logo.jpg?nova=1",
+      "pos": 13,
+      "pts": 0,
+      "pj": 1,
+      "g": 0,
+      "e": 0,
+      "p": 1,
+      "gf": 3,
+      "gc": 5,
+      "casa": {
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": [
+        "P"
+      ]
+    },
+    {
+      "codequipo": "903554481",
+      "nombre": "San Antonio de Benagéber C.F. 'B'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074480259_FB_IMG_1628921801560.jpg?nova=1",
+      "pos": 14,
+      "pts": 0,
+      "pj": 1,
+      "g": 0,
+      "e": 0,
+      "p": 1,
+      "gf": 0,
+      "gc": 5,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1
+      },
+      "ultimos": [
+        "P"
+      ]
     }
   ],
-  "evolucion": [],
+  "evolucion": [
+    {
+      "cod_jornada": "1",
+      "jornada": "1",
+      "pos": 13,
+      "pts": 0,
+      "equipos": 14
+    }
+  ],
   "plantilla": [
     {
       "cod_jugador": "904348868",
@@ -1332,7 +1620,7 @@
     },
     {
       "cod_jugador": "17067386",
-      "nombre": "Hamza K.",
+      "nombre": "Hamza Ahmed Ibrahem Hafez K.",
       "dorsal": "",
       "posicion": "",
       "portero": false,
@@ -1428,7 +1716,7 @@
     },
     {
       "cod_jugador": "25695837",
-      "nombre": "Joaquin R.",
+      "nombre": "Joaquin Benicio R.",
       "dorsal": "",
       "posicion": "",
       "portero": false,
@@ -1557,13 +1845,49 @@
   ],
   "goleadores": [
     {
+      "nombre": "Lucas S.",
+      "equipo": "Godella C.F. E",
+      "goles": 3,
+      "partidos": 0,
+      "propio": false,
+      "companero": false,
+      "pos": 1
+    },
+    {
+      "nombre": "León",
+      "equipo": "S.F.A.C. San Antonio Benagéber B",
+      "goles": 2,
+      "partidos": 0,
+      "propio": false,
+      "companero": false,
+      "pos": 2
+    },
+    {
+      "nombre": "Lionel R.",
+      "equipo": "Ribarroja C.F. C",
+      "goles": 2,
+      "partidos": 0,
+      "propio": false,
+      "companero": false,
+      "pos": 2
+    },
+    {
       "nombre": "Abel D.",
       "equipo": "Benisanó C.F. B",
       "goles": 1,
       "partidos": 0,
       "propio": false,
       "companero": false,
-      "pos": 1
+      "pos": 4
+    },
+    {
+      "nombre": "Aitor",
+      "equipo": "S.F.A.C. San Antonio Benagéber B",
+      "goles": 1,
+      "partidos": 0,
+      "propio": false,
+      "companero": false,
+      "pos": 4
     },
     {
       "nombre": "Alan B.",
@@ -1572,7 +1896,25 @@
       "partidos": 0,
       "propio": false,
       "companero": false,
-      "pos": 1
+      "pos": 4
+    },
+    {
+      "nombre": "Arturo G.",
+      "equipo": "Ribarroja C.F. C",
+      "goles": 1,
+      "partidos": 0,
+      "propio": false,
+      "companero": false,
+      "pos": 4
+    },
+    {
+      "nombre": "Benjamin R.",
+      "equipo": "Bétera C.F. C",
+      "goles": 1,
+      "partidos": 0,
+      "propio": false,
+      "companero": false,
+      "pos": 4
     },
     {
       "nombre": "Carles R.",
@@ -1581,7 +1923,7 @@
       "partidos": 0,
       "propio": false,
       "companero": false,
-      "pos": 1
+      "pos": 4
     },
     {
       "nombre": "Carles S.",
@@ -1590,7 +1932,25 @@
       "partidos": 0,
       "propio": false,
       "companero": false,
-      "pos": 1
+      "pos": 4
+    },
+    {
+      "nombre": "Carlos M.",
+      "equipo": "Bétera C.F. C",
+      "goles": 1,
+      "partidos": 0,
+      "propio": false,
+      "companero": false,
+      "pos": 4
+    },
+    {
+      "nombre": "Cesar F.",
+      "equipo": "Ribarroja C.F. C",
+      "goles": 1,
+      "partidos": 0,
+      "propio": false,
+      "companero": false,
+      "pos": 4
     },
     {
       "nombre": "David G.",
@@ -1599,7 +1959,25 @@
       "partidos": 0,
       "propio": false,
       "companero": false,
-      "pos": 1
+      "pos": 4
+    },
+    {
+      "nombre": "Enzo A.",
+      "equipo": "Bétera C.F. C",
+      "goles": 1,
+      "partidos": 0,
+      "propio": false,
+      "companero": false,
+      "pos": 4
+    },
+    {
+      "nombre": "Fernandez",
+      "equipo": "S.F.A.C. San Antonio Benagéber B",
+      "goles": 1,
+      "partidos": 0,
+      "propio": false,
+      "companero": false,
+      "pos": 4
     },
     {
       "nombre": "Javier G.",
@@ -1608,7 +1986,7 @@
       "partidos": 0,
       "propio": false,
       "companero": false,
-      "pos": 1
+      "pos": 4
     },
     {
       "nombre": "Joel R.",
@@ -1617,7 +1995,34 @@
       "partidos": 0,
       "propio": false,
       "companero": false,
-      "pos": 1
+      "pos": 4
+    },
+    {
+      "nombre": "Matias Nicolas M.",
+      "equipo": "Ribarroja C.F. C",
+      "goles": 1,
+      "partidos": 0,
+      "propio": false,
+      "companero": false,
+      "pos": 4
+    },
+    {
+      "nombre": "Vicente",
+      "equipo": "S.F.A.C. San Antonio Benagéber B",
+      "goles": 1,
+      "partidos": 0,
+      "propio": false,
+      "companero": false,
+      "pos": 4
+    },
+    {
+      "nombre": "Victor T.",
+      "equipo": "C.F. Cracks E",
+      "goles": 1,
+      "partidos": 0,
+      "propio": false,
+      "companero": false,
+      "pos": 4
     }
   ],
   "goleadores_fuente": "grupo",
@@ -1654,9 +2059,9 @@
         "visitante": "San Antonio de Benagéber C.F. 'B'",
         "cod_local": "24947",
         "cod_visitante": "903554481",
-        "goles_local": "",
-        "goles_visitante": "",
-        "jugado": false,
+        "goles_local": "5",
+        "goles_visitante": "0",
+        "jugado": true,
         "fecha": "17-10-2026",
         "hora": "13:30",
         "propio": false
@@ -1666,9 +2071,9 @@
         "visitante": "Ribarroja C.F. 'C'",
         "cod_local": "903549513",
         "cod_visitante": "21901",
-        "goles_local": "",
-        "goles_visitante": "",
-        "jugado": false,
+        "goles_local": "3",
+        "goles_visitante": "5",
+        "jugado": true,
         "fecha": "17-10-2026",
         "hora": "18:00",
         "propio": true
@@ -1678,9 +2083,9 @@
         "visitante": "Bétera C.F. 'C'",
         "cod_local": "14391",
         "cod_visitante": "900852000",
-        "goles_local": "",
-        "goles_visitante": "",
-        "jugado": false,
+        "goles_local": "1",
+        "goles_visitante": "3",
+        "jugado": true,
         "fecha": "17-10-2026",
         "hora": "18:15",
         "propio": false
@@ -1711,6 +2116,6 @@
       }
     ]
   },
-  "huella": "e9b3847ccd99b7a4391422d35e760141",
-  "actualizado": "2026-10-17T15:46:33+02:00"
+  "huella": "dd57ffe4e51ccba934f3943201dc4df1",
+  "actualizado": "2026-10-18T09:13:10+02:00"
 }
