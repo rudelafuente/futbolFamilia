@@ -1149,7 +1149,7 @@ addEventListener('popstate', () => { if (ficha.open) ficha.close(); });
   const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
   const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   let prompt = null;
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js', {updateViaCache: 'none'}).catch(() => {});
   // Instalada como app no hay botón de recargar del navegador: se ofrece uno propio.
   if (standalone) {
     const r = document.getElementById('refresh');
