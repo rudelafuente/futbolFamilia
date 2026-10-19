@@ -12,15 +12,15 @@
   },
   "jugador": {
     "nombre": "Pau D.",
-    "dorsal": "",
-    "posicion": "",
+    "dorsal": "20",
+    "posicion": "Central",
     "edad": "12",
     "foto": "",
     "stats": {
-      "convocados": 0,
-      "titular": 0,
+      "convocados": 1,
+      "titular": 1,
       "suplente": 0,
-      "jugados": 0,
+      "jugados": 1,
       "goles": 0,
       "amarillas": 0,
       "doble_amarilla": 0,
@@ -1153,7 +1153,8 @@
       },
       "ultimos": [
         "G"
-      ]
+      ],
+      "equipaciones": []
     },
     {
       "codequipo": "29692444",
@@ -1181,6 +1182,18 @@
       },
       "ultimos": [
         "G"
+      ],
+      "equipaciones": [
+        {
+          "camiseta": "Blanca",
+          "pantalon": "Blanco",
+          "medias": "Blancas"
+        },
+        {
+          "camiseta": "Azul marino",
+          "pantalon": "Azul marino",
+          "medias": "Azul marino"
+        }
       ]
     },
     {
@@ -1209,6 +1222,18 @@
       },
       "ultimos": [
         "G"
+      ],
+      "equipaciones": [
+        {
+          "camiseta": "Verde y blanca",
+          "pantalon": "Negro",
+          "medias": "Verdes/blancas"
+        },
+        {
+          "camiseta": "Morada",
+          "pantalon": "Blanco",
+          "medias": "Blancas/Moradas"
+        }
       ]
     },
     {
@@ -1237,6 +1262,18 @@
       },
       "ultimos": [
         "G"
+      ],
+      "equipaciones": [
+        {
+          "camiseta": "Roja",
+          "pantalon": "Marino",
+          "medias": "Marino"
+        },
+        {
+          "camiseta": "Azul",
+          "pantalon": "Negro",
+          "medias": "Azules"
+        }
       ]
     },
     {
@@ -1265,6 +1302,18 @@
       },
       "ultimos": [
         "G"
+      ],
+      "equipaciones": [
+        {
+          "camiseta": "Amarilla",
+          "pantalon": "Negro",
+          "medias": "Negras"
+        },
+        {
+          "camiseta": "Azul",
+          "pantalon": "Azul",
+          "medias": "Azules"
+        }
       ]
     },
     {
@@ -1291,7 +1340,8 @@
         "e": 0,
         "p": 0
       },
-      "ultimos": []
+      "ultimos": [],
+      "equipaciones": []
     },
     {
       "codequipo": "901393975",
@@ -1317,7 +1367,8 @@
         "e": 0,
         "p": 0
       },
-      "ultimos": []
+      "ultimos": [],
+      "equipaciones": []
     },
     {
       "codequipo": "14048",
@@ -1343,7 +1394,19 @@
         "e": 0,
         "p": 0
       },
-      "ultimos": []
+      "ultimos": [],
+      "equipaciones": [
+        {
+          "camiseta": "Roja",
+          "pantalon": "Negro",
+          "medias": "Negras"
+        },
+        {
+          "camiseta": "Azul",
+          "pantalon": "Azul",
+          "medias": "Negras"
+        }
+      ]
     },
     {
       "codequipo": "14100",
@@ -1369,7 +1432,8 @@
         "e": 0,
         "p": 0
       },
-      "ultimos": []
+      "ultimos": [],
+      "equipaciones": []
     },
     {
       "codequipo": "28266",
@@ -1397,6 +1461,18 @@
       },
       "ultimos": [
         "P"
+      ],
+      "equipaciones": [
+        {
+          "camiseta": "Roja",
+          "pantalon": "Azul",
+          "medias": "Azules"
+        },
+        {
+          "camiseta": "Negra",
+          "pantalon": "Negro",
+          "medias": "Negras"
+        }
       ]
     },
     {
@@ -1425,6 +1501,18 @@
       },
       "ultimos": [
         "P"
+      ],
+      "equipaciones": [
+        {
+          "camiseta": "Blanca",
+          "pantalon": "Blanco",
+          "medias": "Blanco"
+        },
+        {
+          "camiseta": "Azul marino",
+          "pantalon": "Azul marino",
+          "medias": "Azul marino"
+        }
       ]
     },
     {
@@ -1453,6 +1541,18 @@
       },
       "ultimos": [
         "P"
+      ],
+      "equipaciones": [
+        {
+          "camiseta": "Roja",
+          "pantalon": "Rojo",
+          "medias": "Rojas"
+        },
+        {
+          "camiseta": "Azul",
+          "pantalon": "Blanco",
+          "medias": "Blancas"
+        }
       ]
     },
     {
@@ -1481,6 +1581,18 @@
       },
       "ultimos": [
         "P"
+      ],
+      "equipaciones": [
+        {
+          "camiseta": "Roja",
+          "pantalon": "Azul",
+          "medias": "Azul"
+        },
+        {
+          "camiseta": "Azul",
+          "pantalon": "Rojo",
+          "medias": "Rojas"
+        }
       ]
     },
     {
@@ -1509,7 +1621,8 @@
       },
       "ultimos": [
         "P"
-      ]
+      ],
+      "equipaciones": []
     }
   ],
   "evolucion": [
@@ -1523,17 +1636,17 @@
   ],
   "plantilla": [
     {
-      "cod_jugador": "904348868",
-      "nombre": "Alejandro A.",
-      "dorsal": "",
-      "posicion": "",
+      "cod_jugador": "28609866",
+      "nombre": "Marc V.",
+      "dorsal": "2",
+      "posicion": "Lateral derecho",
       "portero": false,
       "propio": false,
       "oculto": false,
-      "convocados": 0,
-      "titular": 0,
+      "convocados": 1,
+      "titular": 1,
       "suplente": 0,
-      "jugados": 0,
+      "jugados": 1,
       "goles": 0,
       "amarillas": 0,
       "rojas": 0
@@ -1541,47 +1654,31 @@
     {
       "cod_jugador": "28659297",
       "nombre": "Alvaro L.",
-      "dorsal": "",
-      "posicion": "",
+      "dorsal": "3",
+      "posicion": "Lateral izquierdo",
       "portero": false,
       "propio": false,
       "oculto": false,
-      "convocados": 0,
-      "titular": 0,
+      "convocados": 1,
+      "titular": 1,
       "suplente": 0,
-      "jugados": 0,
+      "jugados": 1,
       "goles": 0,
       "amarillas": 0,
       "rojas": 0
     },
     {
-      "cod_jugador": "28723289",
-      "nombre": "Andres A.",
-      "dorsal": "",
-      "posicion": "",
+      "cod_jugador": "904468267",
+      "nombre": "Javi E.",
+      "dorsal": "4",
+      "posicion": "Medio centro",
       "portero": false,
       "propio": false,
       "oculto": false,
-      "convocados": 0,
+      "convocados": 1,
       "titular": 0,
-      "suplente": 0,
-      "jugados": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0
-    },
-    {
-      "cod_jugador": "904327357",
-      "nombre": "Diego F.",
-      "dorsal": "",
-      "posicion": "",
-      "portero": false,
-      "propio": false,
-      "oculto": false,
-      "convocados": 0,
-      "titular": 0,
-      "suplente": 0,
-      "jugados": 0,
+      "suplente": 1,
+      "jugados": 1,
       "goles": 0,
       "amarillas": 0,
       "rojas": 0
@@ -1589,15 +1686,63 @@
     {
       "cod_jugador": "904327589",
       "nombre": "Diego R.",
-      "dorsal": "",
-      "posicion": "",
+      "dorsal": "5",
+      "posicion": "Medio centro",
       "portero": false,
       "propio": false,
       "oculto": false,
-      "convocados": 0,
+      "convocados": 1,
       "titular": 0,
+      "suplente": 1,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "904401404",
+      "nombre": "Mateo A.",
+      "dorsal": "6",
+      "posicion": "Medio centro",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
       "suplente": 0,
-      "jugados": 0,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "904349086",
+      "nombre": "Lucas S.",
+      "dorsal": "7",
+      "posicion": "Delantero/a",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
+      "goles": 3,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "904327778",
+      "nombre": "Hugo V.",
+      "dorsal": "8",
+      "posicion": "Medio derecho",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
       "goles": 0,
       "amarillas": 0,
       "rojas": 0
@@ -1605,6 +1750,134 @@
     {
       "cod_jugador": "904466533",
       "nombre": "Enrique A.",
+      "dorsal": "11",
+      "posicion": "Medio centro",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 0,
+      "suplente": 1,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "904348659",
+      "nombre": "Izan A.",
+      "dorsal": "12",
+      "posicion": "Portero/a",
+      "portero": true,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "904348868",
+      "nombre": "Alejandro A.",
+      "dorsal": "14",
+      "posicion": "Central",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 1,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "904328100",
+      "nombre": "Mario C.",
+      "dorsal": "16",
+      "posicion": "Extremo derecho",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "28723289",
+      "nombre": "Andres A.",
+      "dorsal": "18",
+      "posicion": "Medio Izquierdo",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 0,
+      "suplente": 1,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "25695837",
+      "nombre": "Joaquin Benicio R.",
+      "dorsal": "19",
+      "posicion": "Extremo izquierdo",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "906982095",
+      "nombre": "Pau D.",
+      "dorsal": "20",
+      "posicion": "Central",
+      "portero": false,
+      "propio": true,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "17067387",
+      "nombre": "Hugo T.",
+      "dorsal": "21",
+      "posicion": "Medio Izquierdo",
+      "portero": false,
+      "propio": false,
+      "oculto": false,
+      "convocados": 1,
+      "titular": 1,
+      "suplente": 0,
+      "jugados": 1,
+      "goles": 0,
+      "amarillas": 0,
+      "rojas": 0
+    },
+    {
+      "cod_jugador": "904327357",
+      "nombre": "Diego F.",
       "dorsal": "",
       "posicion": "",
       "portero": false,
@@ -1635,136 +1908,8 @@
       "rojas": 0
     },
     {
-      "cod_jugador": "17067387",
-      "nombre": "Hugo T.",
-      "dorsal": "",
-      "posicion": "",
-      "portero": false,
-      "propio": false,
-      "oculto": false,
-      "convocados": 0,
-      "titular": 0,
-      "suplente": 0,
-      "jugados": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0
-    },
-    {
-      "cod_jugador": "904327778",
-      "nombre": "Hugo V.",
-      "dorsal": "",
-      "posicion": "",
-      "portero": false,
-      "propio": false,
-      "oculto": false,
-      "convocados": 0,
-      "titular": 0,
-      "suplente": 0,
-      "jugados": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0
-    },
-    {
-      "cod_jugador": "904348659",
-      "nombre": "Izan A.",
-      "dorsal": "",
-      "posicion": "",
-      "portero": false,
-      "propio": false,
-      "oculto": false,
-      "convocados": 0,
-      "titular": 0,
-      "suplente": 0,
-      "jugados": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0
-    },
-    {
       "cod_jugador": "28654372",
       "nombre": "Jaume G.",
-      "dorsal": "",
-      "posicion": "",
-      "portero": false,
-      "propio": false,
-      "oculto": false,
-      "convocados": 0,
-      "titular": 0,
-      "suplente": 0,
-      "jugados": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0
-    },
-    {
-      "cod_jugador": "904468267",
-      "nombre": "Javi E.",
-      "dorsal": "",
-      "posicion": "",
-      "portero": false,
-      "propio": false,
-      "oculto": false,
-      "convocados": 0,
-      "titular": 0,
-      "suplente": 0,
-      "jugados": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0
-    },
-    {
-      "cod_jugador": "25695837",
-      "nombre": "Joaquin Benicio R.",
-      "dorsal": "",
-      "posicion": "",
-      "portero": false,
-      "propio": false,
-      "oculto": false,
-      "convocados": 0,
-      "titular": 0,
-      "suplente": 0,
-      "jugados": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0
-    },
-    {
-      "cod_jugador": "904349086",
-      "nombre": "Lucas S.",
-      "dorsal": "",
-      "posicion": "",
-      "portero": false,
-      "propio": false,
-      "oculto": false,
-      "convocados": 0,
-      "titular": 0,
-      "suplente": 0,
-      "jugados": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0
-    },
-    {
-      "cod_jugador": "28609866",
-      "nombre": "Marc V.",
-      "dorsal": "",
-      "posicion": "",
-      "portero": false,
-      "propio": false,
-      "oculto": false,
-      "convocados": 0,
-      "titular": 0,
-      "suplente": 0,
-      "jugados": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0
-    },
-    {
-      "cod_jugador": "904328100",
-      "nombre": "Mario C.",
       "dorsal": "",
       "posicion": "",
       "portero": false,
@@ -1795,44 +1940,12 @@
       "rojas": 0
     },
     {
-      "cod_jugador": "904401404",
-      "nombre": "Mateo A.",
-      "dorsal": "",
-      "posicion": "",
-      "portero": false,
-      "propio": false,
-      "oculto": false,
-      "convocados": 0,
-      "titular": 0,
-      "suplente": 0,
-      "jugados": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0
-    },
-    {
       "cod_jugador": "901680044",
       "nombre": "Mauro F.",
       "dorsal": "",
       "posicion": "",
       "portero": false,
       "propio": false,
-      "oculto": false,
-      "convocados": 0,
-      "titular": 0,
-      "suplente": 0,
-      "jugados": 0,
-      "goles": 0,
-      "amarillas": 0,
-      "rojas": 0
-    },
-    {
-      "cod_jugador": "906982095",
-      "nombre": "Pau D.",
-      "dorsal": "",
-      "posicion": "",
-      "portero": false,
-      "propio": true,
       "oculto": false,
       "convocados": 0,
       "titular": 0,
@@ -2116,6 +2229,6 @@
       }
     ]
   },
-  "huella": "dd57ffe4e51ccba934f3943201dc4df1",
-  "actualizado": "2026-10-18T09:13:10+02:00"
+  "huella": "47391ea1429388921fe3f52e1d893a12",
+  "actualizado": "2026-10-19T16:39:55+02:00"
 }

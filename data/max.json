@@ -592,6 +592,18 @@
       },
       "ultimos": [
         "G"
+      ],
+      "equipaciones": [
+        {
+          "camiseta": "Verde",
+          "pantalon": "Negro",
+          "medias": "Negras"
+        },
+        {
+          "camiseta": "Blanca",
+          "pantalon": "Amarillo",
+          "medias": "Blancas"
+        }
       ]
     },
     {
@@ -620,7 +632,8 @@
       },
       "ultimos": [
         "G"
-      ]
+      ],
+      "equipaciones": []
     },
     {
       "codequipo": "22272119",
@@ -648,6 +661,18 @@
       },
       "ultimos": [
         "G"
+      ],
+      "equipaciones": [
+        {
+          "camiseta": "Blanca",
+          "pantalon": "Negro",
+          "medias": "Blancas"
+        },
+        {
+          "camiseta": "Azul",
+          "pantalon": "Azul",
+          "medias": "Azules"
+        }
       ]
     },
     {
@@ -676,6 +701,18 @@
       },
       "ultimos": [
         "P"
+      ],
+      "equipaciones": [
+        {
+          "camiseta": "Roja",
+          "pantalon": "Azul",
+          "medias": "Azules"
+        },
+        {
+          "camiseta": "Negra",
+          "pantalon": "Gris",
+          "medias": "Grises"
+        }
       ]
     },
     {
@@ -704,7 +741,8 @@
       },
       "ultimos": [
         "P"
-      ]
+      ],
+      "equipaciones": []
     },
     {
       "codequipo": "906662438",
@@ -732,6 +770,18 @@
       },
       "ultimos": [
         "P"
+      ],
+      "equipaciones": [
+        {
+          "camiseta": "Azul",
+          "pantalon": "Azul",
+          "medias": "Azules"
+        },
+        {
+          "camiseta": "Roja",
+          "pantalon": "Negro",
+          "medias": "Negras"
+        }
       ]
     },
     {
@@ -758,7 +808,19 @@
         "e": 0,
         "p": 0
       },
-      "ultimos": []
+      "ultimos": [],
+      "equipaciones": [
+        {
+          "camiseta": "Naranja",
+          "pantalon": "Negro",
+          "medias": "Negras"
+        },
+        {
+          "camiseta": "Azul",
+          "pantalon": "Azul",
+          "medias": "Azul"
+        }
+      ]
     },
     {
       "codequipo": "900488139",
@@ -784,7 +846,14 @@
         "e": 0,
         "p": 0
       },
-      "ultimos": []
+      "ultimos": [],
+      "equipaciones": [
+        {
+          "camiseta": "Roja",
+          "pantalon": "Azul",
+          "medias": "Azules"
+        }
+      ]
     },
     {
       "codequipo": "905836257",
@@ -810,7 +879,8 @@
         "e": 0,
         "p": 0
       },
-      "ultimos": []
+      "ultimos": [],
+      "equipaciones": []
     },
     {
       "codequipo": "905981742",
@@ -836,7 +906,19 @@
         "e": 0,
         "p": 0
       },
-      "ultimos": []
+      "ultimos": [],
+      "equipaciones": [
+        {
+          "camiseta": "Roja",
+          "pantalon": "Negro",
+          "medias": "Rojas"
+        },
+        {
+          "camiseta": "Amarilla",
+          "pantalon": "Negro",
+          "medias": "Negras"
+        }
+      ]
     }
   ],
   "evolucion": [
@@ -1126,6 +1208,6 @@
       }
     ]
   },
-  "huella": "f3e10d4fd26b9ac85957ed8de982a4cd",
-  "actualizado": "2026-10-18T09:13:00+02:00"
+  "huella": "fcd2708af11b93c801f2fe5fc934fd09",
+  "actualizado": "2026-10-19T16:42:21+02:00"
 }

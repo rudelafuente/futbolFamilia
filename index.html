@@ -147,6 +147,7 @@ footer.wrap{color:var(--muted);font-size:12px;text-align:center;padding:8px 16px
 .ev .who{font-size:13px;min-width:0}
 .ev .who div{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ev .who small{color:var(--muted)}
+.ev .who small+small{display:block}
 .ev .r{font:700 18px "Barlow Condensed";display:flex;gap:6px;align-items:center}
 .callout{background:var(--surface-2);border-radius:12px;padding:12px;margin-bottom:12px;font-size:13px}
 .callout b{font:800 26px/1 "Barlow Condensed";color:var(--accent)}
@@ -188,6 +189,7 @@ body:has(#ficha[open]){overflow:hidden}
 .kits{display:flex;gap:16px;margin-top:14px;flex-wrap:wrap}
 .kit{margin:0;text-align:center;font-size:12px;color:var(--muted)}
 .kit svg{width:64px;height:96px;display:block;margin:0 auto 4px}
+.kits.vs{margin:0 0 8px;gap:24px}
 .kit path,.kit rect{stroke:var(--muted);stroke-width:1.2;stroke-linejoin:round}
 .bal{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .bal .stat b{font-size:22px}
@@ -328,12 +330,13 @@ function matchBlock(p) {
   return `<div class="match">${side(p.local, p.escudo_local, p.en_casa)}${centre}${side(p.visitante, p.escudo_visitante, !p.en_casa)}</div>`;
 }
 
-function matchCard(p, title, slug) {
+function matchCard(p, title, slug, kid) {
   if (!p) return `<section class="card"><h3>${title}</h3><p class="empty">Sin partidos.</p></section>`;
   const d = parseDate(p.fecha, p.hora);
   return `<section class="card tap" ${tapAttrs(slug, p)}><h3>${title} · Jornada ${esc(p.jornada)} <span class="chev" style="float:right">›</span></h3>
     ${matchBlock(p)}
-    <div class="sub">${fmtDay(d)}${p.campo ? ' · ' + esc(p.campo) : ''}${p.estado ? ' · <b>' + esc(p.estado) + '</b>' : ''}</div></section>`;
+    <div class="sub">${fmtDay(d)}${p.campo ? ' · ' + esc(p.campo) : ''}${p.estado ? ' · <b>' + esc(p.estado) + '</b>' : ''}</div>
+    ${!p.jugado && kid && equipacionTxt(kid, p) ? `<div class="sub"><b>${equipacionTxt(kid, p)}</b></div>` : ''}</section>`;
 }
 
 function render(d) {
@@ -364,7 +367,7 @@ function render(d) {
     </div>
   </section>
   <div class="grid">
-    ${matchCard(next, 'Próximo partido', d.slug)}
+    ${matchCard(next, 'Próximo partido', d.slug, d)}
     ${matchCard(last, 'Último resultado', d.slug)}
     <section class="card full"><h3>Estadísticas de ${esc(d.apodo)} esta temporada</h3>
       <div class="stats">${statCells.map(([l, v]) => `<div class="stat"><b>${esc(v ?? 0)}</b><span>${l}</span></div>`).join('')}</div>
@@ -427,7 +430,7 @@ function colores(s) {
   return COLORES.filter(([k]) => t.includes(k) && !(k === 'azul' && t.includes('marino')))
     .sort((a, b) => t.indexOf(a[0]) - t.indexOf(b[0])).map(([, c]) => c);
 }
-function kit(e, n) {
+function kit(e, n, quien) {
   const gris = '#9aa3b2';
   const [c1 = gris, c2] = colores(e.camiseta), [p = gris] = colores(e.pantalon), [m = gris] = colores(e.medias);
   const desc = `Equipación ${n}: camiseta ${e.camiseta}, pantalón ${e.pantalon}, medias ${e.medias}`;
@@ -436,7 +439,55 @@ function kit(e, n) {
       <path d="M8 10 L2 26 L12 30 L14 22Z M56 10 L62 26 L52 30 L50 22Z" fill="${c2 || c1}"/>
       <path d="M14 49 H50 L52 67 H35 L32 59 L29 67 H12Z" fill="${p}"/>
       <rect x="15" y="71" width="11" height="22" rx="3" fill="${m}"/><rect x="38" y="71" width="11" height="22" rx="3" fill="${m}"/>
-    </svg><figcaption>${n === 1 ? '1ª' : '2ª'} · ${esc(String(e.camiseta).trim())}</figcaption></figure>`;
+    </svg><figcaption>${quien ? `<b>${esc(quien)}</b>` : ''}${n === 1 ? '1ª' : '2ª'} · ${esc(String(e.camiseta).trim())}</figcaption></figure>`;
+}
+
+// ¿Quién se cambia? Viste la 1ª el de casa; si la camiseta del visitante choca, el visitante se pone la 2ª.
+// Azul y marino se consideran el mismo color, igual que rojo y granate.
+const FAMILIA = {marino: 'azul', granat: 'roj'};
+function familias(s) {
+  const t = String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  return COLORES.map(([k]) => k).filter(k => t.includes(k) && !(k === 'azul' && t.includes('marino')))
+    .sort((a, b) => t.indexOf(a) - t.indexOf(b)).map(k => FAMILIA[k] || k);
+}
+function chocan(a, b) {
+  const fa = familias(a?.camiseta), fb = familias(b?.camiseta);
+  return !!fa.length && !!fb.length && (fb.includes(fa[0]) || fa.includes(fb[0]));
+}
+function equipaciones(d, p) {
+  const r = filaDe(d, p.en_casa ? p.visitante : p.local);
+  const mias = (d.equipo?.equipaciones || []).filter(e => e.camiseta), suyas = (r?.equipaciones || []).filter(e => e.camiseta);
+  if (!mias.length) return null;
+  const [casa, fuera] = p.en_casa ? [mias, suyas] : [suyas, mias];
+  if (!suyas.length) return {rival: r, sinDatos: true, mia: 1};
+  let n = 1, aviso = '';
+  if (chocan(casa[0], fuera[0])) {
+    n = fuera[1] ? 2 : 0;
+    if (n === 2 && chocan(casa[0], fuera[1])) aviso = 'La 2ª también se parece: puede que toque jugar con petos.';
+    if (!n) aviso = 'El visitante no tiene 2ª equipación registrada: puede que toque jugar con petos.';
+  }
+  const visitante = {n: n || 1, e: fuera[(n || 1) - 1]}, local = {n: 1, e: casa[0]};
+  return {rival: r, choque: n !== 1, aviso, mia: p.en_casa ? 1 : visitante.n,
+    mio: p.en_casa ? local : visitante, suyo: p.en_casa ? visitante : local};
+}
+function equipacionTxt(d, p) {
+  const q = equipaciones(d, p);
+  if (!q || q.sinDatos || !q.choque) return '';
+  return q.mia === 2 ? `👕 ${esc(d.apodo)} con la 2ª` : '👕 El rival se cambia';
+}
+function bloqueEquipacion(d, p) {
+  const q = equipaciones(d, p);
+  if (!q) return '';
+  const nomRival = q.rival?.nombre || (p.en_casa ? p.visitante : p.local);
+  if (q.sinDatos) return `<h4>Equipación</h4><div class="field">${p.en_casa
+    ? `${esc(d.apodo)} juega en casa con la 1ª: si las camisetas se parecen, se cambia el rival.`
+    : `${esc(nomRival)} no tiene sus equipaciones en la federación: no se sabe si ${esc(d.apodo)} tendrá que ponerse la 2ª.`}</div>`;
+  const color = e => String(e.camiseta).trim().toLowerCase();
+  const txt = !q.choque ? `No chocan: cada uno con su 1ª equipación.`
+    : q.mia === 2 ? `${esc(d.apodo)} juega con la <strong>2ª equipación</strong> (camiseta ${esc(color(q.mio.e))}): ${esc(nomRival)} juega en casa y también lleva camiseta ${esc(color(q.suyo.e))}.`
+    : `Las camisetas chocan: ${esc(nomRival)} es el visitante y se pone su 2ª (camiseta ${esc(color(q.suyo.e))}).`;
+  return `<h4>Equipación</h4><div class="field"><div class="kits vs">${kit(q.mio.e, q.mio.n, d.apodo)}${kit(q.suyo.e, q.suyo.n, 'Rival')}</div>
+    <div>${txt}</div>${q.aviso ? `<div class="meta" style="margin:4px 0 0">${esc(q.aviso)}</div>` : ''}</div>`;
 }
 
 function racha(ps) {
@@ -582,7 +633,7 @@ function evRow(e) {
     : (e.estado ? `<span class="pill">${esc(e.estado)}</span>` : `<span class="pill">${e.en_casa ? 'Casa' : 'Fuera'}</span>`);
   return `<div class="ev tap k-${esc(e.kid.slug)}" ${tapAttrs(e.kid.slug, e)}><div class="t">${esc(e.hora || '--:--')}<small>J${esc(e.jornada)}</small></div>
     <div class="who"><div><span class="chip">${esc(e.kid.apodo)}</span> ${e.en_casa ? 'vs' : '@'} ${esc(rival)}</div>
-    <small>${esc(e.campo || e.kid.equipo?.nombre || '')}</small></div><div class="r">${right}</div></div>`;
+    <small>${esc(e.campo || e.kid.equipo?.nombre || '')}</small>${!e.jugado && equipacionTxt(e.kid, e) ? `<small><b>${equipacionTxt(e.kid, e)}</b></small>` : ''}</div><div class="r">${right}</div></div>`;
 }
 
 // ---------- resumen de la jornada ----------
@@ -842,7 +893,7 @@ function fichaHTML(d, p) {
     <div class="meta" style="margin:0">${esc([d.competicion?.nombre, d.competicion?.grupo].filter(Boolean).join(' · '))}</div>
     ${matchBlock(p)}
     <div class="sub">${cap(cuando)}${p.estado ? ` · <b>${esc(p.estado)}</b>` : ''}${p.acta?.suspendido ? ' · <b>Suspendido</b>' : ''}</div>
-    ${goles}${rival}${campo}${acciones}`;
+    ${goles}${p.jugado ? '' : bloqueEquipacion(d, p)}${rival}${campo}${acciones}`;
 }
 
 let DATOS = [];
