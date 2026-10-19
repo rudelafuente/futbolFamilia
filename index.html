@@ -260,11 +260,14 @@ details.tabla summary{cursor:pointer;color:var(--muted);min-height:44px;display:
 .pill.nuevo{background:#f2c200;color:#111;margin-left:4px;letter-spacing:0;text-transform:none;font-family:Inter,system-ui,sans-serif}
 .ev .who .pill.nuevo{margin:2px 0 0}
 .finde h4{margin:14px 0 4px}
-.finde h3+h4{margin-top:4px}
+.finde .head+h4{margin-top:10px}
 .finde h3 small{display:block;font:500 12px Inter,system-ui,sans-serif;letter-spacing:0;text-transform:none;margin-top:2px}
 .aviso{font-size:13px;padding:8px 10px;border-radius:10px;margin:6px 0;background:var(--line)}
 .aviso.ok{background:color-mix(in srgb, #2a9d4b 18%, transparent)}
 .aviso.justo{background:color-mix(in srgb, #f2c200 22%, transparent)}
+.finde .head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.finde .head h3{margin:0;min-width:0}
+.finde .head .btn{flex:none;white-space:nowrap}
 .jornada .head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
 .jornada .head h3{margin:0}
 .jornada .head small{display:block;font:500 12px Inter,system-ui,sans-serif;letter-spacing:0;text-transform:none;margin-top:2px}
@@ -793,7 +796,8 @@ function renderFinde(datos) {
       <small>${esc([sinHA(c?.nombre || e.campo), c?.localidad].filter(Boolean).join(' · '))}</small>${eq ? `<small><b>${eq}</b></small>` : ''}</div>
       <div class="r"><span class="pill">${e.en_casa ? 'Casa' : 'Fuera'}</span></div></div>${sePuedeVer(e, datos)}`;
   });
-  return `<section class="card finde"><h3>Este fin de semana<small>La hora de fin es aproximada: dos partes y el descanso</small></h3>${html}</section>`;
+  return `<section class="card finde"><div class="head"><h3>Este fin de semana<small>La hora de fin es aproximada: dos partes y el descanso</small></h3>
+    <button class="btn" id="compartir-finde">Compartir</button></div>${html}</section>`;
 }
 
 function renderJornada(datos) {
@@ -835,15 +839,34 @@ function textoJornada(datos) {
   });
   return '⚽ Fútbol de la Familia\n' + lineas.join('\n');
 }
-async function compartirJornada(datos) {
-  const text = textoJornada(datos), url = location.href.split('#')[0];
+// Texto para mandar a la familia: cuándo y dónde juegan este fin de semana (sin equipación ni logística propia).
+function textoFinde(datos) {
+  let dia = '';
+  const lineas = partidosFinde(datos).flatMap(e => {
+    const c = e.kid.campos?.[e.codigo_campo];
+    const fin = e.hora ? ` (hasta ~${hhmm(new Date(e.date.getTime() + duracion(e) * MIN))})` : '';
+    const out = [];
+    if (dayKey(e.date) !== dia) { dia = dayKey(e.date); out.push('', `*${cap(e.date.toLocaleDateString('es-ES', {weekday: 'long', day: 'numeric', month: 'long'}))}*`); }
+    out.push(`${e.hora || 'Hora por confirmar'}${fin} · ${e.kid.apodo} ${e.en_casa ? 'vs' : 'en'} ${sinHA(e.en_casa ? e.visitante : e.local)}`);
+    const donde = [sinHA(c?.nombre || e.campo), c?.localidad].filter(Boolean).join(' · ');
+    if (donde) out.push(`📍 ${donde}`);
+    if (c?.lat && c?.lon) out.push(`Cómo llegar: https://www.google.com/maps/dir/?api=1&destination=${c.lat},${c.lon}`);
+    return out;
+  });
+  return '⚽ Este fin de semana\n' + lineas.join('\n');
+}
+
+async function compartir(text, aviso) {
+  const url = location.href.split('#')[0];
   try {
     if (navigator.share) { await navigator.share({title: 'Fútbol de la Familia', text, url}); return; }
-    await navigator.clipboard.writeText(text + '\n' + url);
-    const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = 'Resumen copiado';
+    await navigator.clipboard.writeText(text + '\n\n' + url);
+    const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = aviso;
     document.body.append(t); setTimeout(() => t.remove(), 2200);
   } catch {}
 }
+const compartirJornada = datos => compartir(textoJornada(datos), 'Resumen copiado');
+const compartirFinde = datos => compartir(textoFinde(datos), 'Partidos copiados');
 
 function renderCalendar(datos) {
   const evs = events(datos);
@@ -1121,6 +1144,7 @@ addEventListener('popstate', () => { if (ficha.open) ficha.close(); });
       main.querySelector('#nextm').onclick = () => { calMonth.setMonth(calMonth.getMonth() + 1); calSel = null; show(i); };
       main.querySelector('#ics').onclick = () => downloadIcs(datos);
       const cj = main.querySelector('#compartir'); if (cj) cj.onclick = () => compartirJornada(datos);
+      const cf = main.querySelector('#compartir-finde'); if (cf) cf.onclick = () => compartirFinde(datos);
       main.querySelectorAll('.day.has').forEach(b => b.onclick = () => { calSel = calSel === b.dataset.day ? null : b.dataset.day; show(i); });
       const c = main.querySelector('#clear'); if (c) c.onclick = () => { calSel = null; show(i); };
     }
