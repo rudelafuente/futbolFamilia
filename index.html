@@ -255,7 +255,7 @@ details.tabla summary{cursor:pointer;color:var(--muted);min-height:44px;display:
 .finde h3+h4{margin-top:4px}
 .finde h3 small{display:block;font:500 12px Inter,system-ui,sans-serif;letter-spacing:0;text-transform:none;margin-top:2px}
 .aviso{font-size:13px;padding:8px 10px;border-radius:10px;margin:6px 0;background:var(--line)}
-.aviso.mal{background:color-mix(in srgb, #d62828 18%, transparent)}
+.aviso.ok{background:color-mix(in srgb, #2a9d4b 18%, transparent)}
 .aviso.justo{background:color-mix(in srgb, #f2c200 22%, transparent)}
 .jornada .head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
 .jornada .head h3{margin:0}
@@ -695,7 +695,7 @@ function otrosPartidos(d, p) {
 }
 // ---------- el fin de semana en un vistazo ----------
 // Partidos pendientes de este fin de semana (viernes a domingo; si ya es fin de semana, desde hoy), por orden,
-// con cuánto dura cada uno y si dos coinciden o van muy justos para llegar de un campo a otro.
+// con cuánto dura cada uno y, en los que son para ir a verlos, si da tiempo sin faltar al que hay que llevar.
 function partidosFinde(datos, hoy = new Date()) {
   const ini = new Date(hoy); ini.setHours(0, 0, 0, 0);
   const dow = (ini.getDay() + 6) % 7;                       // 0 = lunes … 6 = domingo
@@ -711,18 +711,32 @@ function kmEntre(a, b) {
   const h = Math.sin(dLat / 2) ** 2 + Math.cos(r(+a.lat)) * Math.cos(r(+b.lat)) * Math.sin(dLon / 2) ** 2;
   return 2 * 6371 * Math.asin(Math.sqrt(h));
 }
-// Entre dos partidos seguidos del mismo día: ¿se solapan, van justos o da tiempo?
-function encaje(a, b) {
-  if (!a.hora || !b.hora || dayKey(a.date) !== dayKey(b.date)) return '';
-  const finA = new Date(a.date.getTime() + duracion(a) * 60000);
-  const mismo = a.codigo_campo && a.codigo_campo === b.codigo_campo;
-  const km = mismo ? 0 : kmEntre(a.kid.campos?.[a.codigo_campo], b.kid.campos?.[b.codigo_campo]);
-  const margen = Math.round((b.date - finA) / 60000);
-  const donde = mismo ? 'en el mismo campo' : km != null ? `a ${km < 10 ? km.toFixed(1).replace('.', ',') : Math.round(km)} km` : 'en otro campo';
-  const quien = `${esc(a.kid.apodo)} acaba hacia las ${hhmm(finA)} y ${esc(b.kid.apodo)} empieza a las ${esc(b.hora)}, ${donde}`;
-  if (b.date < finA) return `<div class="aviso mal">⚠️ <b>Coinciden</b>: ${quien}. Hay que repartirse.</div>`;
-  if (!mismo && margen < 60) return `<div class="aviso justo">⏱️ <b>Va justo</b>: ${quien}.</div>`;
-  return mismo ? `<div class="aviso">👍 Mismo campo: se pueden ver los dos.</div>` : '';
+// A quién hay que llevar (los avisos del calendario son solo suyos); los demás partidos son para ir a verlos si se puede.
+const LLEVO = 'max';
+const MIN = 60000, LLEGAR_ANTES = 30;
+// ¿Se puede ir a ver este partido sin faltar al de quien hay que llevar? Cuenta media hora antes para llegar
+// al suyo y el trayecto en coche entre campos (estimado por la distancia: ~1,5 min por km + 10 de aparcar).
+function sePuedeVer(e, datos) {
+  if (e.kid.slug === LLEVO || !e.hora) return '';
+  const quien = datos.find(d => d.slug === LLEVO);
+  const suyos = events([quien].filter(Boolean)).filter(m => !m.jugado && m.hora && dayKey(m.date) === dayKey(e.date));
+  const nombre = esc(e.kid.apodo), otro = esc(quien?.apodo || '');
+  if (!suyos.length) return `<div class="aviso ok">👀 ${otro} no juega ese día: se puede ir a ver a ${nombre}.</div>`;
+  const fin = x => new Date(x.date.getTime() + duracion(x) * MIN);
+  for (const m of suyos) {
+    const mismo = m.codigo_campo && m.codigo_campo === e.codigo_campo;
+    const km = mismo ? 0 : kmEntre(m.kid.campos?.[m.codigo_campo], e.kid.campos?.[e.codigo_campo]);
+    const viaje = mismo ? 0 : km == null ? 30 : Math.round(km * 1.5 + 10);
+    const lejos = mismo ? 'en el mismo campo' : km == null ? 'en otro campo' : `a ${km < 10 ? km.toFixed(1).replace('.', ',') : Math.round(km)} km`;
+    if (mismo && (e.date >= fin(m) || fin(e) <= m.date)) return `<div class="aviso ok">👀 Mismo campo que ${otro}: se ven los dos.</div>`;
+    if (fin(e).getTime() + viaje * MIN <= m.date.getTime() - LLEGAR_ANTES * MIN)
+      return `<div class="aviso ok">👀 Se puede ir a verlo: acaba hacia las ${hhmm(fin(e))} y da tiempo a llegar al de ${otro} (${lejos}).</div>`;
+    const llegada = new Date(fin(m).getTime() + viaje * MIN);
+    if (llegada <= e.date) return `<div class="aviso ok">👀 Se puede ir a verlo después del de ${otro} (${lejos}).</div>`;
+    if (llegada.getTime() <= fin(e).getTime() - 20 * MIN)
+      return `<div class="aviso justo">👀 Se puede ver el final: saliendo del de ${otro}, llegaríais hacia las ${hhmm(llegada)} (${lejos}).</div>`;
+  }
+  return `<div class="aviso">Coincide con el partido de ${otro}.</div>`;
 }
 function renderFinde(datos) {
   const evs = partidosFinde(datos);
@@ -730,13 +744,12 @@ function renderFinde(datos) {
   let html = '', dia = '';
   evs.forEach((e, i) => {
     if (dayKey(e.date) !== dia) { dia = dayKey(e.date); html += `<h4>${cap(e.date.toLocaleDateString('es-ES', {weekday: 'long', day: 'numeric', month: 'long'}))}</h4>`; }
-    else html += encaje(evs[i - 1], e);
     const c = e.kid.campos?.[e.codigo_campo];
     const eq = equipacionTxt(e.kid, e);
     html += `<div class="ev tap k-${esc(e.kid.slug)}" ${tapAttrs(e.kid.slug, e)}><div class="t">${esc(e.hora || '--:--')}<small>${e.hora ? 'hasta ' + hhmm(new Date(e.date.getTime() + duracion(e) * 60000)) : ''}</small></div>
       <div class="who"><div><span class="chip">${esc(e.kid.apodo)}</span> ${e.en_casa ? 'vs' : '@'} ${esc(e.en_casa ? e.visitante : e.local)}</div>
       <small>${esc([sinHA(c?.nombre || e.campo), c?.localidad].filter(Boolean).join(' · '))}</small>${eq ? `<small><b>${eq}</b></small>` : ''}</div>
-      <div class="r"><span class="pill">${e.en_casa ? 'Casa' : 'Fuera'}</span></div></div>`;
+      <div class="r"><span class="pill">${e.en_casa ? 'Casa' : 'Fuera'}</span></div></div>${sePuedeVer(e, datos)}`;
   });
   return `<section class="card finde"><h3>Este fin de semana<small>La hora de fin es aproximada: dos partes y el descanso</small></h3>${html}</section>`;
 }
@@ -844,7 +857,7 @@ function icsDe(evs, nombre) {
     const campo = [sinHA(e.campo), c?.direccion, c?.localidad].filter(Boolean).join(', ');
     const q = equipaciones(e.kid, e);
     const ropa = !q || q.sinDatos ? '' : `con la ${q.mia}ª equipación (camiseta ${String(q.mio.e.camiseta).trim().toLowerCase()})`;
-    // Avisos: la víspera (para preparar la equipación) y dos horas antes, con la hora, el campo y la equipación.
+    // Avisos (solo en los partidos de quien hay que llevar): la víspera, para preparar la equipación, y dos horas antes.
     const aviso = (cuando, dia) => ['BEGIN:VALARM', 'ACTION:DISPLAY', `TRIGGER:${cuando}`,
       `DESCRIPTION:${txt(`${dia} juega ${e.kid.apodo} a las ${e.hora}${e.campo ? ' en ' + sinHA(e.campo) : ''}${ropa ? ' ' + ropa : ''}`)}`, 'END:VALARM'];
     const desc = [`${e.en_casa ? 'En casa' : 'Fuera'} · Jornada ${e.jornada}`, ropa && cap(ropa), campo,
@@ -852,7 +865,7 @@ function icsDe(evs, nombre) {
     lines.push('BEGIN:VEVENT', `UID:${e.kid.slug}-${e.cod_jornada}-${f(e.date)}@max-pau`, `DTSTAMP:${f(new Date())}`,
       `DTSTART:${f(e.date)}`, `DTEND:${f(end)}`, `SUMMARY:${txt(`${e.kid.apodo}: ${e.local} - ${e.visitante}`)}`,
       `LOCATION:${txt(campo)}`, `DESCRIPTION:${desc.map(txt).join('\\n')}`,
-      ...(e.hora ? [...aviso('-P1D', 'Mañana'), ...aviso('-PT2H', 'Hoy')] : []), 'END:VEVENT');
+      ...(e.hora && e.kid.slug === LLEVO ? [...aviso('-P1D', 'Mañana'), ...aviso('-PT2H', 'Hoy')] : []), 'END:VEVENT');
   });
   lines.push('END:VCALENDAR');
   // Las líneas largas se doblan (RFC 5545): algunos calendarios del móvil cortan el texto si no.
