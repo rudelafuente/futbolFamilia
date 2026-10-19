@@ -250,7 +250,13 @@ details.tabla summary{cursor:pointer;color:var(--muted);min-height:44px;display:
 .xi li.me{color:var(--accent);font-weight:700}
 .xi .dor{font:700 15px "Barlow Condensed";color:var(--muted);text-align:center}
 /* Resumen de la jornada (arriba del calendario) */
-.jornada{margin-bottom:12px}
+.jornada,.finde{margin-bottom:12px}
+.finde h4{margin:14px 0 4px}
+.finde h3+h4{margin-top:4px}
+.finde h3 small{display:block;font:500 12px Inter,system-ui,sans-serif;letter-spacing:0;text-transform:none;margin-top:2px}
+.aviso{font-size:13px;padding:8px 10px;border-radius:10px;margin:6px 0;background:var(--line)}
+.aviso.mal{background:color-mix(in srgb, #d62828 18%, transparent)}
+.aviso.justo{background:color-mix(in srgb, #f2c200 22%, transparent)}
 .jornada .head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
 .jornada .head h3{margin:0}
 .jornada .head small{display:block;font:500 12px Inter,system-ui,sans-serif;letter-spacing:0;text-transform:none;margin-top:2px}
@@ -687,6 +693,54 @@ function otrosPartidos(d, p) {
     <span class="m">${x.jugado ? `${esc(x.goles_local)}-${esc(x.goles_visitante)}` : `<small>${x.fecha !== p.fecha && parseDate(x.fecha) ? esc(parseDate(x.fecha).toLocaleDateString('es-ES', {weekday:'short'})) + ' ' : ''}${esc(x.hora || '--:--')}</small>`}</span>
     <span class="v">${img(x.cod_visitante)}${esc(sinHA(x.visitante))}</span></li>`).join('')}</ul></details>`;
 }
+// ---------- el fin de semana en un vistazo ----------
+// Partidos pendientes de este fin de semana (viernes a domingo; si ya es fin de semana, desde hoy), por orden,
+// con cuánto dura cada uno y si dos coinciden o van muy justos para llegar de un campo a otro.
+function partidosFinde(datos, hoy = new Date()) {
+  const ini = new Date(hoy); ini.setHours(0, 0, 0, 0);
+  const dow = (ini.getDay() + 6) % 7;                       // 0 = lunes … 6 = domingo
+  const vie = new Date(ini); vie.setDate(ini.getDate() + Math.max(0, 4 - dow));
+  const fin = new Date(ini); fin.setDate(ini.getDate() + (6 - dow) + 1);
+  return events(datos).filter(e => !e.jugado && e.date >= (dow >= 4 ? ini : vie) && e.date < fin);
+}
+const duracion = e => 2 * minutosParte(e.kid.equipo?.categoria) + 15;      // dos partes y el descanso
+const hhmm = d => d.toLocaleTimeString('es-ES', {hour: '2-digit', minute: '2-digit'});
+function kmEntre(a, b) {
+  if (!a?.lat || !b?.lat) return null;
+  const r = x => x * Math.PI / 180, dLat = r(b.lat - a.lat), dLon = r(b.lon - a.lon);
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(r(+a.lat)) * Math.cos(r(+b.lat)) * Math.sin(dLon / 2) ** 2;
+  return 2 * 6371 * Math.asin(Math.sqrt(h));
+}
+// Entre dos partidos seguidos del mismo día: ¿se solapan, van justos o da tiempo?
+function encaje(a, b) {
+  if (!a.hora || !b.hora || dayKey(a.date) !== dayKey(b.date)) return '';
+  const finA = new Date(a.date.getTime() + duracion(a) * 60000);
+  const mismo = a.codigo_campo && a.codigo_campo === b.codigo_campo;
+  const km = mismo ? 0 : kmEntre(a.kid.campos?.[a.codigo_campo], b.kid.campos?.[b.codigo_campo]);
+  const margen = Math.round((b.date - finA) / 60000);
+  const donde = mismo ? 'en el mismo campo' : km != null ? `a ${km < 10 ? km.toFixed(1).replace('.', ',') : Math.round(km)} km` : 'en otro campo';
+  const quien = `${esc(a.kid.apodo)} acaba hacia las ${hhmm(finA)} y ${esc(b.kid.apodo)} empieza a las ${esc(b.hora)}, ${donde}`;
+  if (b.date < finA) return `<div class="aviso mal">⚠️ <b>Coinciden</b>: ${quien}. Hay que repartirse.</div>`;
+  if (!mismo && margen < 60) return `<div class="aviso justo">⏱️ <b>Va justo</b>: ${quien}.</div>`;
+  return mismo ? `<div class="aviso">👍 Mismo campo: se pueden ver los dos.</div>` : '';
+}
+function renderFinde(datos) {
+  const evs = partidosFinde(datos);
+  if (!evs.length) return '';
+  let html = '', dia = '';
+  evs.forEach((e, i) => {
+    if (dayKey(e.date) !== dia) { dia = dayKey(e.date); html += `<h4>${cap(e.date.toLocaleDateString('es-ES', {weekday: 'long', day: 'numeric', month: 'long'}))}</h4>`; }
+    else html += encaje(evs[i - 1], e);
+    const c = e.kid.campos?.[e.codigo_campo];
+    const eq = equipacionTxt(e.kid, e);
+    html += `<div class="ev tap k-${esc(e.kid.slug)}" ${tapAttrs(e.kid.slug, e)}><div class="t">${esc(e.hora || '--:--')}<small>${e.hora ? 'hasta ' + hhmm(new Date(e.date.getTime() + duracion(e) * 60000)) : ''}</small></div>
+      <div class="who"><div><span class="chip">${esc(e.kid.apodo)}</span> ${e.en_casa ? 'vs' : '@'} ${esc(e.en_casa ? e.visitante : e.local)}</div>
+      <small>${esc([sinHA(c?.nombre || e.campo), c?.localidad].filter(Boolean).join(' · '))}</small>${eq ? `<small><b>${eq}</b></small>` : ''}</div>
+      <div class="r"><span class="pill">${e.en_casa ? 'Casa' : 'Fuera'}</span></div></div>`;
+  });
+  return `<section class="card finde"><h3>Este fin de semana<small>La hora de fin es aproximada: dos partes y el descanso</small></h3>${html}</section>`;
+}
+
 function renderJornada(datos) {
   const items = datos.map(d => ({d, p: partidoDeLaJornada(d)})).filter(x => x.p);
   if (!items.length) return '';
@@ -769,7 +823,7 @@ function renderCalendar(datos) {
       + (past.length ? `<h4>Últimos resultados</h4>${past.map(evRow).join('')}` : '');
   }
   const ics = `<button class="btn" id="ics">Añadir al calendario del móvil</button>`;
-  return `${renderJornada(datos)}<div class="grid" style="margin-top:0">
+  return `${renderFinde(datos)}${renderJornada(datos)}<div class="grid" style="margin-top:0">
     <section class="card"><div class="month-head"><button id="prev" aria-label="Mes anterior">‹</button>
       <b>${cap(calMonth.toLocaleDateString('es-ES', {month:'long', year:'numeric'}))}</b><button id="nextm" aria-label="Mes siguiente">›</button></div>
       <div class="cal">${['L','M','X','J','V','S','D'].map(x => `<span class="dow">${x}</span>`).join('')}${cells}</div>
@@ -785,15 +839,26 @@ function icsDe(evs, nombre) {
   const txt = s => String(s || '').replace(/[\\,;]/g, '\\$&');
   const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//max-pau-futbol//ES', 'X-WR-CALNAME:Fútbol de la Familia'];
   evs.forEach(e => {
-    const end = new Date(e.date.getTime() + 90 * 60000);
+    const end = new Date(e.date.getTime() + duracion(e) * 60000);
     const c = e.kid.campos?.[e.codigo_campo];
+    const campo = [sinHA(e.campo), c?.direccion, c?.localidad].filter(Boolean).join(', ');
+    const q = equipaciones(e.kid, e);
+    const ropa = !q || q.sinDatos ? '' : `con la ${q.mia}ª equipación (camiseta ${String(q.mio.e.camiseta).trim().toLowerCase()})`;
+    // Avisos: la víspera (para preparar la equipación) y dos horas antes, con la hora, el campo y la equipación.
+    const aviso = (cuando, dia) => ['BEGIN:VALARM', 'ACTION:DISPLAY', `TRIGGER:${cuando}`,
+      `DESCRIPTION:${txt(`${dia} juega ${e.kid.apodo} a las ${e.hora}${e.campo ? ' en ' + sinHA(e.campo) : ''}${ropa ? ' ' + ropa : ''}`)}`, 'END:VALARM'];
+    const desc = [`${e.en_casa ? 'En casa' : 'Fuera'} · Jornada ${e.jornada}`, ropa && cap(ropa), campo,
+      c?.lat && c?.lon ? `Cómo llegar: https://www.google.com/maps/dir/?api=1&destination=${c.lat},${c.lon}` : ''].filter(Boolean);
     lines.push('BEGIN:VEVENT', `UID:${e.kid.slug}-${e.cod_jornada}-${f(e.date)}@max-pau`, `DTSTAMP:${f(new Date())}`,
       `DTSTART:${f(e.date)}`, `DTEND:${f(end)}`, `SUMMARY:${txt(`${e.kid.apodo}: ${e.local} - ${e.visitante}`)}`,
-      `LOCATION:${txt([e.campo, c?.direccion, c?.localidad].filter(Boolean).join(', '))}`, 'END:VEVENT');
+      `LOCATION:${txt(campo)}`, `DESCRIPTION:${desc.map(txt).join('\\n')}`,
+      ...(e.hora ? [...aviso('-P1D', 'Mañana'), ...aviso('-PT2H', 'Hoy')] : []), 'END:VEVENT');
   });
   lines.push('END:VCALENDAR');
+  // Las líneas largas se doblan (RFC 5545): algunos calendarios del móvil cortan el texto si no.
+  const doblar = l => l.length <= 70 ? l : l.match(/.{1,70}/gu).join('\r\n ');
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([lines.join('\r\n')], {type: 'text/calendar'}));
+  a.href = URL.createObjectURL(new Blob([lines.map(doblar).join('\r\n')], {type: 'text/calendar'}));
   a.download = nombre; a.click();
 }
 const downloadIcs = datos => icsDe(events(datos).filter(e => !e.jugado), 'futbol-de-la-familia.ics');
@@ -848,11 +913,20 @@ function alineacion(d, p) {
   const esquema = p.en_casa ? p.acta.esquema_local : p.acta.esquema_visitante;
   const fila = j => `<li class="${j.propio ? 'me' : ''}"><span class="dor">${esc(j.dorsal || '–')}</span><span>${esc(j.nombre)}${j.capitan ? ' <span class="pill">C</span>' : ''}</span>
     <span class="meta" style="margin:0" title="${esc(j.posicion || '')}">${esc(j.pos || '')}</span></li>`;
+  const delRival = p.en_casa ? p.acta.esquema_visitante : p.acta.esquema_local;
   const tit = js.filter(j => j.titular), sup = js.filter(j => !j.titular);
   const hayTitulares = tit.length > 0 && sup.length < js.length;
   return `<h4>Alineación de ${esc(sinHA(d.equipo?.nombre || ''))}${esquema ? ` · ${esc(esquema)}` : ''}</h4>
+    ${delRival ? `<div class="meta" style="margin:-4px 0 8px">El rival jugó con un ${esc(delRival)}</div>` : ''}
     ${hayTitulares ? `<div class="xi"><div><b>Titulares</b><ul>${tit.map(fila).join('')}</ul></div>${sup.length ? `<div><b>Suplentes</b><ul>${sup.map(fila).join('')}</ul></div>` : ''}</div>`
       : `<div class="xi"><div><b>Convocados</b><ul>${js.map(fila).join('')}</ul></div></div>`}`;
+}
+
+function arbitrosHTML(p) {
+  const as = p.acta?.arbitros || [];
+  if (!as.length || !p.acta?.cerrada) return '';
+  const tipo = t => /principal/i.test(t) ? '' : ` (${esc(String(t).replace(/^[ÁA]rbitro\/a\s*/i, ''))})`;
+  return `<div class="sub">${as.length > 1 ? 'Árbitros' : 'Árbitro'}: ${as.map(a => `<b>${esc(a.nombre)}</b>${tipo(a.tipo)}`).join(', ')}</div>`;
 }
 
 function fichaHTML(d, p) {
@@ -860,7 +934,7 @@ function fichaHTML(d, p) {
   const c = d.campos?.[p.codigo_campo];
   const cuando = dt ? dt.toLocaleDateString('es-ES', {weekday:'long', day:'numeric', month:'long'}) + (p.hora ? ` · ${esc(p.hora)}` : '') : 'Fecha por confirmar';
 
-  const goles = p.jugado ? cronologia(d, p) + alineacion(d, p) : '';
+  const goles = p.jugado ? cronologia(d, p) + alineacion(d, p) + arbitrosHTML(p) : '';
 
   const destino = c?.lat && c?.lon
     ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(c.lat + ',' + c.lon)}`

@@ -344,6 +344,12 @@
             "pos": "MI",
             "propio": false
           }
+        ],
+        "arbitros": [
+          {
+            "nombre": "Carlos H.",
+            "tipo": "Árbitro/a Principal"
+          }
         ]
       }
     },
@@ -2229,6 +2235,6 @@
       }
     ]
   },
-  "huella": "47391ea1429388921fe3f52e1d893a12",
-  "actualizado": "2026-10-19T16:39:55+02:00"
+  "huella": "2a45d04d7338cbc4787b61fd550c6267",
+  "actualizado": "2026-10-19T16:51:40+02:00"
 }
