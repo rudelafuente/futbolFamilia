@@ -111,6 +111,7 @@ th{color:var(--muted);font-weight:600;font-size:11px;border-top:0}
 td.eq{text-align:left;max-width:0;width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 td.eq img{width:16px;height:16px;vertical-align:-3px;margin-right:6px}
 tr.me td{background:color-mix(in srgb,var(--accent) 14%,transparent);font-weight:700}
+tr.me td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
 .scroll{overflow-x:auto}
 .empty{color:var(--muted);font-size:13px;margin:0}
 footer.wrap{color:var(--muted);font-size:12px;text-align:center;padding:8px 16px calc(96px + env(safe-area-inset-bottom))}
@@ -152,7 +153,9 @@ footer.wrap{color:var(--muted);font-size:12px;text-align:center;padding:8px 16px
 .ev .r{font:700 18px "Barlow Condensed";display:flex;gap:6px;align-items:center}
 .callout{background:var(--surface-2);border-radius:12px;padding:12px;margin-bottom:12px;font-size:13px}
 .callout b{font:800 26px/1 "Barlow Condensed";color:var(--accent)}
-tr.mate td{background:var(--surface-2)}
+tr.mate td{background:color-mix(in srgb,var(--kid,var(--accent)) 10%,transparent)}
+tr.mate td:first-child{box-shadow:inset 3px 0 0 var(--kid,var(--accent))}
+.pill.mate{background:var(--kid,var(--accent));color:#fff;letter-spacing:0;text-transform:none;font-family:Inter,system-ui,sans-serif;margin:2px 4px 2px 0}
 .bar{height:6px;border-radius:3px;background:var(--accent);min-width:2px}
 /* Ficha de partido: hoja inferior en el móvil, ventana centrada en escritorio. */
 .tap{cursor:pointer}
@@ -485,13 +488,13 @@ function scorers(d) {
     ? `<b>${me.pos}º</b> de ${g.length} goleadores · ${me.goles} ${me.goles === 1 ? 'gol' : 'goles'}${me.pos > 1 ? ` · a ${g[0].goles - me.goles} del máximo goleador` : ' · ¡máximo goleador del grupo!'}`
     : `<b>${goles}</b> goles · aún no aparece en la tabla (el máximo goleador lleva ${g[0].goles})`;
   const mates = g.filter(r => r.companero || r.propio).length;
-  // Top 10 + la fila propia si queda fuera.
-  const rows = g.filter((r, i) => i < 10 || r.propio);
-  return `<section class="card full"><h3>${titulo}</h3>
+  // Top 10 + las filas del niño y de sus compañeros si quedan fuera.
+  const rows = g.filter((r, i) => i < 10 || r.propio || r.companero);
+  return `<section class="card full k-${esc(d.slug)}"><h3>${titulo}</h3>
     <div class="callout">${summary}<div class="meta">${mates} jugador${mates === 1 ? '' : 'es'} de su equipo ${mates === 1 ? 'aparece' : 'aparecen'} en la tabla</div></div>
     <div class="scroll"><table><thead><tr><th>#</th><th style="text-align:left">Jugador</th><th style="width:30%"></th><th>Goles</th></tr></thead><tbody>
     ${rows.map(r => `<tr class="${r.propio ? 'me' : r.companero ? 'mate' : ''}"><td>${r.pos}</td>
-      <td class="eq">${esc(r.nombre)}<div class="meta" style="margin:0">${esc(r.equipo)}</div></td>
+      <td class="eq">${esc(r.nombre)}<div class="meta" style="margin:0">${r.companero ? `<span class="pill mate">Compañero de ${esc(d.apodo)}</span> ` : ''}${esc(r.equipo)}</div></td>
       <td><div class="bar" style="width:${Math.round(r.goles / max * 100)}%"></div></td><td><b>${r.goles}</b></td></tr>`).join('')}
     </tbody></table></div></section>`;
 }
