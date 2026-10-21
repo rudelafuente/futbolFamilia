@@ -242,8 +242,8 @@
     {
       "cod_jornada": "2",
       "jornada": "2",
-      "fecha": "24-10-2026",
-      "hora": "11:00",
+      "fecha": "25-10-2026",
+      "hora": "11:10",
       "local": "Sp. Benimaclet C.F. 'B'",
       "visitante": "Rayo Benimaclet C.F. 'B'",
       "escudo_local": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074576439_Sporting_Benimaclet_CF.png",
@@ -253,8 +253,8 @@
       "goles_visitante": "",
       "jugado": false,
       "resultado": "",
-      "campo": "Polideportivo Mpal. de Benimaclet F-8(HA)",
-      "codigo_campo": "5014",
+      "campo": "Campo Las Fuentes F-8 Campo 1 Benimaclet (T)",
+      "codigo_campo": "6281",
       "estado": "",
       "codacta": "26569813"
     },
@@ -437,6 +437,15 @@
       "lat": "39.498601",
       "lon": "-0.3534106",
       "superficie": "Hierba Artificial"
+    },
+    "6281": {
+      "nombre": "Campo Las Fuentes F-8 Campo 1 Benimaclet",
+      "direccion": "Plaça Numero 26 Res Urb, 113",
+      "localidad": "Valencia",
+      "cp": "46020",
+      "lat": "",
+      "lon": "",
+      "superficie": "Tierra"
     }
   },
   "clasificacion": [
@@ -1196,8 +1205,8 @@
         "goles_local": "",
         "goles_visitante": "",
         "jugado": false,
-        "fecha": "18-10-2026",
-        "hora": "09:00",
+        "fecha": "21-10-2026",
+        "hora": "18:30",
         "propio": false
       },
       {
@@ -1208,13 +1217,53 @@
         "goles_local": "",
         "goles_visitante": "",
         "jugado": false,
-        "fecha": "18-10-2026",
-        "hora": "11:00",
+        "fecha": "28-10-2026",
+        "hora": "18:00",
         "propio": false
       }
     ]
   },
-  "cambios": [],
-  "huella": "de84c9267e0023df40a9a9ebe0c38e21",
-  "actualizado": "2026-10-19T17:02:56+02:00"
+  "cambios": [
+    {
+      "cod_jornada": "2",
+      "jornada": "2",
+      "dato": "fecha",
+      "antes": "24-10-2026",
+      "detectado": "2026-10-21T16:43:03+02:00",
+      "ahora": "25-10-2026"
+    },
+    {
+      "cod_jornada": "2",
+      "jornada": "2",
+      "dato": "hora",
+      "antes": "11:00",
+      "detectado": "2026-10-21T16:43:03+02:00",
+      "ahora": "11:10"
+    },
+    {
+      "cod_jornada": "2",
+      "jornada": "2",
+      "dato": "campo",
+      "antes": "Polideportivo Mpal. de Benimaclet F-8(HA)",
+      "detectado": "2026-10-21T16:43:03+02:00",
+      "ahora": "Campo Las Fuentes F-8 Campo 1 Benimaclet (T)"
+    }
+  ],
+  "huella": "7b65000b3204442c2ff0751376b3e5a9",
+  "novedades": {
+    "fecha": "2026-10-21T16:43:03+02:00",
+    "lista": [
+      {
+        "tipo": "horario",
+        "texto": "J2 contra Rayo Benimaclet C.F. 'B': ahora el dom 25/10 a las 11:10 (antes sáb 24/10 11:00)",
+        "cod_jornada": "2"
+      },
+      {
+        "tipo": "campo",
+        "texto": "J2 contra Rayo Benimaclet C.F. 'B': se juega en Campo Las Fuentes F-8 Campo 1 Benimaclet (T)",
+        "cod_jornada": "2"
+      }
+    ]
+  },
+  "actualizado": "2026-10-21T16:44:22+02:00"
 }

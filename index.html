@@ -258,6 +258,11 @@ details.tabla summary{cursor:pointer;color:var(--muted);min-height:44px;display:
 .tiempo.largo .ico{font-size:26px;line-height:1}
 .tiempo.largo small{display:block;color:var(--muted);font-size:12px}
 .cambios{border:2px solid #f2c200}
+.novedades{margin-bottom:12px}
+.novedades ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.novedades li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.4}
+.novedades li.tap{cursor:pointer}
+.novedades .ico{flex:none;width:22px;text-align:center}
 .cambios ul{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:8px}
 .cambios li{font-size:13px;color:var(--muted);cursor:pointer}
 .cambios li.fuerte{font-size:15px;color:var(--ink)}
@@ -266,7 +271,7 @@ details.tabla summary{cursor:pointer;color:var(--muted);min-height:44px;display:
 .ev .who .pill.nuevo{margin:2px 0 0}
 .finde h4{margin:14px 0 4px}
 .finde .head+h4{margin-top:10px}
-.finde h3 small{display:block;font:500 12px Inter,system-ui,sans-serif;letter-spacing:0;text-transform:none;margin-top:2px}
+.finde h3 small,.novedades h3 small{display:block;font:500 12px Inter,system-ui,sans-serif;letter-spacing:0;text-transform:none;margin-top:2px}
 .aviso{font-size:13px;padding:8px 10px;border-radius:10px;margin:6px 0;background:var(--line)}
 .aviso.ok{background:color-mix(in srgb, #2a9d4b 18%, transparent)}
 .aviso.justo{background:color-mix(in srgb, #f2c200 22%, transparent)}
@@ -393,6 +398,25 @@ function renderCambios(datos, solo) {
   };
   return `<section class="card cambios"><h3>⚠️ ${filas.length === 1 ? 'Ha cambiado un partido' : 'Han cambiado partidos'}</h3>
     <ul>${filas.map(fila).join('')}</ul><button class="btn" data-visto="${esc(solo || '')}">Entendido</button></section>`;
+}
+
+// ---------- lo nuevo de la última actualización ----------
+// El actualizador deja en d.novedades {fecha, lista:[{tipo, texto, cod_jornada}]} lo que cambió la última vez que hubo algo que contar.
+const ICONO_NOVEDAD = {resultado: '⚽', acta: '📋', goles: '🥅', liga: '📈', horario: '🕒', campo: '📍'};
+// Los cambios de horario o campo que aún muestra el aviso amarillo no se repiten aquí.
+function renderNovedades(datos) {
+  const enAviso = (d, n) => ['horario', 'campo'].includes(n.tipo) && (d.cambios || []).some(c => String(c.cod_jornada) === String(n.cod_jornada) && !visto(d, c));
+  const conNov = datos.map(d => ({...d, novedades: d.novedades && {...d.novedades, lista: (d.novedades.lista || []).filter(n => !enAviso(d, n))}}))
+    .filter(d => d.novedades?.lista?.length);
+  if (!conNov.length) return '';
+  const fecha = conNov.map(d => d.novedades.fecha).sort().pop();
+  const fila = (d, n) => {
+    const p = n.cod_jornada && (d.partidos || []).find(x => String(x.cod_jornada) === String(n.cod_jornada));
+    return `<li class="k-${esc(d.slug)}${p ? ' tap' : ''}" ${p ? tapAttrs(d.slug, p) : ''}><span class="ico" aria-hidden="true">${ICONO_NOVEDAD[n.tipo] || '•'}</span>
+      <span><span class="chip">${esc(d.apodo)}</span> ${esc(sinHA(n.texto))}</span></li>`;
+  };
+  return `<section class="card novedades"><h3>Última actualización<small>${esc(cap(fmtStamp(fecha)))}</small></h3>
+    <ul>${conNov.flatMap(d => d.novedades.lista.map(n => fila(d, n))).join('')}</ul></section>`;
 }
 
 function render(d) {
@@ -657,7 +681,7 @@ function renderEquipo(d) {
     e.dia_habitual && ['Horario habitual', `${esc(cap(e.dia_habitual))}${/s$/.test(e.dia_habitual) ? '' : 's'}${e.hora_habitual ? ' a las ' + esc(e.hora_habitual) : ''}`],
     (c || e.campo_habitual) && ['Campo', esc(c?.nombre || '') + (c?.localidad ? ` · ${esc(c.localidad)}` : '')],
   ].filter(Boolean);
-  const maps = c?.lat && c?.lon ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(c.lat + ',' + c.lon)}` : '';
+  const maps = c ? comoLlegar(c) : '';
   const bal = (t, b) => b ? `<div class="stat"><b>${esc(b.g)}-${esc(b.e)}-${esc(b.p)}</b><span>${t} (G-E-P)</span></div>` : '';
   return `<div class="grid">
     <section class="card"><h3>Ficha del equipo</h3>
@@ -857,7 +881,7 @@ function textoFinde(datos) {
     out.push(`${e.hora || 'Hora por confirmar'}${fin} · ${e.kid.apodo} ${e.en_casa ? 'vs' : 'en'} ${sinHA(e.en_casa ? e.visitante : e.local)}${t ? ` · ${t.cielo[0]} ${t.temp}°` : ''}`);
     const donde = [sinHA(c?.nombre || e.campo), c?.localidad].filter(Boolean).join(' · ');
     if (donde) out.push(`📍 ${donde}`);
-    if (c?.lat && c?.lon) out.push(`Cómo llegar: https://www.google.com/maps/dir/?api=1&destination=${c.lat},${c.lon}`);
+    if (comoLlegar(c, e.campo)) out.push(`Cómo llegar: ${comoLlegar(c, e.campo)}`);
     return out;
   });
   return '⚽ Este fin de semana\n' + lineas.join('\n');
@@ -908,7 +932,7 @@ function renderCalendar(datos) {
       + (past.length ? `<h4>Últimos resultados</h4>${past.map(evRow).join('')}` : '');
   }
   const ics = `<button class="btn" id="ics">Añadir al calendario del móvil</button>`;
-  return `${renderCambios(datos)}${renderFinde(datos)}${renderJornada(datos)}<div class="grid" style="margin-top:0">
+  return `${renderCambios(datos)}${renderNovedades(datos)}${renderFinde(datos)}${renderJornada(datos)}<div class="grid" style="margin-top:0">
     <section class="card"><div class="month-head"><button id="prev" aria-label="Mes anterior">‹</button>
       <b>${cap(calMonth.toLocaleDateString('es-ES', {month:'long', year:'numeric'}))}</b><button id="nextm" aria-label="Mes siguiente">›</button></div>
       <div class="cal">${['L','M','X','J','V','S','D'].map(x => `<span class="dow">${x}</span>`).join('')}${cells}</div>
@@ -933,7 +957,7 @@ function icsDe(evs, nombre) {
     const aviso = (cuando, dia) => ['BEGIN:VALARM', 'ACTION:DISPLAY', `TRIGGER:${cuando}`,
       `DESCRIPTION:${txt(`${dia} juega ${e.kid.apodo} a las ${e.hora}${e.campo ? ' en ' + sinHA(e.campo) : ''}${ropa ? ' ' + ropa : ''}`)}`, 'END:VALARM'];
     const desc = [`${e.en_casa ? 'En casa' : 'Fuera'} · Jornada ${e.jornada}`, ropa && cap(ropa), campo,
-      c?.lat && c?.lon ? `Cómo llegar: https://www.google.com/maps/dir/?api=1&destination=${c.lat},${c.lon}` : ''].filter(Boolean);
+      comoLlegar(c, e.campo) ? `Cómo llegar: ${comoLlegar(c, e.campo)}` : ''].filter(Boolean);
     lines.push('BEGIN:VEVENT', `UID:${e.kid.slug}-${e.cod_jornada}-${f(e.date)}@max-pau`, `DTSTAMP:${f(new Date())}`,
       `DTSTART:${f(e.date)}`, `DTEND:${f(end)}`, `SUMMARY:${txt(`${e.kid.apodo}: ${e.local} - ${e.visitante}`)}`,
       `LOCATION:${txt(campo)}`, `DESCRIPTION:${desc.map(txt).join('\\n')}`,
@@ -950,6 +974,9 @@ const downloadIcs = datos => icsDe(events(datos).filter(e => !e.jugado), 'futbol
 
 // ---------- ficha de partido ----------
 const sinHA = s => String(s || '').replace(/\s*\(HA\)\s*$/i, '');
+const comoLlegar = (c, campo) => c?.lat && c?.lon
+  ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(c.lat + ',' + c.lon)}`
+  : (c?.nombre || campo) ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([sinHA(c?.nombre || campo), c?.localidad].filter(Boolean).join(', '))}` : '';
 
 // Minutos por parte según la categoría (fútbol base de la FFCV).
 function minutosParte(cat) {
@@ -1021,9 +1048,7 @@ function fichaHTML(d, p) {
 
   const goles = p.jugado ? cronologia(d, p) + alineacion(d, p) + arbitrosHTML(p) : '';
 
-  const destino = c?.lat && c?.lon
-    ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(c.lat + ',' + c.lon)}`
-    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([sinHA(p.campo), c?.localidad].filter(Boolean).join(' '))}`;
+  const destino = comoLlegar(c, p.campo);
   const campo = (p.campo || c) ? `<h4>Campo</h4><div class="field"><b>${esc(c?.nombre || sinHA(p.campo))}</b>
       ${c?.direccion || c?.localidad ? `<div>${esc([c.direccion, [c.cp, c.localidad].filter(Boolean).join(' ')].filter(Boolean).join(' · '))}</div>` : ''}
       ${c?.superficie ? `<div class="meta">${esc(c.superficie)}</div>` : ''}</div>` : '';
