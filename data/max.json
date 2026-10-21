@@ -133,7 +133,7 @@
           },
           {
             "cod_jugador": "905273212",
-            "nombre": "Dominic M.",
+            "nombre": "Dominic James M.",
             "dorsal": "5",
             "titular": false,
             "capitan": false,
@@ -210,7 +210,7 @@
           },
           {
             "cod_jugador": "904173928",
-            "nombre": "Sara N.",
+            "nombre": "Sara Margarida N.",
             "dorsal": "25",
             "titular": true,
             "capitan": false,
@@ -477,6 +477,19 @@
     },
     {
       "pos": "3",
+      "equipo": "U.D. Rocafort C.F. 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074496834_escudo_club.jpg?nova=1",
+      "pts": "3",
+      "pj": "1",
+      "pg": "1",
+      "pe": "0",
+      "pp": "0",
+      "gf": "6",
+      "gc": "1",
+      "propio": false
+    },
+    {
+      "pos": "4",
       "equipo": "Rayo Benimaclet C.F. 'B'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074542664_8BB5112B_D592_40DD_8E01_09040F64EDB9.jpg?nova=1",
       "pts": "3",
@@ -489,7 +502,7 @@
       "propio": false
     },
     {
-      "pos": "4",
+      "pos": "5",
       "equipo": "Rafelbunyol C.F. 'B'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501373_Rafelbunyol_CF.png?nova=1",
       "pts": "1",
@@ -502,7 +515,7 @@
       "propio": false
     },
     {
-      "pos": "5",
+      "pos": "6",
       "equipo": "C.D.J. Collvert 'C'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074547032_escudo_collvert.jpeg?nova=1",
       "pts": "1",
@@ -515,7 +528,20 @@
       "propio": false
     },
     {
-      "pos": "6",
+      "pos": "7",
+      "equipo": "Alboraya U.D. 'D'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501630_Alboraya_UD.png?nova=1",
+      "pts": "1",
+      "pj": "1",
+      "pg": "0",
+      "pe": "0",
+      "pp": "1",
+      "gf": "1",
+      "gc": "6",
+      "propio": false
+    },
+    {
+      "pos": "8",
       "equipo": "Meliana C.F. 'B'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074531457_Escudo_MCF.jpg?nova=1",
       "pts": "1",
@@ -528,20 +554,7 @@
       "propio": false
     },
     {
-      "pos": "7",
-      "equipo": "U.D. Rocafort C.F. 'C'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074496834_escudo_club.jpg?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
-      "propio": false
-    },
-    {
-      "pos": "8",
+      "pos": "9",
       "equipo": "Albalat C.F. 'A'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074530759_Escudo_Albalat_C.F..png?nova=1",
       "pts": "0",
@@ -554,22 +567,9 @@
       "propio": false
     },
     {
-      "pos": "9",
+      "pos": "10",
       "equipo": "C.D. Massamagrell 'A'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074735431_B75EB4E5_2351_454A_B37D_92D553EA5B0A.png?nova=1",
-      "pts": "0",
-      "pj": "0",
-      "pg": "0",
-      "pe": "0",
-      "pp": "0",
-      "gf": "0",
-      "gc": "0",
-      "propio": false
-    },
-    {
-      "pos": "10",
-      "equipo": "Alboraya U.D. 'D'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501630_Alboraya_UD.png?nova=1",
       "pts": "0",
       "pj": "0",
       "pg": "0",
@@ -651,10 +651,50 @@
       "equipaciones": []
     },
     {
+      "codequipo": "29630200",
+      "nombre": "U.D. Rocafort C.F. 'C'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074496834_escudo_club.jpg?nova=1",
+      "pos": 3,
+      "pts": 3,
+      "pj": 1,
+      "g": 1,
+      "e": 0,
+      "p": 0,
+      "gf": 6,
+      "gc": 1,
+      "casa": {
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "ultimos": [
+        "G"
+      ],
+      "equipaciones": [
+        {
+          "camiseta": "Naranja",
+          "pantalon": "Negro",
+          "medias": "Negras"
+        },
+        {
+          "camiseta": "Azul",
+          "pantalon": "Azul",
+          "medias": "Azul"
+        }
+      ]
+    },
+    {
       "codequipo": "22272119",
       "nombre": "Rayo Benimaclet C.F. 'B'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074542664_8BB5112B_D592_40DD_8E01_09040F64EDB9.jpg?nova=1",
-      "pos": 3,
+      "pos": 4,
       "pts": 3,
       "pj": 1,
       "g": 1,
@@ -694,7 +734,7 @@
       "codequipo": "15209",
       "nombre": "Rafelbunyol C.F. 'B'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501373_Rafelbunyol_CF.png?nova=1",
-      "pos": 4,
+      "pos": 5,
       "pts": 1,
       "pj": 1,
       "g": 0,
@@ -734,7 +774,7 @@
       "codequipo": "903543750",
       "nombre": "C.D.J. Collvert 'C'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074547032_escudo_collvert.jpeg?nova=1",
-      "pos": 5,
+      "pos": 6,
       "pts": 1,
       "pj": 1,
       "g": 0,
@@ -760,10 +800,50 @@
       "equipaciones": []
     },
     {
+      "codequipo": "905981742",
+      "nombre": "Alboraya U.D. 'D'",
+      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501630_Alboraya_UD.png?nova=1",
+      "pos": 7,
+      "pts": 1,
+      "pj": 1,
+      "g": 0,
+      "e": 0,
+      "p": 1,
+      "gf": 1,
+      "gc": 6,
+      "casa": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0
+      },
+      "fuera": {
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1
+      },
+      "ultimos": [
+        "P"
+      ],
+      "equipaciones": [
+        {
+          "camiseta": "Roja",
+          "pantalon": "Negro",
+          "medias": "Rojas"
+        },
+        {
+          "camiseta": "Amarilla",
+          "pantalon": "Negro",
+          "medias": "Negras"
+        }
+      ]
+    },
+    {
       "codequipo": "906662438",
       "nombre": "Meliana C.F. 'B'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074531457_Escudo_MCF.jpg?nova=1",
-      "pos": 6,
+      "pos": 8,
       "pts": 1,
       "pj": 1,
       "g": 0,
@@ -800,48 +880,10 @@
       ]
     },
     {
-      "codequipo": "29630200",
-      "nombre": "U.D. Rocafort C.F. 'C'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074496834_escudo_club.jpg?nova=1",
-      "pos": 7,
-      "pts": 0,
-      "pj": 0,
-      "g": 0,
-      "e": 0,
-      "p": 0,
-      "gf": 0,
-      "gc": 0,
-      "casa": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "fuera": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "ultimos": [],
-      "equipaciones": [
-        {
-          "camiseta": "Naranja",
-          "pantalon": "Negro",
-          "medias": "Negras"
-        },
-        {
-          "camiseta": "Azul",
-          "pantalon": "Azul",
-          "medias": "Azul"
-        }
-      ]
-    },
-    {
       "codequipo": "900488139",
       "nombre": "Albalat C.F. 'A'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074530759_Escudo_Albalat_C.F..png?nova=1",
-      "pos": 8,
+      "pos": 9,
       "pts": 0,
       "pj": 0,
       "g": 0,
@@ -874,33 +916,6 @@
       "codequipo": "905836257",
       "nombre": "C.D. Massamagrell 'A'",
       "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074735431_B75EB4E5_2351_454A_B37D_92D553EA5B0A.png?nova=1",
-      "pos": 9,
-      "pts": 0,
-      "pj": 0,
-      "g": 0,
-      "e": 0,
-      "p": 0,
-      "gf": 0,
-      "gc": 0,
-      "casa": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "fuera": {
-        "pj": 0,
-        "g": 0,
-        "e": 0,
-        "p": 0
-      },
-      "ultimos": [],
-      "equipaciones": []
-    },
-    {
-      "codequipo": "905981742",
-      "nombre": "Alboraya U.D. 'D'",
-      "escudo": "https://appwebffcv.novanet.es/pnfg/pimg/Clubes/00100_0074501630_Alboraya_UD.png?nova=1",
       "pos": 10,
       "pts": 0,
       "pj": 0,
@@ -922,18 +937,7 @@
         "p": 0
       },
       "ultimos": [],
-      "equipaciones": [
-        {
-          "camiseta": "Roja",
-          "pantalon": "Negro",
-          "medias": "Rojas"
-        },
-        {
-          "camiseta": "Amarilla",
-          "pantalon": "Negro",
-          "medias": "Negras"
-        }
-      ]
+      "equipaciones": []
     }
   ],
   "evolucion": [
@@ -1012,7 +1016,7 @@
     },
     {
       "cod_jugador": "905273212",
-      "nombre": "Dominic M.",
+      "nombre": "Dominic James M.",
       "dorsal": "5",
       "posicion": "Defensa",
       "portero": false,
@@ -1124,7 +1128,7 @@
     },
     {
       "cod_jugador": "904173928",
-      "nombre": "Sara N.",
+      "nombre": "Sara Margarida N.",
       "dorsal": "25",
       "posicion": "Medio",
       "portero": false,
@@ -1202,9 +1206,9 @@
         "visitante": "Alboraya U.D. 'D'",
         "cod_local": "29630200",
         "cod_visitante": "905981742",
-        "goles_local": "",
-        "goles_visitante": "",
-        "jugado": false,
+        "goles_local": "6",
+        "goles_visitante": "1",
+        "jugado": true,
         "fecha": "21-10-2026",
         "hora": "18:30",
         "propio": false
@@ -1249,7 +1253,7 @@
       "ahora": "Campo Las Fuentes F-8 Campo 1 Benimaclet (T)"
     }
   ],
-  "huella": "7b65000b3204442c2ff0751376b3e5a9",
+  "huella": "8d6a4d601eda7fa4653aab4e948ec959",
   "novedades": {
     "fecha": "2026-10-21T16:43:03+02:00",
     "lista": [
@@ -1265,5 +1269,5 @@
       }
     ]
   },
-  "actualizado": "2026-10-21T16:44:22+02:00"
+  "actualizado": "2026-10-21T22:23:07+02:00"
 }
