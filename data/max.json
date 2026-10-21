@@ -648,7 +648,18 @@
       "ultimos": [
         "G"
       ],
-      "equipaciones": []
+      "equipaciones": [
+        {
+          "camiseta": "Verde",
+          "pantalon": "Blanco",
+          "medias": "Blancas"
+        },
+        {
+          "camiseta": "Naranja",
+          "pantalon": "Negro",
+          "medias": "Negras"
+        }
+      ]
     },
     {
       "codequipo": "29630200",
@@ -717,18 +728,7 @@
       "ultimos": [
         "G"
       ],
-      "equipaciones": [
-        {
-          "camiseta": "Blanca",
-          "pantalon": "Negro",
-          "medias": "Blancas"
-        },
-        {
-          "camiseta": "Azul",
-          "pantalon": "Azul",
-          "medias": "Azules"
-        }
-      ]
+      "equipaciones": []
     },
     {
       "codequipo": "15209",
@@ -757,18 +757,7 @@
       "ultimos": [
         "P"
       ],
-      "equipaciones": [
-        {
-          "camiseta": "Roja",
-          "pantalon": "Azul",
-          "medias": "Azules"
-        },
-        {
-          "camiseta": "Negra",
-          "pantalon": "Gris",
-          "medias": "Grises"
-        }
-      ]
+      "equipaciones": []
     },
     {
       "codequipo": "903543750",
@@ -866,18 +855,7 @@
       "ultimos": [
         "P"
       ],
-      "equipaciones": [
-        {
-          "camiseta": "Azul",
-          "pantalon": "Azul",
-          "medias": "Azules"
-        },
-        {
-          "camiseta": "Roja",
-          "pantalon": "Negro",
-          "medias": "Negras"
-        }
-      ]
+      "equipaciones": []
     },
     {
       "codequipo": "900488139",
@@ -1253,7 +1231,7 @@
       "ahora": "Campo Las Fuentes F-8 Campo 1 Benimaclet (T)"
     }
   ],
-  "huella": "8d6a4d601eda7fa4653aab4e948ec959",
+  "huella": "f0be5f390961961e338c46a9e91ec27e",
   "novedades": {
     "fecha": "2026-10-21T16:43:03+02:00",
     "lista": [
@@ -1269,5 +1247,5 @@
       }
     ]
   },
-  "actualizado": "2026-10-21T22:23:07+02:00"
+  "actualizado": "2026-10-21T22:33:51+02:00"
 }

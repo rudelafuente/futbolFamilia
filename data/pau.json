@@ -1195,18 +1195,7 @@
       "ultimos": [
         "G"
       ],
-      "equipaciones": [
-        {
-          "camiseta": "Blanca",
-          "pantalon": "Blanco",
-          "medias": "Blancas"
-        },
-        {
-          "camiseta": "Azul marino",
-          "pantalon": "Azul marino",
-          "medias": "Azul marino"
-        }
-      ]
+      "equipaciones": []
     },
     {
       "codequipo": "900852000",
@@ -1391,18 +1380,7 @@
         "p": 0
       },
       "ultimos": [],
-      "equipaciones": [
-        {
-          "camiseta": "Amarilla / azul",
-          "pantalon": "Azul",
-          "medias": "Amarillas"
-        },
-        {
-          "camiseta": "Rosa flúor",
-          "pantalon": "Gris plata",
-          "medias": "Gris plata"
-        }
-      ]
+      "equipaciones": []
     },
     {
       "codequipo": "14048",
@@ -2303,7 +2281,7 @@
       "ahora": "15:15"
     }
   ],
-  "huella": "689fcc004b20e68539615077dc1dae3a",
+  "huella": "9e8236c0417be35b39c2005cfda903c8",
   "novedades": {
     "fecha": "2026-10-21T16:43:11+02:00",
     "lista": [
@@ -2314,5 +2292,5 @@
       }
     ]
   },
-  "actualizado": "2026-10-21T17:01:02+02:00"
+  "actualizado": "2026-10-21T22:37:51+02:00"
 }
