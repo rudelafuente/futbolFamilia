@@ -1391,7 +1391,18 @@
         "p": 0
       },
       "ultimos": [],
-      "equipaciones": []
+      "equipaciones": [
+        {
+          "camiseta": "Amarilla / azul",
+          "pantalon": "Azul",
+          "medias": "Amarillas"
+        },
+        {
+          "camiseta": "Rosa flúor",
+          "pantalon": "Gris plata",
+          "medias": "Gris plata"
+        }
+      ]
     },
     {
       "codequipo": "14048",
@@ -2292,7 +2303,7 @@
       "ahora": "15:15"
     }
   ],
-  "huella": "836cb92d0cecef1f4802b52ce46fd9d2",
+  "huella": "689fcc004b20e68539615077dc1dae3a",
   "novedades": {
     "fecha": "2026-10-21T16:43:11+02:00",
     "lista": [
@@ -2303,5 +2314,5 @@
       }
     ]
   },
-  "actualizado": "2026-10-22T11:19:25+02:00"
+  "actualizado": "2026-10-23T09:29:46+02:00"
 }
