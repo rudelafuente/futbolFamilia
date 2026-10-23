@@ -768,7 +768,18 @@
       "ultimos": [
         "P"
       ],
-      "equipaciones": []
+      "equipaciones": [
+        {
+          "camiseta": "Roja",
+          "pantalon": "Azul",
+          "medias": "Azules"
+        },
+        {
+          "camiseta": "Negra",
+          "pantalon": "Gris",
+          "medias": "Grises"
+        }
+      ]
     },
     {
       "codequipo": "903543750",
@@ -797,7 +808,18 @@
       "ultimos": [
         "P"
       ],
-      "equipaciones": []
+      "equipaciones": [
+        {
+          "camiseta": "Verde",
+          "pantalon": "Blanco",
+          "medias": "Blancas"
+        },
+        {
+          "camiseta": "Blanca",
+          "pantalon": "Blanco",
+          "medias": "Blancas"
+        }
+      ]
     },
     {
       "codequipo": "905981742",
@@ -1253,7 +1275,7 @@
       "ahora": "Campo Las Fuentes F-8 Campo 1 Benimaclet (T)"
     }
   ],
-  "huella": "60411aa829523afdbf86b383190cf177",
+  "huella": "1e65b0ad8cfaaea3e104b8dc333eac7b",
   "novedades": {
     "fecha": "2026-10-21T16:43:03+02:00",
     "lista": [
@@ -1269,5 +1291,5 @@
       }
     ]
   },
-  "actualizado": "2026-10-22T11:19:14+02:00"
+  "actualizado": "2026-10-23T22:06:27+02:00"
 }
