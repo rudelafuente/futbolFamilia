@@ -475,6 +475,13 @@ function textoCambio(c) {
   }
 }
 // Etiqueta en la tarjeta o fila del partido, para verlo aunque no se lea el aviso.
+// Sanciones por cumplir (d.sanciones, sin motivo): cada una afecta a los próximos «quedan» partidos sin jugar.
+const sancionadosEn = (d, p) => {
+  const pend = (d.partidos || []).filter(x => !x.jugado).sort((a, b) => (parseDate(a.fecha, a.hora) || 0) - (parseDate(b.fecha, b.hora) || 0));
+  const i = pend.findIndex(x => x.cod_jornada === p.cod_jornada);
+  return i < 0 ? [] : (d.sanciones || []).filter(s => i < s.quedan);
+};
+const textoSancion = s => `${esc(s.nombre)}${s.tecnico ? ' (técnico)' : ''}`;
 const pillCambio = (d, p) => { const cs = cambiosDe(d, p); return cs.length ? ` <span class="pill nuevo">Cambió ${cs.map(c => DATO[c.dato]).join(' y ')}</span>` : ''; };
 function renderCambios(datos, solo) {
   const filas = datos.filter(d => !solo || d.slug === solo).flatMap(d => (d.cambios || []).filter(c => !visto(d, c)).map(c => ({d, c})))
@@ -492,7 +499,7 @@ function renderCambios(datos, solo) {
 
 // ---------- lo nuevo de la última actualización ----------
 // El actualizador deja en d.novedades {fecha, lista:[{tipo, texto, cod_jornada}]} lo que cambió la última vez que hubo algo que contar.
-const ICONO_NOVEDAD = {resultado: '⚽', acta: '📋', goles: '🥅', liga: '📈', horario: '🕒', campo: '📍'};
+const ICONO_NOVEDAD = {resultado: '⚽', acta: '📋', goles: '🥅', liga: '📈', horario: '🕒', campo: '📍', sancion: '🟥'};
 // Los cambios de horario o campo que aún muestra el aviso amarillo no se repiten aquí.
 function renderNovedades(datos) {
   const enAviso = (d, n) => ['horario', 'campo'].includes(n.tipo) && (d.cambios || []).some(c => String(c.cod_jornada) === String(n.cod_jornada) && !visto(d, c));
@@ -768,7 +775,7 @@ function tablaPlantilla(d) {
   return `<button class="btn sort" data-k="demarcacion" style="margin-bottom:10px">Ordenar por demarcación${flecha('demarcacion')}</button><div class="scroll"><table class="pl"><thead><tr>${cols.map(([k, l]) => `<th${k === 'nombre' ? ' style="text-align:left"' : ''}
       aria-sort="${ordenPl.k === k ? (ordenPl.dir > 0 ? 'ascending' : 'descending') : 'none'}"><button class="sort" data-k="${k}">${l}${flecha(k)}</button></th>`).join('')}</tr></thead>
     <tbody>${filas.map(r => `<tr class="${r.propio ? 'me' : ''}"><td>${esc(r.dorsal || '–')}</td>
-      <td class="eq">${esc(r.nombre)}${r.propio ? ' <span class="pill">★ Favorito</span>' : ''}<small class="demarcacion" title="${esc(demarcacion(r).detalle)}">${esc(demarcacion(r).grupo)}${demarcacion(r).codigo ? ' · ' + esc(demarcacion(r).codigo) : demarcacion(r).detalle !== demarcacion(r).grupo ? ' · ' + esc(demarcacion(r).detalle) : ''}</small></td>
+      <td class="eq">${esc(r.nombre)}${r.propio ? ' <span class="pill">★ Favorito</span>' : ''}${(d.sanciones || []).some(s => !s.tecnico && s.nombre === r.nombre) ? ' <span class="pill">🟥 Sancionado</span>' : ''}<small class="demarcacion" title="${esc(demarcacion(r).detalle)}">${esc(demarcacion(r).grupo)}${demarcacion(r).codigo ? ' · ' + esc(demarcacion(r).codigo) : demarcacion(r).detalle !== demarcacion(r).grupo ? ' · ' + esc(demarcacion(r).detalle) : ''}</small></td>
       ${r.oculto ? '<td colspan="4" class="oc">Datos no públicos</td>'
         : `<td>${esc(r.jugados ?? 0)}</td><td>${esc(r.titular ?? 0)}</td><td>${r.goles === undefined ? '–' : `<b>${esc(r.goles)}</b>`}</td><td>${esc((r.amarillas || 0) + (r.rojas || 0))}</td>`}</tr>`).join('')}
     </tbody></table></div>`;
@@ -781,6 +788,7 @@ function renderEquipo(d) {
   const ficha = [
     e.tecnicos?.length && ['Entrenador', lista(e.tecnicos)],
     e.delegados?.length && ['Delegado', lista(e.delegados)],
+    d.sanciones?.length && ['Sancionados', d.sanciones.map(s => `${textoSancion(s)} · ${s.quedan === 1 ? 'queda 1 partido' : `quedan ${esc(s.quedan)} partidos`}`).join('<br>')],
     e.dia_habitual && ['Horario habitual', `${esc(cap(e.dia_habitual))}${/s$/.test(e.dia_habitual) ? '' : 's'}${e.hora_habitual ? ' a las ' + esc(e.hora_habitual) : ''}`],
     (c || e.campo_habitual) && ['Campo', esc(c?.nombre || '') + (c?.localidad ? ` · ${esc(c.localidad)}` : '')],
   ].filter(Boolean);
@@ -1188,6 +1196,7 @@ function fichaHTML(d, p) {
     <div class="sub">${cap(cuando)}${p.estado ? ` · <b>${esc(p.estado)}</b>` : ''}${p.acta?.suspendido ? ' · <b>Suspendido</b>' : ''}</div>
     ${tiempoSlot(d, p, 'largo')}
     ${!p.jugado ? cambiosDe(d, p).map(c => `<div class="aviso justo">⚠️ Cambió ${DATO[c.dato]}: ${textoCambio(c)}</div>`).join('') : ''}
+    ${!p.jugado ? (s => s.length ? `<div class="aviso justo">🟥 No puede${s.length > 1 ? 'n' : ''} jugar por sanción: ${s.map(textoSancion).join(', ')}</div>` : '')(sancionadosEn(d, p)) : ''}
     ${goles}${p.jugado ? '' : bloqueEquipacion(d, p)}${rival}${campo}${acciones}`;
 }
 
